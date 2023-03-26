@@ -1,14 +1,14 @@
 <script setup>
-import Layout from './Layout.vue'
 import { Head } from '@inertiajs/vue3'
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 
 defineProps({ slug: String })
 </script>
 
 <template>
-    <Layout>
+    <DefaultLayout>
         <Head title="Oops!" />
         <h1>Sorry!</h1>
         <p>There is no user for the slug {{ slug }}!</p>
-    </Layout>
+    </DefaultLayout>
 </template>
