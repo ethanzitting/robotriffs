@@ -1,17 +1,3 @@
-<script setup>
-import { Head, Link, router } from '@inertiajs/vue3';
-import NavLink from "@/Components/NavLink.vue";
-import ApplicationMark from "../Components/icons/ApplicationMark.vue";
-
-defineProps({
-    title: String,
-});
-
-const logout = () => {
-    router.post(route('logout'));
-};
-</script>
-
 <template>
     <div class="body">
         <Head>
@@ -23,9 +9,12 @@ const logout = () => {
                 <ApplicationMark />
             </Link>
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                Dashboard
+                Home
             </NavLink>
             <NavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                Profile
+            </NavLink>
+            <NavLink :href="profile?.slug" :active="route().current('account.show')">
                 Manage Account
             </NavLink>
             <q-btn @click="logout">Log Out</q-btn>
@@ -36,6 +25,34 @@ const logout = () => {
         </main>
     </div>
 </template>
+
+<script>
+import { Head, Link, router } from '@inertiajs/vue3';
+import ApplicationMark from "../Components/icons/ApplicationMark.vue";
+import NavLink from "../Components/NavLink.vue";
+
+export default {
+    components: {NavLink, ApplicationMark, Head, Link},
+    props: {
+        profile: {
+            type: Object,
+            default: () => {}
+        },
+        title: {
+            type: String,
+            default: ''
+        }
+    },
+    mounted () {
+        console.log(this.profile)
+    },
+    methods: {
+        logout () {
+            router.post(route('logout'));
+        }
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 .body {

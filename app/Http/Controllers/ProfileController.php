@@ -18,7 +18,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Inertia::render('Foo', [
+        return Inertia::render('profile.show', [
             'profile' => $profile,
         ]);
     }
