@@ -30,8 +30,8 @@ const logout = () => {
             <NavLink :href="`/${user.profile.slug}`" :active="route().current('user.profile')">
                 Profile
             </NavLink>
-            <NavLink href="/user/account" :active="route().current('account.show')">
-                Manage Account
+            <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
+                Settings
             </NavLink>
             <button @click="logout">Log Out</button>
         </header>

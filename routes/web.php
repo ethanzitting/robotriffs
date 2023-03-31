@@ -37,6 +37,15 @@ Route::middleware([
             'user' => Auth::user()->load(['posts', 'profile']),
         ]);
     })->name('dashboard');
+
+    Route::get('/settings', function () {
+        return Inertia::render('Account/Show', [
+            'user' => Auth::user()->load(['posts', 'profile']),
+            'sessions' => [],
+            'confirmsTwoFactorAuthentication' => false,
+        ]);
+    })->name('user.settings');
+
     Route::get('/{slug}', [ProfileController::class, 'show'])
         ->name('user.profile');
 });

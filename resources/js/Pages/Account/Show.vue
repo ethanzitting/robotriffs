@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from '@/Layouts/DefaultLayout.vue';
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import DeleteUserForm from '@/Pages/Account/Partials/DeleteUserForm.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Account/Partials/LogoutOtherBrowserSessionsForm.vue';
 import SectionBorder from '@/Components/SectionBorder.vue';
@@ -10,11 +10,12 @@ import UpdateProfileInformationForm from '@/Pages/Account/Partials/UpdateProfile
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
+    user: Object,
 });
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <DefaultLayout title="Profile" :user="user">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Profile
@@ -53,5 +54,5 @@ defineProps({
                 </template>
             </div>
         </div>
-    </AppLayout>
+    </DefaultLayout>
 </template>
