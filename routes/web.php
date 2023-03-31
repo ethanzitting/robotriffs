@@ -34,11 +34,11 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'posts' => Post::get(),
-            'user' => Auth::user(),
+            'user' => Auth::user()->load(['posts', 'profile']),
         ]);
     })->name('dashboard');
-    Route::get('/{slug}', [ProfileController::class, 'show']);
+    Route::get('/{slug}', [ProfileController::class, 'show'])
+        ->name('user.profile');
 });
 
 Route::resources([

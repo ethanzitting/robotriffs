@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,19 +10,20 @@ class ProfileController extends Controller
 {
     public function show(Request $request, string $slug)
     {
-        $profile = Profile::where('slug', $slug)
-            ->with('user.posts')
+        $user = User::join('profiles', 'profiles.user_id', 'users.id')
+            ->select('users.*')
+            ->with(['profile', 'posts'])
             ->first();
 
-        if(!$profile)
+        if(!$user)
         {
-            return Inertia::render('Bar', [
+            return Inertia::render('404', [
                 'slug' => $slug,
             ]);
         }
 
         return Inertia::render('Profile/Show', [
-            'profile' => $profile,
+            'user' => $user,
         ]);
     }
 }

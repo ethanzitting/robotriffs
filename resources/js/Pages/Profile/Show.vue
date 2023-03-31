@@ -1,22 +1,22 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import PostFeed from "../../Components/PostFeed.vue";
+import PostFeed from "@/Components/PostFeed.vue";
+import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
-    profile: Object,
-    posts: Array,
+    user: Object,
 })
 
 </script>
 
 <template>
-    <DefaultLayout :profile="profile" something="foo">
+    <DefaultLayout :user="user">
         <Head>
-            <title>{{ profile.user.name}}</title>
+            <title>{{ user.name}}</title>
         </Head>
-        <p>{{ profile.user.name }}</p>
-        <TweetInput></TweetInput>
-        <PostFeed :posts="profile.user.posts"></PostFeed>
+        <p>{{ user.name }}</p>
+        <TweetInput :user="user"></TweetInput>
+        <PostFeed :posts="user.posts"></PostFeed>
     </DefaultLayout>
 </template>

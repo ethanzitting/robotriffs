@@ -1,3 +1,19 @@
+<script setup>
+import { Head, Link, router } from '@inertiajs/vue3';
+import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
+import NavLink from "@/Components/NavLink.vue";
+
+const props = defineProps({
+    title: String,
+    user: Object,
+})
+
+const logout = () => {
+    router.post(route('logout'));
+}
+
+</script>
+
 <template>
     <div class="body">
         <Head>
@@ -11,7 +27,7 @@
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 Home
             </NavLink>
-            <NavLink href="/ethanzitting" :active="route().current('profile.show')">
+            <NavLink :href="`/${user.profile.slug}`" :active="route().current('user.profile')">
                 Profile
             </NavLink>
             <NavLink href="/user/account" :active="route().current('account.show')">
@@ -26,40 +42,28 @@
     </div>
 </template>
 
-<script>
-import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from "../Components/icons/ApplicationMark.vue";
-import NavLink from "../Components/NavLink.vue";
-
-export default {
-    components: {NavLink, ApplicationMark, Head, Link},
-    props: {
-        title: {
-            type: String,
-            default: ''
-        },
-    },
-    methods: {
-        logout () {
-            router.post(route('logout'));
-        },
-    }
-}
-</script>
-
 <style lang="scss" scoped>
 .body {
     position: relative;
 
     .header {
         position: fixed;
+        font-size: 20px;
+        font-weight: 400;
         top: 0;
         left: 0;
         width: 300px;
-        padding: 16px;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        border-right: 1px solid #EEEEEE;
+        padding: 40px;
+        color: #222222;
+
+        &>*:last-child {
+            margin-top: auto;
+        }
     }
 
     .main {
