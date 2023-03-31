@@ -6,11 +6,6 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-import {Notify, Quasar} from 'quasar'
-import '@quasar/extras/roboto-font/roboto-font.css'
-import '@quasar/extras/material-icons/material-icons.css'
-import 'quasar/src/css/index.sass'
-
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -20,9 +15,6 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
-            .use(Quasar, {
-                plugins: { Notify },
-            })
             .mount(el);
     },
     progress: {

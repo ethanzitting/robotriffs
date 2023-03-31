@@ -1,6 +1,12 @@
 <script setup>
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
+import PostFeed from "../Components/PostFeed.vue";
+import TweetInput from "../Components/TweetInput.vue";
+
+defineProps({
+    posts: Array,
+    user: Object,
+})
 </script>
 
 <template>
@@ -10,13 +16,9 @@ import Welcome from '@/Components/Welcome.vue';
                 Dashboard
             </h2>
         </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
-            </div>
+        <div>
+            <TweetInput :user="user"></TweetInput>
+            <PostFeed :posts="posts"></PostFeed>
         </div>
     </DefaultLayout>
 </template>

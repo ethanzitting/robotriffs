@@ -11,13 +11,13 @@
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 Home
             </NavLink>
-            <NavLink :href="route('profile.show')" :active="route().current('profile.show')">
+            <NavLink href="/ethanzitting" :active="route().current('profile.show')">
                 Profile
             </NavLink>
-            <NavLink :href="profile?.slug" :active="route().current('account.show')">
+            <NavLink href="/user/account" :active="route().current('account.show')">
                 Manage Account
             </NavLink>
-            <q-btn @click="logout">Log Out</q-btn>
+            <button @click="logout">Log Out</button>
         </header>
 
         <main class="main">
@@ -34,22 +34,15 @@ import NavLink from "../Components/NavLink.vue";
 export default {
     components: {NavLink, ApplicationMark, Head, Link},
     props: {
-        profile: {
-            type: Object,
-            default: () => {}
-        },
         title: {
             type: String,
             default: ''
-        }
-    },
-    mounted () {
-        console.log(this.profile)
+        },
     },
     methods: {
         logout () {
             router.post(route('logout'));
-        }
+        },
     }
 }
 </script>
