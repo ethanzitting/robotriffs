@@ -6,17 +6,18 @@ import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
     user: Object,
+    currentUser: Object,
 })
 
 </script>
 
 <template>
-    <DefaultLayout :user="user">
+    <DefaultLayout :user="currentUser">
         <Head>
             <title>{{ user.name}}</title>
         </Head>
         <p>{{ user.name }}</p>
-        <TweetInput :user="user"></TweetInput>
+        <TweetInput :user="currentUser"></TweetInput>
         <PostFeed :posts="user.posts"></PostFeed>
     </DefaultLayout>
 </template>

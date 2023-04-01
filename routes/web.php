@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,17 +34,24 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'user' => Auth::user()->load(['posts', 'profile']),
+            'currentUser' => Auth::user()->load(['posts', 'profile']),
         ]);
     })->name('dashboard');
 
     Route::get('/settings', function () {
         return Inertia::render('Account/Show', [
-            'user' => Auth::user()->load(['posts', 'profile']),
+            'currentUser' => Auth::user()->load(['posts', 'profile']),
             'sessions' => [],
             'confirmsTwoFactorAuthentication' => false,
         ]);
     })->name('user.settings');
+
+    Route::get('/directory', function () {
+        Return Inertia::render('Directory', [
+            'users' => User::with(['posts', 'profile'])->get(),
+            'currentUser' => Auth::user()->load(['posts', 'profile']),
+        ]);
+    });
 
     Route::get('/{slug}', [ProfileController::class, 'show'])
         ->name('user.profile');

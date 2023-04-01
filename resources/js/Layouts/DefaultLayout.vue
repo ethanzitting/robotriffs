@@ -30,6 +30,9 @@ const logout = () => {
             <NavLink :href="`/${user.profile.slug}`" :active="route().current('user.profile')">
                 Profile
             </NavLink>
+            <NavLink :href="`/directory`" :active="route().current('directory')">
+                Directory
+            </NavLink>
             <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
                 Settings
             </NavLink>

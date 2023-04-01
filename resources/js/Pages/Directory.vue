@@ -1,10 +1,9 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import PostFeed from "@/Components/PostFeed.vue";
-import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
-    user: Object,
+    users: Array,
     currentUser: Object,
 })
 </script>
@@ -13,12 +12,14 @@ defineProps({
     <DefaultLayout title="Dashboard" :user="currentUser">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Directory
             </h2>
         </template>
         <div>
-            <TweetInput :user="currentUser"></TweetInput>
-            <PostFeed :posts="currentUser.posts"></PostFeed>
+            Directory
+            <div v-for="user in users" :key="user.id">
+                <Link :href="'/' + user.profile.slug">{{ user.name}}</Link>
+            </div>
         </div>
     </DefaultLayout>
 </template>
