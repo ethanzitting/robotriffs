@@ -48,6 +48,7 @@ const logout = () => {
 <style lang="scss" scoped>
 .body {
     position: relative;
+    font-family: 'Roboto', sans-serif;
 
     .header {
         position: fixed;
