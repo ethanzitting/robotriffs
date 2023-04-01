@@ -1,15 +1,12 @@
 <script setup>
-import {Link, router} from '@inertiajs/vue3';
+import {Link} from '@inertiajs/vue3';
 import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
-
-const logout = () => {
-    router.post(route('logout'));
-}
+import UserMenu from "./UserMenu.vue";
 </script>
 
 <template>
-    <nav class="navbar">
+    <header class="navbar">
         <Link :href="route('home')">
             <ApplicationMark />
         </Link>
@@ -25,8 +22,8 @@ const logout = () => {
         <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
             Settings
         </NavLink>
-        <button @click="logout">Log Out</button>
-    </nav>
+        <UserMenu />
+    </header>
 </template>
 
 <style lang="scss" scoped>

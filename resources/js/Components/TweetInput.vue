@@ -1,6 +1,6 @@
 <script setup>
 import {useForm} from "@inertiajs/vue3";
-import CurrentProfilePhoto from "./CurrentProfilePhoto.vue";
+import CurrentProfilePhoto from "./UserAvater.vue";
 
 defineProps({
     user: Object

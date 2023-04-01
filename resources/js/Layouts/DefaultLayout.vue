@@ -10,13 +10,9 @@ const props = defineProps({
 
 <template>
     <div class="container">
-        <Head>
-            <title>{{ title }}</title>
-        </Head>
+        <Head :title="title" />
 
-        <header class="header">
-            <NavBar/>
-        </header>
+        <NavBar/>
 
         <main class="main">
             <slot />
