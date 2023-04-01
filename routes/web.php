@@ -33,14 +33,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/home', function () {
-        return Inertia::render('Home', [
-            'currentUser' => Auth::user()->load('posts'),
-        ]);
+        return Inertia::render('Home');
     })->name('home');
 
     Route::get('/settings', function () {
         return Inertia::render('Account/Show', [
-            'currentUser' => Auth::user(),
             'sessions' => [],
             'confirmsTwoFactorAuthentication' => false,
         ]);
@@ -49,7 +46,6 @@ Route::middleware([
     Route::get('/directory', function () {
         return Inertia::render('Directory', [
             'users' => User::all(),
-            'currentUser' => Auth::user(),
         ]);
     });
 

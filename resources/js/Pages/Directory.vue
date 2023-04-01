@@ -4,12 +4,11 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 
 defineProps({
     users: Array,
-    currentUser: Object,
 })
 </script>
 
 <template>
-    <DefaultLayout title="Dashboard" :user="currentUser">
+    <DefaultLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Directory

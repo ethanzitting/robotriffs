@@ -1,42 +1,21 @@
 <script setup>
-import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
-import NavLink from "@/Components/NavLink.vue";
+import {Head} from '@inertiajs/vue3';
+import NavBar from "@/Components/NavBar.vue";
 
 const props = defineProps({
     title: String,
-    user: Object,
 })
-
-const logout = () => {
-    router.post(route('logout'));
-}
 
 </script>
 
 <template>
-    <div class="body">
+    <div class="container">
         <Head>
             <title>{{ title }}</title>
         </Head>
 
         <header class="header">
-            <Link :href="route('home')">
-                <ApplicationMark />
-            </Link>
-            <NavLink :href="route('home')" :active="route().current('home')">
-                Home
-            </NavLink>
-            <NavLink :href="`/${user.handle}`" :active="route().current('user.profile')">
-                Profile
-            </NavLink>
-            <NavLink :href="`/directory`" :active="route().current('directory')">
-                Directory
-            </NavLink>
-            <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
-                Settings
-            </NavLink>
-            <button @click="logout">Log Out</button>
+            <NavBar/>
         </header>
 
         <main class="main">
@@ -46,32 +25,20 @@ const logout = () => {
 </template>
 
 <style lang="scss" scoped>
-.body {
+.container {
     position: relative;
+    min-height: 100vh;
+    margin: 0 auto;
+
     font-family: 'Roboto', sans-serif;
 
-    .header {
-        position: fixed;
-        font-size: 20px;
-        font-weight: 400;
-        top: 0;
-        left: 0;
-        width: 300px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        border-right: 1px solid #EEEEEE;
-        padding: 40px;
-        color: #222222;
-
-        &>*:last-child {
-            margin-top: auto;
-        }
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     .main {
-        margin-left: 300px;
+        max-width: 980px;
+        min-width: 980px;
     }
 }
 </style>

@@ -1,0 +1,49 @@
+<script setup>
+import {Link, router} from '@inertiajs/vue3';
+import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
+import NavLink from "@/Components/NavLink.vue";
+
+const logout = () => {
+    router.post(route('logout'));
+}
+</script>
+
+<template>
+    <nav class="navbar">
+        <Link :href="route('home')">
+            <ApplicationMark />
+        </Link>
+        <NavLink :href="route('home')" :active="route().current('home')">
+            Home
+        </NavLink>
+        <NavLink :href="`/${$page.props.auth.user.handle}`" :active="route().current('user.profile')">
+            Profile
+        </NavLink>
+        <NavLink :href="`/directory`" :active="route().current('directory')">
+            Directory
+        </NavLink>
+        <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
+            Settings
+        </NavLink>
+        <button @click="logout">Log Out</button>
+    </nav>
+</template>
+
+<style lang="scss" scoped>
+.navbar {
+    font-size: 20px;
+    font-weight: 400;
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-right: 1px solid #EEEEEE;
+    padding: 40px;
+    color: #222222;
+
+    &>*:last-child {
+        margin-top: auto;
+    }
+}
+</style>

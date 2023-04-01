@@ -5,13 +5,12 @@ import PostFeed from "@/Components/PostFeed.vue";
 
 defineProps({
     user: Object,
-    currentUser: Object,
 })
 
 </script>
 
 <template>
-    <DefaultLayout :user="currentUser">
+    <DefaultLayout>
         <Head>
             <title>{{ user.name}}</title>
         </Head>

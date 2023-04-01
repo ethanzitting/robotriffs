@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ProfileController extends Controller
@@ -18,13 +17,11 @@ class ProfileController extends Controller
         if (! $user) {
             return Inertia::render('404', [
                 'slug' => $slug,
-                'currentUser' => Auth::user(),
             ]);
         }
 
         return Inertia::render('Profile/Show', [
             'user' => $user,
-            'currentUser' => Auth::user(),
         ]);
     }
 }
