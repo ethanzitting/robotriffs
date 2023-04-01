@@ -10,6 +10,7 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     name: '',
+    handle: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -42,6 +43,19 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="name"
+                />
+                <InputError class="mt-2" :message="form.errors.name" />
+            </div>
+            <div>
+                <InputLabel for="handle" value="Handle" />
+                <TextInput
+                    id="handle"
+                    v-model="form.handle"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autofocus
+                    autocomplete="handle"
                 />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>

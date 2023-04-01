@@ -10,7 +10,6 @@ class Profile extends Model
 {
     use HasFactory;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -29,7 +28,7 @@ class Profile extends Model
     protected $hidden = [
         'user_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**

@@ -27,7 +27,7 @@ const logout = () => {
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 Home
             </NavLink>
-            <NavLink :href="`/${user.profile.slug}`" :active="route().current('user.profile')">
+            <NavLink :href="`/${user.handle}`" :active="route().current('user.profile')">
                 Profile
             </NavLink>
             <NavLink :href="`/directory`" :active="route().current('directory')">

@@ -11,23 +11,20 @@ class ProfileController extends Controller
 {
     public function show(Request $request, string $slug)
     {
-        $user = User::join('profiles', 'profiles.user_id', 'users.id')
-            ->where('profiles.slug', $slug)
-            ->select('users.*')
+        $user = User::where('handle', $slug)
             ->with(['profile', 'posts'])
             ->first();
 
-        if(!$user)
-        {
+        if (! $user) {
             return Inertia::render('404', [
                 'slug' => $slug,
-                'currentUser' => Auth::user()->load('profile')
+                'currentUser' => Auth::user(),
             ]);
         }
 
         return Inertia::render('Profile/Show', [
             'user' => $user,
-            'currentUser' => Auth::user()->load('profile')
+            'currentUser' => Auth::user(),
         ]);
     }
 }

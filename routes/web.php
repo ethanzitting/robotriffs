@@ -34,22 +34,22 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'currentUser' => Auth::user()->load(['posts', 'profile']),
+            'currentUser' => Auth::user()->load('posts'),
         ]);
     })->name('dashboard');
 
     Route::get('/settings', function () {
         return Inertia::render('Account/Show', [
-            'currentUser' => Auth::user()->load(['posts', 'profile']),
+            'currentUser' => Auth::user(),
             'sessions' => [],
             'confirmsTwoFactorAuthentication' => false,
         ]);
     })->name('user.settings');
 
     Route::get('/directory', function () {
-        Return Inertia::render('Directory', [
-            'users' => User::with(['posts', 'profile'])->get(),
-            'currentUser' => Auth::user()->load(['posts', 'profile']),
+        return Inertia::render('Directory', [
+            'users' => User::all(),
+            'currentUser' => Auth::user(),
         ]);
     });
 

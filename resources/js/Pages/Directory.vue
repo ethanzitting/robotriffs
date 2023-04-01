@@ -18,7 +18,7 @@ defineProps({
         <div>
             Directory
             <div v-for="user in users" :key="user.id">
-                <Link :href="'/' + user.profile.slug">{{ user.name}}</Link>
+                <Link :href="'/' + user.handle">{{ user.name}}</Link>
             </div>
         </div>
     </DefaultLayout>
