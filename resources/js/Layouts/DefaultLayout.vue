@@ -21,10 +21,10 @@ const logout = () => {
         </Head>
 
         <header class="header">
-            <Link :href="route('dashboard')">
+            <Link :href="route('home')">
                 <ApplicationMark />
             </Link>
-            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+            <NavLink :href="route('home')" :active="route().current('home')">
                 Home
             </NavLink>
             <NavLink :href="`/${user.handle}`" :active="route().current('user.profile')">

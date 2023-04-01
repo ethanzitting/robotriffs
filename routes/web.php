@@ -32,11 +32,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard', [
+    Route::get('/home', function () {
+        return Inertia::render('Home', [
             'currentUser' => Auth::user()->load('posts'),
         ]);
-    })->name('dashboard');
+    })->name('home');
 
     Route::get('/settings', function () {
         return Inertia::render('Account/Show', [
