@@ -50,7 +50,7 @@ Route::middleware([
         return Inertia::render('Directory', [
             'users' => User::all(),
         ]);
-    });
+    })->name('directory');
 
     Route::get('/{slug}', [ProfileController::class, 'show'])
         ->name('user.profile');
