@@ -29,8 +29,6 @@ defineProps({
 <style lang="scss" scoped>
 .main {
     min-height: 100vh;
-    border-left: 1px solid #EEEEEE;
-    border-right: 1px solid #EEEEEE;
 
     .page-title {
         font-size: 20px;

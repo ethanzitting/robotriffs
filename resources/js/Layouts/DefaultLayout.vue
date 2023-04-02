@@ -39,6 +39,8 @@ const props = defineProps({
     .main {
         max-width: 600px;
         min-width: 600px;
+        border-right: 1px solid #EEEEEE;
+        border-left: 1px solid #EEEEEE;
     }
 }
 </style>

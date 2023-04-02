@@ -3,14 +3,13 @@ import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     href: String,
-    parentClasses: String,
     active: Boolean
 });
 
 </script>
 
 <template>
-    <Link :href="href" :class="parentClasses + (active ? ' active' : '')">
+    <Link :href="href" :class="active ? ' active' : ''">
         <slot />
     </Link>
 </template>

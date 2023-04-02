@@ -35,7 +35,7 @@ import UserMenu from "./UserMenu.vue";
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 40px;
+    padding: 40px 0;
     color: #222222;
 
     &>*:last-child {
