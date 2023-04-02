@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function show(Request $request, string $slug)
     {
         $user = User::where('handle', $slug)
-            ->with(['profile', 'posts'])
+            ->with(['profile', 'posts', 'avatars', 'banners'])
             ->first();
 
         if (! $user) {

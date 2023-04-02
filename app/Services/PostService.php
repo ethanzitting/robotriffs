@@ -17,7 +17,7 @@ class PostService {
             ->push($user->id);
 
         return Post::whereIn('user_id', $followedByUser)
-            ->with('user')
+            ->with(['user', 'user.avatars'])
             ->orderByDesc('created_at')
             ->get();
     }

@@ -4,7 +4,6 @@ import PostFeed from "@/Components/PostFeed.vue";
 import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
-    user: Object,
     posts: Array,
 })
 

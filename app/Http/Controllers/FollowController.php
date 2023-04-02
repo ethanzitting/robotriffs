@@ -18,10 +18,11 @@ class FollowController extends Controller
 
     public function store(Request $request)
     {
+        $followers = User::findOrFail($request->followed)
+            ->followers();
+
         $request->action === 'follow'
-            ? User::findOrFail($request->followed)
-                ->followers()->attach(User::findOrFail($request->follower))
-            : User::findOrFail($request->followed)
-                ->followers()->detach(User::findOrFail($request->follower));
+            ? $followers->attach($request->follower)
+            : $followers->detach($request->follower);
     }
 }

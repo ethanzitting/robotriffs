@@ -15,7 +15,7 @@ defineProps({
 <template>
     <div class="container">
         <UserAvater
-            :to="'/' + post.user.handle"
+            :to="'/' + post.user.avatars[0].url"
             :user="post.user"
             :size="'48px'"
         />
