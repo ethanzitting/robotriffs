@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class PostService {
@@ -14,11 +13,12 @@ class PostService {
             return [];
         }
 
-        // TODO:
-        $followedByUser = User::all()->pluck('id');
+        $followedByUser = $user->following->pluck('id')
+            ->push($user->id);
 
         return Post::whereIn('user_id', $followedByUser)
             ->with('user')
+            ->orderByDesc('created_at')
             ->get();
     }
 }

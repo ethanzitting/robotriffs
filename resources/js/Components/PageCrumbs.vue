@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-
+        <span>Terms of Service</span>
+        <span>Privacy Policy</span>
+        <span>Cookie Policy</span>
+        <span>Accessibility</span>
+        <span>Copywrite</span>
     </div>
 </template>
 

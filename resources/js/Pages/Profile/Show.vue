@@ -2,6 +2,7 @@
 import { Head } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import PostFeed from "@/Components/PostFeed.vue";
+import FollowButton from "@/Components/FollowButton.vue";
 
 const props = defineProps({
     user: Object,
@@ -21,6 +22,12 @@ const posts = props.user.posts.map(post => {
             <title>{{ user.name}}</title>
         </Head>
         <p>{{ user.name }}</p>
-        <PostFeed :posts="posts"></PostFeed>
+        <Suspense>
+            <FollowButton
+                v-if="user.id !== $page.props.auth.user.id"
+                :user="user"
+            />
+        </Suspense>
+        <PostFeed :posts="posts" />
     </DefaultLayout>
 </template>
