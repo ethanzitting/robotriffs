@@ -13,8 +13,8 @@ const logout = () => {
         <button @click="logout">
             <UserAvater />
             <div class="text-content">
-                <p class="name">{{ $page.props.user?.name }}</p>
-                <p class="handle">@{{ $page.props.user?.handle }}</p>
+                <p class="name">{{ $page.props.auth.user.name }}</p>
+                <p class="handle">@{{ $page.props.auth.user.handle }}</p>
             </div>
             <ThreeDotsHorizontal />
         </button>

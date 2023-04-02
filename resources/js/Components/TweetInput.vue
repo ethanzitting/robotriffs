@@ -1,19 +1,22 @@
 <script setup>
-import {useForm} from "@inertiajs/vue3";
+import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "./UserAvater.vue";
-
-defineProps({
-    user: Object
-})
 
 const form = useForm({
     postContent: null,
 })
+
+const user = usePage().props.auth.user
 </script>
 
 <template>
     <div class="wrapper">
-        <CurrentProfilePhoto class="icon" :user="user"/>
+        <CurrentProfilePhoto
+            :to="'/' + user.handle"
+            size="48px"
+            class="icon"
+            :user="user"
+        />
         <form @submit.prevent="form.post('/posts')">
             <input type="text" placeholder="What's happening?" v-model="form.postContent">
             <button type="submit" :disabled="form.processing">Tweet</button>

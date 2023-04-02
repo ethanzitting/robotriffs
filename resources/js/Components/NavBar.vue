@@ -31,11 +31,10 @@ import UserMenu from "./UserMenu.vue";
     font-size: 20px;
     font-weight: 400;
     height: 100vh;
-    width: 300px;
+    width: 240px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    border-right: 1px solid #EEEEEE;
     padding: 40px;
     color: #222222;
 

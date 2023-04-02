@@ -11,10 +11,13 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
 </script>
 
 <template>
-    <Link v-if="to" :href="to">
+    <Link
+        v-if="to"
+        :href="to"
+        :style="`height: ${size ?? '40px'}; width: ${size ?? '40px'}`"
+    >
         <img
             class="avatar"
-            :style="`height: ${size ?? '40px'}; width: ${size ?? '40px'}`"
             :src="user.profile_photo_url"
             :alt="user.name"
         >

@@ -1,6 +1,7 @@
 <script setup>
 import {Head} from '@inertiajs/vue3';
 import NavBar from "@/Components/NavBar.vue";
+import Extras from "../Components/Extras.vue";
 
 const props = defineProps({
     title: String,
@@ -17,6 +18,8 @@ const props = defineProps({
         <main class="main">
             <slot />
         </main>
+
+        <Extras />
     </div>
 </template>
 
@@ -31,10 +34,11 @@ const props = defineProps({
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 32px;
 
     .main {
-        max-width: 980px;
-        min-width: 980px;
+        max-width: 600px;
+        min-width: 600px;
     }
 }
 </style>
