@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
+use App\Services\PostService;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/home', function () {
-        return Inertia::render('Home');
+        return Inertia::render('Home', [
+            'posts' => (new PostService())->getFeedForUser(Auth::user()),
+        ]);
     })->name('home');
 
     Route::get('/settings', function () {

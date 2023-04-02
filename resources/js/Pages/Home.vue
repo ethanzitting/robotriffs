@@ -5,7 +5,9 @@ import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
     user: Object,
+    posts: Array,
 })
+
 </script>
 
 <template>
@@ -17,7 +19,7 @@ defineProps({
         </template>
         <div>
             <TweetInput />
-            <PostFeed :posts="$page.props.auth.user.posts"></PostFeed>
+            <PostFeed :posts="posts"></PostFeed>
         </div>
     </DefaultLayout>
 </template>

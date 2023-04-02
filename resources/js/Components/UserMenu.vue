@@ -36,6 +36,10 @@ const logout = () => {
             font-weight: 700;
         }
 
+        .handle {
+            color: #536471;
+        }
+
         &>*:last-child {
             margin-left: auto;
         }

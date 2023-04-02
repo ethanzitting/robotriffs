@@ -3,8 +3,15 @@ import { Head } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import PostFeed from "@/Components/PostFeed.vue";
 
-defineProps({
+const props = defineProps({
     user: Object,
+})
+
+props.user.posts = props.user.posts.map(post => {
+    return {
+        ...post,
+        user: props.user,
+    }
 })
 
 </script>
