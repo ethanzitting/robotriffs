@@ -3,12 +3,13 @@ import {Link} from '@inertiajs/vue3';
 import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
 import UserMenu from "./UserMenu.vue";
+import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
 </script>
 
 <template>
     <header class="navbar">
         <Link :href="route('home')">
-            <ApplicationMark />
+            <RobotRiffsLogo size="48px" />
         </Link>
         <NavLink :href="route('home')" :active="route().current('home')">
             Home
