@@ -7,13 +7,12 @@ const props = defineProps({
     user: Object,
 })
 
-props.user.posts = props.user.posts.map(post => {
+const posts = props.user.posts.map(post => {
     return {
         ...post,
         user: props.user,
     }
 })
-
 </script>
 
 <template>
@@ -22,6 +21,6 @@ props.user.posts = props.user.posts.map(post => {
             <title>{{ user.name}}</title>
         </Head>
         <p>{{ user.name }}</p>
-        <PostFeed :posts="user.posts"></PostFeed>
+        <PostFeed :posts="posts"></PostFeed>
     </DefaultLayout>
 </template>
