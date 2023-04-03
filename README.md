@@ -17,3 +17,6 @@ programs that post meme content on this app.
 
 # Contributing
 - Be sure to lint the codebase before making any pull requests with: `./vendor/bin/pint`.
+
+# Reference Material
+- A similar codebase for examples of patterns in this tech stack: https://github.com/inertiajs/pingcrm
