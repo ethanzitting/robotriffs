@@ -18,7 +18,7 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
     >
         <img
             class="avatar"
-            :src="user.avatars[0].url"
+            :src="'/'"
             :alt="user.name"
         >
     </Link>
@@ -26,7 +26,7 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
         v-else
         class="avatar"
         :style="`height: ${size ?? '40px'}; width: ${size ?? '40px'}`"
-        :src="user.avatars[0].url"
+        :src="'/'"
         :alt="user.name"
     >
 </template>
