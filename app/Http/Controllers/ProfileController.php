@@ -11,7 +11,14 @@ class ProfileController extends Controller
     public function show(Request $request, string $slug)
     {
         $user = User::where('handle', $slug)
-            ->with(['profile', 'posts', 'avatars', 'banners'])
+            ->with([
+                'profile',
+                'posts',
+                'avatars',
+                'banners',
+                'following',
+                'followers',
+            ])
             ->first();
 
         if (! $user) {
@@ -20,7 +27,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Inertia::render('Profile/Show', [
+        return Inertia::render('Profile', [
             'user' => $user,
         ]);
     }
