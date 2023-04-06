@@ -1,10 +1,10 @@
 <script setup>
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import PostFeed from "@/Components/PostFeed.vue";
+import TweetFeed from "@/Components/TweetFeed.vue";
 import TweetInput from "@/Components/TweetInput.vue";
 
 defineProps({
-    posts: Array,
+    tweets: Array,
 })
 
 </script>
@@ -20,7 +20,7 @@ defineProps({
         <div class="main">
             <h3 class="page-title">Home</h3>
             <TweetInput />
-            <PostFeed :posts="posts"></PostFeed>
+            <TweetFeed :tweets="tweets"></TweetFeed>
         </div>
     </DefaultLayout>
 </template>

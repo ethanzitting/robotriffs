@@ -3,7 +3,7 @@ import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "./UserAvater.vue";
 
 const form = useForm({
-    postContent: null,
+    tweetContent: null,
 })
 
 const user = usePage().props.auth.user
@@ -17,8 +17,8 @@ const user = usePage().props.auth.user
             class="icon"
             :user="user"
         />
-        <form @submit.prevent="form.post('/posts')">
-            <input type="text" placeholder="What's happening?" v-model="form.postContent">
+        <form @submit.prevent="form.post('/tweets')">
+            <input type="text" placeholder="What's happening?" v-model="form.tweetContent">
             <button type="submit" :disabled="form.processing">Tweet</button>
         </form>
     </div>

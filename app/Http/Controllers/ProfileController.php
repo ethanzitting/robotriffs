@@ -13,7 +13,7 @@ class ProfileController extends Controller
         $user = User::where('handle', $slug)
             ->with([
                 'profile',
-                'posts',
+                'tweets',
                 'avatars',
                 'banners',
                 'following',

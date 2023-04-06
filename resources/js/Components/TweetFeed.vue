@@ -1,16 +1,16 @@
 <script setup>
 import TweetCard from "./TweetCard.vue";
 
-defineProps({ posts: Array })
+defineProps({ tweets: Array })
 
 </script>
 
 <template>
     <TweetCard
         class="tweet-card"
-        v-for="post in posts"
-        :post="post" :key="
-        post.id"
+        v-for="tweet in tweets"
+        :tweet="tweet" :key="
+        tweet.id"
     />
 </template>
 

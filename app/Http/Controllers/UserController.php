@@ -19,9 +19,9 @@ class UserController extends Controller
             ->allowedFields([
                 'id',
                 'name',
-                'posts.id'
+                'tweets.id'
             ])
-            ->allowedIncludes(['posts'])
+            ->allowedIncludes(['tweets'])
             ->get();
 
         return UserResource::collection($users);

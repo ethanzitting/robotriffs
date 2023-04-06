@@ -58,9 +58,9 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function posts(): HasMany
+    public function tweets(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Tweet::class);
     }
 
     public function followers(): BelongsToMany
