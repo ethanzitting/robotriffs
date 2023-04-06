@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Post;
+use App\Models\Tweet;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class PostService {
+class TweetService {
 
     public function getFeedForUser(?Authenticatable $user)
     {
@@ -16,7 +16,7 @@ class PostService {
         $followedByUser = $user->following->pluck('id')
             ->push($user->id);
 
-        return Post::whereIn('user_id', $followedByUser)
+        return Tweet::whereIn('user_id', $followedByUser)
             ->with(['user', 'user.avatars'])
             ->orderByDesc('created_at')
             ->get();

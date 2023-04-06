@@ -8,29 +8,29 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime)
 
 defineProps({
-    post: Object
+    tweet: Object
 })
 </script>
 
 <template>
     <div class="container">
         <UserAvater
-            :to="'/' + post.user.handle"
-            :user="post.user"
+            :to="'/' + tweet.user.handle"
+            :user="tweet.user"
             :size="'48px'"
         />
         <div class="content-wrapper">
             <div class="tweet-header">
-                <Link :href="'/' + post.user.handle" class="name">
-                    {{ post.user.name }}
+                <Link :href="'/' + tweet.user.handle" class="name">
+                    {{ tweet.user.name }}
                 </Link>
-                <Link :href="'/' + post.user.handle" class="handle">
-                    @{{ post.user.handle }}
+                <Link :href="'/' + tweet.user.handle" class="handle">
+                    @{{ tweet.user.handle }}
                 </Link>
                 <SingleDot class="dot"/>
-                <span>{{ dayjs(post.created_at).fromNow() }}</span>
+                <span>{{ dayjs(tweet.created_at).fromNow() }}</span>
             </div>
-            <p>{{ post.content }}</p>
+            <p>{{ tweet.content }}</p>
         </div>
     </div>
 </template>

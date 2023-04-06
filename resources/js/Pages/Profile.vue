@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import PostFeed from "@/Components/PostFeed.vue";
+import TweetFeed from "@/Components/TweetFeed.vue";
 import FollowButton from "@/Components/FollowButton.vue";
 import UserAvater from "../Components/UserAvater.vue";
 import dayjs from "dayjs";
@@ -11,9 +11,9 @@ const props = defineProps({
     user: Object,
 })
 
-const posts = props.user.posts.map(post => {
+const tweets = props.user.tweets.map(tweet => {
     return {
-        ...post,
+        ...tweet,
         user: props.user,
     }
 })
@@ -30,7 +30,7 @@ const posts = props.user.posts.map(post => {
             </Link>
             <div class="text-content">
                 <h1>{{ user.name }}</h1>
-                <p>{{ user.posts.length }} Tweet</p>
+                <p>{{ user.tweets.length }} Tweet</p>
             </div>
         </div>
         <div class="jumbotron">
@@ -61,10 +61,10 @@ const posts = props.user.posts.map(post => {
                 </p>
             </div>
         </div>
-        <div class="post-title">
+        <div class="tweet-title">
             Tweets
         </div>
-        <PostFeed :posts="posts" />
+        <TweetFeed :tweets="tweets" />
     </DefaultLayout>
 </template>
 
@@ -172,7 +172,7 @@ const posts = props.user.posts.map(post => {
     }
 }
 
-.post-title {
+.tweet-title {
     height: 53px;
     width: 155px;
     display: flex;

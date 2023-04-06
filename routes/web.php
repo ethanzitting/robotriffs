@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
-use App\Services\PostService;
+use App\Services\TweetService;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +35,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/home', function () {
         return Inertia::render('Home', [
-            'posts' => (new PostService())->getFeedForUser(Auth::user()),
+            'tweets' => (new TweetService())->getFeedForUser(Auth::user()),
         ]);
     })->name('home');
 
@@ -58,5 +58,5 @@ Route::middleware([
 
 Route::resources([
     'profiles' => \App\Http\Controllers\ProfileController::class,
-    'posts' => \App\Http\Controllers\PostController::class,
+    'tweets' => \App\Http\Controllers\TweetController::class,
 ]);

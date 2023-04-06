@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->hasPosts()
+            ->hasTweets()
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
             ->hasProfile()
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             ->hasProfile()
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
-            ->hasPosts(3)
+            ->hasTweets(3)
             ->create();
     }
 }
