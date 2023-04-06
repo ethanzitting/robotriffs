@@ -17,7 +17,7 @@ class TweetService {
             ->push($user->id);
 
         return Tweet::whereIn('user_id', $followedByUser)
-            ->with(['user', 'user.avatars'])
+            ->with(['user', 'user.avatars', 'likes'])
             ->orderByDesc('created_at')
             ->get();
     }

@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resources([
     'follows' => \App\Http\Controllers\FollowController::class,
-    'users' => \App\Http\Controllers\UserController::class
+    'users' => \App\Http\Controllers\UserController::class,
+    'likes' => \App\Http\Controllers\LikeController::class
 ]);

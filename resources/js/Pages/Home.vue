@@ -20,7 +20,7 @@ defineProps({
         <div class="main">
             <h3 class="page-title">Home</h3>
             <TweetInput />
-            <TweetFeed :tweets="tweets"></TweetFeed>
+            <TweetFeed :tweets="tweets" />
         </div>
     </DefaultLayout>
 </template>

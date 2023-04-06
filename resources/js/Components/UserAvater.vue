@@ -14,7 +14,12 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
     <Link
         v-if="to"
         :href="to"
-        :style="`height: ${size ?? '40px'}; width: ${size ?? '40px'}`"
+        :style="`
+            min-height: ${size ?? '40px'};
+            max-height: ${size ?? '40px'};
+            min-width: ${size ?? '40px'};
+            max-width: ${size ?? '40px'};
+        `"
     >
         <img
             class="avatar"
@@ -25,7 +30,13 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
     <img
         v-else
         class="avatar"
-        :style="`height: ${size ?? '40px'}; width: ${size ?? '40px'}`"
+        :style="`
+            min-height: ${size ?? '40px'};
+            max-height: ${size ?? '40px'};
+            min-width: ${size ?? '40px'};
+            max-width: ${size ?? '40px'};
+        `"
+
         :src="'https://placehold.co/600x600'"
         :alt="user.name"
     >

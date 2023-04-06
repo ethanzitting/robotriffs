@@ -5,6 +5,7 @@ import SingleDot from "./icons/SingleDot.vue";
 import dayjs from "dayjs";
 
 import relativeTime from 'dayjs/plugin/relativeTime';
+import TweetLikeButton from "./TweetLikeButton.vue";
 dayjs.extend(relativeTime)
 
 defineProps({
@@ -31,6 +32,12 @@ defineProps({
                 <span>{{ dayjs(tweet.created_at).fromNow() }}</span>
             </div>
             <p>{{ tweet.content }}</p>
+            <div class="interaction-icons">
+                <TweetLikeButton
+                    :tweet="tweet"
+                    :count="tweet.likes.length"
+                />
+            </div>
         </div>
     </div>
 </template>

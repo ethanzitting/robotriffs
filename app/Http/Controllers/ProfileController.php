@@ -14,6 +14,7 @@ class ProfileController extends Controller
             ->with([
                 'profile',
                 'tweets',
+                'tweets.likes',
                 'avatars',
                 'banners',
                 'following',

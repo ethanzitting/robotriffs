@@ -1,0 +1,62 @@
+<script setup>
+import Heart from "./icons/heart.vue";
+import {ref} from "vue";
+import {usePage} from "@inertiajs/vue3";
+
+const props = defineProps({
+    tweet: Object,
+    count: Number,
+})
+
+const userLikes = props.tweet.likes
+    .some(like => String(like.user_id) === String(usePage().props.auth.user.id))
+
+let localCount = ref(props.count ?? 0)
+let localLikes = ref(userLikes)
+
+const unlikeTweet = async () => {
+    localCount.value--;
+    localLikes.value = false;
+    await axios.delete(`/api/likes/1/?user=${usePage().props.auth.user.id}&tweet=${props.tweet.id}`);
+}
+
+const likeTweet = async () => {
+    localCount.value++;
+    localLikes.value = true;
+    await axios.post(`/api/likes?user=${usePage().props.auth.user.id}&tweet=${props.tweet.id}`)
+}
+
+const handleToggle = async () => {
+    localLikes.value
+        ? unlikeTweet()
+        : likeTweet();
+}
+</script>
+
+<template>
+    <button
+        :class="`tweet-like-container ${localLikes ? 'liked' : ''}`"
+        @click="handleToggle"
+    >
+        <Heart size="18px" />
+        {{ localCount > 0 ? localCount : '' }}
+    </button>
+</template>
+
+<style lang="scss" scoped>
+.tweet-like-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #536471;
+    width: min-content;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.liked {
+    color: red;
+}
+</style>
