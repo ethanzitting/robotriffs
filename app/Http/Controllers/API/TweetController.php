@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
     public function store(Request $request)
     {
         $tweet = Tweet::make();
-        $tweet->user_id = Auth::user()->id;
+        $tweet->user_id = $request->userId;
         $tweet->content = $request->tweetContent;
         $tweet->save();
     }

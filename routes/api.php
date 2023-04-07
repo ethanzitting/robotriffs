@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')
+    ->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
 Route::resources([
-    'follows' => \App\Http\Controllers\FollowController::class,
-    'users' => \App\Http\Controllers\UserController::class,
-    'likes' => \App\Http\Controllers\LikeController::class
+    'follows' => \App\Http\Controllers\API\FollowController::class,
+    'users' => \App\Http\Controllers\API\UserController::class,
+    'likes' => \App\Http\Controllers\API\LikeController::class,
+    'tweets' => \App\Http\Controllers\API\TweetController::class,
 ]);

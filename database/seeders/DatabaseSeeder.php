@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Image;
+use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -16,9 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->hasTweets()
+            ->has(Tweet::factory(3)->hasLikes(2))
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
+            ->hasFollowers(2)
+            ->hasFollowing(3)
             ->hasProfile()
             ->create([
                 'email' => 'dev@robotriffs.com',

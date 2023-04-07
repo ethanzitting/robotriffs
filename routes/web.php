@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Models\User;
-use App\Services\TweetService;
+use App\Http\Controllers\Web\DirectoryController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\SettingsController;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,30 +33,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', function () {
-        return Inertia::render('Home', [
-            'tweets' => (new TweetService())->getFeedForUser(Auth::user()),
-        ]);
-    })->name('home');
-
-    Route::get('/settings', function () {
-        return Inertia::render('Account/Show', [
-            'sessions' => [],
-            'confirmsTwoFactorAuthentication' => false,
-        ]);
-    })->name('user.settings');
-
-    Route::get('/directory', function () {
-        return Inertia::render('Directory', [
-            'users' => User::all(),
-        ]);
-    })->name('directory');
-
-    Route::get('/{slug}', [ProfileController::class, 'show'])
-        ->name('user.profile');
+    Route::get('home', HomeController::class)->name('home');
+    Route::get('settings', SettingsController::class)->name('user.settings');
+    Route::get('directory', DirectoryController::class)->name('directory');
+    Route::get('{slug}', ProfileController::class)->name('user.profile');
 });
-
-Route::resources([
-    'profiles' => \App\Http\Controllers\ProfileController::class,
-    'tweets' => \App\Http\Controllers\TweetController::class,
-]);
