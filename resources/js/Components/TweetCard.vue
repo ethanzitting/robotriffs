@@ -14,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="container">
+    <Link :href="`/${tweet.user.handle}/tweet/${tweet.id}`" class="container">
         <UserAvater
             :to="'/' + tweet.user.handle"
             :user="tweet.user"
@@ -39,7 +39,7 @@ defineProps({
                 />
             </div>
         </div>
-    </div>
+    </Link>
 </template>
 
 <style lang="scss" scoped>

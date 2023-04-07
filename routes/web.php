@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\DirectoryController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\SettingsController;
+use App\Http\Controllers\Web\TweetController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,4 +38,5 @@ Route::middleware([
     Route::get('settings', SettingsController::class)->name('user.settings');
     Route::get('directory', DirectoryController::class)->name('directory');
     Route::get('{slug}', ProfileController::class)->name('user.profile');
+    Route::get('/{slug}/tweet/{tweet}', TweetController::class)->name('user.tweet');
 });
