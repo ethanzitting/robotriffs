@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import TweetFeed from "@/Components/TweetFeed.vue";
+import TweetFeed from "@/Components/tweets/TweetFeed.vue";
 import FollowButton from "@/Components/FollowButton.vue";
 import UserAvater from "../Components/UserAvater.vue";
 import dayjs from "dayjs";

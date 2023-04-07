@@ -1,15 +1,17 @@
 <script setup>
-import UserAvater from "./UserAvater.vue";
+import UserAvater from "../UserAvater.vue";
 import {Link} from '@inertiajs/vue3';
-import SingleDot from "./icons/SingleDot.vue";
+import SingleDot from "../icons/SingleDot.vue";
 import dayjs from "dayjs";
 
 import relativeTime from 'dayjs/plugin/relativeTime';
 import TweetLikeButton from "./TweetLikeButton.vue";
+import TweetCommentButton from "./TweetCommentButton.vue";
 dayjs.extend(relativeTime)
 
 defineProps({
-    tweet: Object
+    tweet: Object,
+    showStats: Boolean
 })
 </script>
 
@@ -32,7 +34,11 @@ defineProps({
                 <span>{{ dayjs(tweet.created_at).fromNow() }}</span>
             </div>
             <p>{{ tweet.content }}</p>
+            <div v-if="showStats" class="stats">{{ dayjs(tweet.created_at).fromNow() }}</div>
             <div class="interaction-icons">
+                <TweetCommentButton
+                    :count="1"
+                />
                 <TweetLikeButton
                     :tweet="tweet"
                     :count="tweet.likes.length"
@@ -63,6 +69,12 @@ defineProps({
         .dot {
             align-self: center;
         }
+    }
+
+    .interaction-icons {
+        display: flex;
+        gap: 50px;
+        margin-top: 12px;
     }
 }
 </style>

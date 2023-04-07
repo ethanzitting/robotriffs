@@ -16,7 +16,7 @@ class TweetController extends Controller
         string $tweet
     ): Response {
         return Inertia::render('Tweet', [
-            'tweet' => Tweet::findOrFail($tweet)
+            'tweet' => Tweet::findOrFail($tweet)->load(['user', 'likes'])
         ]);
     }
 }

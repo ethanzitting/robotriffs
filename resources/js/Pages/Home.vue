@@ -1,7 +1,7 @@
 <script setup>
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import TweetFeed from "@/Components/TweetFeed.vue";
-import TweetInput from "@/Components/TweetInput.vue";
+import TweetFeed from "@/Components/tweets/TweetFeed.vue";
+import TweetInput from "@/Components/tweets/TweetInput.vue";
 
 defineProps({
     tweets: Array,
