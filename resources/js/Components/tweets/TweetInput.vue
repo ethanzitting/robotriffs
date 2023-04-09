@@ -2,9 +2,14 @@
 import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
 
+const props = defineProps({
+    parentTweet: Number,
+})
+
 const form = useForm({
     userId: usePage().props.auth.user.id,
     tweetContent: null,
+    parentTweet: props.parentTweet,
 })
 
 const user = usePage().props.auth.user

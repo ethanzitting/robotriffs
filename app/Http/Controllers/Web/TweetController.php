@@ -15,8 +15,17 @@ class TweetController extends Controller
         string $slug,
         string $tweet
     ): Response {
+        $tweet = Tweet::findOrFail($tweet)->load([
+            'user',
+            'likes',
+            'parent.user',
+            'children.user',
+            'children.likes',
+            'children.children',
+        ]);
+
         return Inertia::render('Tweet', [
-            'tweet' => Tweet::findOrFail($tweet)->load(['user', 'likes'])
+            'tweet' => $tweet
         ]);
     }
 }
