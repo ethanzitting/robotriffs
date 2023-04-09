@@ -17,12 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->has(Tweet::factory(3)->hasLikes(2)->hasChildren(2))
+            ->has(Tweet::factory(30)->hasLikes(2)->hasChildren(2))
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
             ->hasFollowers(2)
             ->hasFollowing(3)
-            ->hasProfile()
             ->create([
                 'email' => 'dev@robotriffs.com',
                 'name' => 'Ethan Zitting',
@@ -31,7 +30,6 @@ class DatabaseSeeder extends Seeder
             ]);
 
         User::factory(10)
-            ->hasProfile()
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
             ->hasTweets(3)
