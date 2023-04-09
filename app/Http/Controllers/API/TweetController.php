@@ -13,6 +13,7 @@ class TweetController extends Controller
         $tweet = Tweet::make();
         $tweet->user_id = $request->userId;
         $tweet->content = $request->tweetContent;
+        $tweet->parent_id = $request->parentTweet;
         $tweet->save();
     }
 }

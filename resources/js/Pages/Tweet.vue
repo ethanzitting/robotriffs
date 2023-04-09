@@ -3,14 +3,15 @@ import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import TweetCard from "../Components/tweets/TweetCard.vue";
 import TweetInput from "../Components/tweets/TweetInput.vue";
 
-const props = defineProps({tweet: Object})
+defineProps({tweet: Object})
 </script>
 <template>
     <DefaultLayout>
         <TweetCard
-            :tweet="props.tweet"
+            :tweet="tweet"
             show-stats
         />
-        <TweetInput />
+        <TweetInput :parent-tweet="tweet.id"/>
+        <TweetCard v-for="child in tweet.children" :tweet="child"/>
     </DefaultLayout>
 </template>

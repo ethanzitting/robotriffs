@@ -20,4 +20,14 @@ class Tweet extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Tweet::class);
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(Tweet::class, 'parent_id');
+    }
 }
