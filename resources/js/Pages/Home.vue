@@ -18,7 +18,7 @@ defineProps({
         </template>
 
         <div class="main">
-            <TweetInput />
+            <TweetInput placeholder="What's Happening?" />
             <TweetFeed :tweets="tweets" />
         </div>
     </DefaultLayout>

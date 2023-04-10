@@ -4,6 +4,7 @@ import CurrentProfilePhoto from "../UserAvater.vue";
 
 const props = defineProps({
     parentTweet: Number,
+    placeholder: String,
 })
 
 const form = useForm({
@@ -16,7 +17,7 @@ const user = usePage().props.auth.user
 </script>
 
 <template>
-    <div class="wrapper">
+    <div class="tweet-input-container">
         <CurrentProfilePhoto
             :to="'/' + user.handle"
             size="48px"
@@ -24,18 +25,18 @@ const user = usePage().props.auth.user
             :user="user"
         />
         <form @submit.prevent="form.post('/api/tweets')">
-            <input type="text" placeholder="What's happening?" v-model="form.tweetContent">
+            <input type="text" :placeholder="placeholder" v-model="form.tweetContent">
             <button type="submit" :disabled="form.processing">Tweet</button>
         </form>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
+.tweet-input-container {
     display: flex;
     flex-direction: row;
-    gap: 24px;
-    padding: 24px;
+    gap: 8px;
+    padding: 16px;
 
     .icon {
         width: 40px;
@@ -43,14 +44,16 @@ const user = usePage().props.auth.user
     }
 
     form {
-        margin-top: 40px;
         display: flex;
         flex-direction: column;
+        width: 520px;
         gap: 16px;
 
         input {
             width: 400px;
             height: 50px;
+            font-size: 20px;
+            border: none;
         }
 
         button {
