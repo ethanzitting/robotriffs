@@ -17,7 +17,10 @@ defineProps({tweet: Object})
             :tweet="tweet"
             show-stats
         />
-        <TweetInput :parent-tweet="tweet.id"/>
+        <TweetInput
+            :parent-tweet="tweet.id"
+            placeholder="Tweet your reply"
+        />
         <TweetFeed :tweets="tweet.children"/>
     </DefaultLayout>
 </template>
