@@ -33,8 +33,9 @@ const props = defineProps({
     width: 1250px;
     max-width: 1250px;
     font-family: 'Roboto', sans-serif;
-    padding: 50px 370px 0 260px;
-    z-index: 0;
+    padding: 55px 370px 100px 260px;
+    z-index: 5;
+    pointer-events: none;
 
     .fixed-elements {
         position: fixed;
@@ -45,6 +46,10 @@ const props = defineProps({
         max-height: 100vh;
         margin: 0 auto;
         z-index: 20;
+
+        &>* {
+            pointer-events: initial;
+        }
 
         @media screen and (max-width: 1250px) {
             left: 0;
@@ -63,7 +68,7 @@ const props = defineProps({
             top: 0;
             left: 260px;
             right: 500px;
-            height: 50px;
+            height: 55px;
             padding: 0 16px;
             display: flex;
             flex-direction: row;
@@ -91,6 +96,7 @@ const props = defineProps({
         position: relative;
         max-width: 620px;
         min-width: 620px;
+        pointer-events: initial;
     }
 }
 </style>

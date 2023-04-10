@@ -1,6 +1,5 @@
 <script setup>
 import {Link} from '@inertiajs/vue3';
-import ApplicationMark from "@/Components/icons/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
 import UserMenu from "./UserMenu.vue";
 import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
@@ -38,8 +37,22 @@ import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
     padding: 40px 0;
     color: #222222;
 
-    &>*:last-child {
-        margin-top: auto;
+    &>* {
+        height: 60px;
+        width: min-content;
+        border-radius: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 30px;
+
+        &:hover {
+            background-color: #dddddd;
+        }
+
+        &:last-child {
+            margin-top: auto;
+        }
     }
 }
 </style>
