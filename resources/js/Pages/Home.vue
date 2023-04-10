@@ -12,13 +12,12 @@ defineProps({
 <template>
     <DefaultLayout title="Dashboard">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h1>
                 Home
-            </h2>
+            </h1>
         </template>
 
         <div class="main">
-            <h3 class="page-title">Home</h3>
             <TweetInput />
             <TweetFeed :tweets="tweets" />
         </div>
@@ -27,15 +26,6 @@ defineProps({
 
 <style lang="scss" scoped>
 .main {
-    min-height: 100vh;
-
-    .page-title {
-        font-size: 20px;
-        font-weight: 700;
-        margin: 16px;
-        border: none;
-    }
-
     &>* {
         border-top: 1px solid #EEEEEE;
     }
