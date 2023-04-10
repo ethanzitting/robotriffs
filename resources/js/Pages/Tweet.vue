@@ -8,6 +8,11 @@ defineProps({tweet: Object})
 </script>
 <template>
     <DefaultLayout>
+        <template #header>
+            <h1>
+                Tweet
+            </h1>
+        </template>
         <TweetCard
             :tweet="tweet"
             show-stats

@@ -24,15 +24,15 @@ const tweets = props.user.tweets.map(tweet => {
         <Head>
             <title>{{ user.name}}</title>
         </Head>
-        <div class="header">
+        <template #header>
             <Link href="/home" class="back-arrow">
                 <ArrowLeft size="20px" />
             </Link>
-            <div class="text-content">
+            <div class="header-text">
                 <h1>{{ user.name }}</h1>
                 <p>{{ user.tweets.length }} Tweet</p>
             </div>
-        </div>
+        </template>
         <div class="jumbotron">
             <div class="banner"/>
             <UserAvater class="avatar" size="133px"/>
@@ -69,35 +69,21 @@ const tweets = props.user.tweets.map(tweet => {
 </template>
 
 <style lang="scss" scoped>
-.header {
-    height: 53px;
-    width: 100%;
-    border-bottom: 1px solid #eeeeee;
+.back-arrow {
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 30px;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    .back-arrow {
-        padding: 5px;
-        margin: auto 30px auto 16px;
-        border-radius: 50%;
-
-        &:hover {
-            background-color: #eee;
-        }
+    &:hover {
+        background-color: #eee;
     }
+}
 
-    .text-content {
-        h1 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        p {
-            font-size: 13px;
-            color: #536471;
-        }
+.header-text {
+    p {
+        font-size: 13px;
+        font-weight: 300;
+        color: #536471;
     }
 }
 

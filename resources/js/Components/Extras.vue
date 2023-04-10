@@ -16,8 +16,6 @@ import PageCrumbs from "./PageCrumbs.vue";
 
 <style lang="scss" scoped>
 .extras {
-    width: 350px;
-    padding: 18px 0;
     display: flex;
     flex-direction: column;
     gap: 18px;

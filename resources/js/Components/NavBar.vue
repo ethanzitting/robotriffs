@@ -32,7 +32,6 @@ import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
     font-size: 20px;
     font-weight: 400;
     height: 100vh;
-    width: 240px;
     display: flex;
     flex-direction: column;
     gap: 16px;
