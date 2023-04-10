@@ -20,7 +20,7 @@ class UserController extends Controller
             ->allowedFields([
                 'id',
                 'name',
-                'tweets.id'
+                'tweets.id',
             ])
             ->allowedIncludes(['tweets'])
             ->get();

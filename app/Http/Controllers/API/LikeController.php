@@ -15,6 +15,7 @@ class LikeController extends Controller
         $like->user_id = $request->user;
         $like->tweet_id = $request->tweet;
         $like->save();
+
         return $like;
     }
 

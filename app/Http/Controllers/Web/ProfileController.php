@@ -20,7 +20,7 @@ class ProfileController extends Controller
                 'following',
                 'followers',
                 'tweets.children',
-                'tweets.parent.user'
+                'tweets.parent.user',
             ])
             ->first();
 

@@ -25,7 +25,7 @@ class TweetController extends Controller
         ]);
 
         return Inertia::render('Tweet', [
-            'tweet' => $tweet
+            'tweet' => $tweet,
         ]);
     }
 }

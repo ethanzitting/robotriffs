@@ -5,11 +5,11 @@ namespace App\Services;
 use App\Models\Tweet;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class TweetService {
-
+class TweetService
+{
     public function getFeedForUser(?Authenticatable $user)
     {
-        if (!$user) {
+        if (! $user) {
             return [];
         }
 
@@ -21,7 +21,7 @@ class TweetService {
                 'user.avatars',
                 'likes',
                 'children',
-                'parent.user'
+                'parent.user',
             ])
             ->orderByDesc('created_at')
             ->get();

@@ -32,11 +32,11 @@ class ImageFactory extends Factory
 
     public function avatar()
     {
-        return $this->state(fn() => ['type' => 'avatar']);
+        return $this->state(fn () => ['type' => 'avatar']);
     }
 
     public function banner()
     {
-        return $this->state(fn() => ['type' => 'banner']);
+        return $this->state(fn () => ['type' => 'banner']);
     }
 }
