@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    box-sizing: border-box;
+    /* This allows 1rem = 10px */
+    /*font-size: 62.5%;*/
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
