@@ -30,4 +30,9 @@ class Tweet extends Model
     {
         return $this->hasMany(Tweet::class, 'parent_id');
     }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }

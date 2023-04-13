@@ -1,6 +1,7 @@
 <script setup>
 import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
+import ImageIcon from '@/Components/icons/ImageIcon.vue';
 
 const props = defineProps({
     parentTweet: Number,
@@ -26,7 +27,10 @@ const user = usePage().props.auth.user
         />
         <form @submit.prevent="form.post('/api/tweets')">
             <input type="text" :placeholder="placeholder" v-model="form.tweetContent">
-            <button type="submit" :disabled="form.processing">Tweet</button>
+            <div class="footer">
+                <ImageIcon class="image-icon"/>
+                <button type="submit" :disabled="form.processing">Tweet</button>
+            </div>
         </form>
     </div>
 </template>
@@ -47,7 +51,7 @@ const user = usePage().props.auth.user
         display: flex;
         flex-direction: column;
         width: 520px;
-        gap: 16px;
+        gap: 8px;
 
         input {
             width: 400px;
@@ -56,12 +60,27 @@ const user = usePage().props.auth.user
             border: none;
         }
 
-        button {
-            align-self: flex-end;
-            height: 40px;
-            width: 80px;
-            border-radius: 20px;
-            background-color: lightblue;
+        .footer {
+            display: flex;
+            align-items: center;
+            margin-left: 12px;
+
+            .image-icon {
+                max-width: 20px;
+                min-width: 20px;
+                max-height: 20px;
+                min-height: 20px;
+                margin-right: auto;
+            }
+
+
+            button {
+                align-self: flex-end;
+                height: 40px;
+                width: 80px;
+                border-radius: 20px;
+                background-color: lightblue;
+            }
         }
     }
 }
