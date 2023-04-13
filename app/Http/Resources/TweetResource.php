@@ -12,6 +12,13 @@ class TweetResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'content' => $this->content,
+            'image' => ImageResource::make($this->whenLoaded('image')),
+            'user' => UserResource::make($this->whenLoaded('user')),
+            'dates' => [
+                'created' => $this->created_at,
+                'updated' => $this->updated_at,
+            ]
         ];
     }
 }

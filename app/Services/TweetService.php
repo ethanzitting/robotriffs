@@ -20,6 +20,7 @@ class TweetService
             ->with([
                 'user.avatars',
                 'likes',
+                'image',
                 'children',
                 'parent.user',
             ])
