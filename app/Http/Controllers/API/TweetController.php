@@ -10,6 +10,11 @@ class TweetController extends Controller
 {
     public function store(Request $request)
     {
+
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->storeAs('images', $imageName);
+
         $tweet = Tweet::make();
         $tweet->user_id = $request->userId;
         $tweet->content = $request->tweetContent;

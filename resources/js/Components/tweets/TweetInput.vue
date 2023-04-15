@@ -3,21 +3,20 @@ import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import TweetImagePreview from "./TweetImagePreview.vue";
-import {ref} from "vue";
 
 const props = defineProps({
     parentTweet: Number,
     placeholder: String,
 })
 
+const user = usePage().props.auth.user
+
 const form = useForm({
-    userId: usePage().props.auth.user.id,
+    userId: user.id,
     tweetContent: null,
     parentTweet: props.parentTweet,
+    image: null,
 })
-
-const user = usePage().props.auth.user
-const image = ref(null)
 </script>
 
 <template>
@@ -28,7 +27,8 @@ const image = ref(null)
             class="icon"
             :user="user"
         />
-        <form @submit.prevent="form.post('/api/tweets')">
+
+        <form enctype="multipart/form-data" @submit.prevent="form.post('/api/tweets')">
             <input
                 type="text"
                 :placeholder="placeholder"
@@ -36,15 +36,15 @@ const image = ref(null)
             >
             <div class="preview"></div>
             <TweetImagePreview
-                v-if="image"
-                :image="image"
-                @clear-image="image = null"
+                v-if="form.image"
+                :image="form.image"
+                @clear-image="form.image = null"
             />
             <div class="footer">
                 <TweetImageInput
-                    v-if="!image"
+                    v-if="!form.image"
                     class="image-input"
-                    @file-uploaded="(file) => (image = file)"
+                    @file-uploaded="image => form.image = image"
                 />
                 <button type="submit" :disabled="form.processing">
                     Tweet
