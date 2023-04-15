@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('tweet_id');
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('tweet_id')->nullable();
             $table->string('type');
             $table->string('url');
             $table->string('alt_text');

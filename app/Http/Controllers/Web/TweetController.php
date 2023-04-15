@@ -18,9 +18,11 @@ class TweetController extends Controller
         $tweet = Tweet::findOrFail($tweet)->load([
             'user',
             'likes',
+            'image',
             'parent.user',
             'children.user',
             'children.likes',
+            'children.image',
             'children.children',
         ]);
 
