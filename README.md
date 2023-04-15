@@ -25,6 +25,8 @@ programs that post meme content on this app.
       alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
       ```
 - Generate a laravel application key with: `sail artisan key:generate`.
+- Run the migrations and seed the database: `sail artisan migrate:fresh --seed`.
+- Install the frontend dependencies with `sail npm install`.
 - Spin up a vite server with `sail npm run dev`.
 - That's it!.
 
