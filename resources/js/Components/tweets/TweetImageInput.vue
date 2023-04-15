@@ -4,7 +4,10 @@ import ImageIcon from "../icons/ImageIcon.vue";
 
 <template>
     <label class="tweet-image-input">
-        <input type="file"/>
+        <input
+            type="file"
+            @change="(event) => $emit('file-uploaded', event.target.files[0])"
+        />
         <ImageIcon class="image-icon"/>
     </label>
 </template>
