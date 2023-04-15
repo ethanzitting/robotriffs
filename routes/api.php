@@ -24,4 +24,5 @@ Route::resources([
     'users' => \App\Http\Controllers\API\UserController::class,
     'likes' => \App\Http\Controllers\API\LikeController::class,
     'tweets' => \App\Http\Controllers\API\TweetController::class,
+    'retweets' => \App\Http\Controllers\API\RetweetController::class,
 ]);
