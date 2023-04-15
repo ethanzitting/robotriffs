@@ -27,8 +27,6 @@ function handleFile() {
 onMounted(() => {
     handleFile()
 })
-
-watch(props.image.name, handleFile)
 </script>
 
 <template>

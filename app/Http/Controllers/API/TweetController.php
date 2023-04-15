@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request): TweetResource
     {
         $tweet = Tweet::make();
         $tweet->user_id = $request->userId;
