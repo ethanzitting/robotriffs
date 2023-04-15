@@ -13,9 +13,23 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'handle' => $this->handle,
             'tweets' => TweetResource::collection(
                 $this->whenLoaded('tweets')
             ),
+            'profile' => ProfileResource::make(
+                $this->whenLoaded('profile')
+            ),
+            'followers' => UserResource::collection(
+                $this->whenLoaded('followers')
+            ),
+            'following' => UserResource::collection(
+                $this->whenLoaded('following')
+            ),
+            'dates' => [
+                'created' => $this->created_at,
+                'deleted' => $this->deleted_at,
+            ]
         ];
     }
 }

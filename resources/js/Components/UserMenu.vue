@@ -27,7 +27,7 @@ let togglePopup = () => {
             @click="router.post(route('logout'))"
         >
             Log out @{{ usePage().props.auth.user.handle }}
-            <Triangle class="triangle" :size="16"/>
+            <Triangle class="triangle" :size="16" color="white"/>
         </button>
         <button class="open-menu" @click="togglePopup">
             <UserAvater />

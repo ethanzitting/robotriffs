@@ -3,8 +3,9 @@ import TweetCard from "./TweetCard.vue";
 
 const props = defineProps({ tweets: Array })
 
-const sortedTweets = props.tweets.sort((a, b) => b.created_at.localeCompare(a.created_at))
-
+const sortedTweets = props.tweets.sort((a, b) => {
+    return b.dates.created.localeCompare(a.dates.created);
+})
 </script>
 
 <template>

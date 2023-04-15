@@ -14,13 +14,13 @@ defineProps({tweet: Object})
             </h1>
         </template>
         <TweetCard
-            :tweet="tweet"
+            :tweet="tweet.data"
             show-stats
         />
         <TweetInput
-            :parent-tweet="tweet.id"
+            :parent-tweet="tweet.data.id"
             placeholder="Tweet your reply"
         />
-        <TweetFeed :tweets="tweet.children"/>
+        <TweetFeed :tweets="tweet.data.children"/>
     </DefaultLayout>
 </template>

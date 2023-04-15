@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TweetResource;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -27,7 +28,7 @@ class TweetController extends Controller
         ]);
 
         return Inertia::render('Tweet', [
-            'tweet' => $tweet,
+            'tweet' => new TweetResource($tweet),
         ]);
     }
 }

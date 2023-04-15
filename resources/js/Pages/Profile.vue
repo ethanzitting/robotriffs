@@ -11,10 +11,10 @@ const props = defineProps({
     user: Object,
 })
 
-const tweets = props.user.tweets.map(tweet => {
+const tweets = props.user.data.tweets.map(tweet => {
     return {
         ...tweet,
-        user: props.user,
+        user: props.user.data,
     }
 })
 </script>
@@ -29,34 +29,34 @@ const tweets = props.user.tweets.map(tweet => {
                 <ArrowLeft size="20px" />
             </Link>
             <div class="header-text">
-                <h1>{{ user.name }}</h1>
-                <p>{{ user.tweets.length }} Tweet</p>
+                <h1>{{ user.data.name }}</h1>
+                <p>{{ user.data.tweets.length }} Tweet</p>
             </div>
         </template>
         <div class="jumbotron">
             <div class="banner"/>
             <UserAvater class="avatar" size="133px"/>
             <div class="profile-options">
-                <button class="edit" v-if="user.id === $page.props.auth.user.id">
+                <button class="edit" v-if="user.data.id === $page.props.auth.user.id">
                     Edit Profile
                 </button>
                 <Suspense v-else>
-                    <FollowButton :user="user"/>
+                    <FollowButton :user="user.data"/>
                 </Suspense>
             </div>
         </div>
         <div class="main-text">
-            <p class="name">{{ user.name }}</p>
-            <p class="handle">@{{ user.handle }}</p>
-            <p>{{ user.profile.bio }}</p>
-            <p class="joined">Joined {{ dayjs(user.created_at).format('MMMM YYYY') }}</p>
+            <p class="name">{{ user.data.name }}</p>
+            <p class="handle">@{{ user.data.handle }}</p>
+            <p>{{ user.data.profile.bio }}</p>
+            <p class="joined">Joined {{ dayjs(user.data.dates.created).format('MMMM YYYY') }}</p>
             <div class="connections">
                 <p>
-                    <span class="number">{{ user.following.length }} </span>
+                    <span class="number">{{ user.data.following.length }} </span>
                     Following
                 </p>
                 <p>
-                    <span class="number">{{ user.followers.length }} </span>
+                    <span class="number">{{ user.data.followers.length }} </span>
                     Followers
                 </p>
             </div>

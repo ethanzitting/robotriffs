@@ -32,7 +32,7 @@ defineProps({
                     @{{ tweet.user.handle }}
                 </Link>
                 <SingleDot class="dot"/>
-                <span>{{ dayjs(tweet.created_at).fromNow() }}</span>
+                <span>{{ dayjs(tweet.dates.created).fromNow() }}</span>
             </div>
             <p v-if="tweet.parent?.user">
                 Replying to
@@ -42,7 +42,7 @@ defineProps({
             </p>
             <p>{{ tweet.content }}</p>
             <TweetImage class="tweet-image" v-if="tweet.image" :src="tweet.image.url"/>
-            <div v-if="showStats" class="stats">{{ dayjs(tweet.created_at).fromNow() }}</div>
+            <div v-if="showStats" class="stats">{{ dayjs(tweet.dates.created).fromNow() }}</div>
             <div class="interaction-icons">
                 <TweetCommentButton
                     :count="tweet.children?.length"

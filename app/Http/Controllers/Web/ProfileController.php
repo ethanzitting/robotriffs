@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -31,7 +32,7 @@ class ProfileController extends Controller
         }
 
         return Inertia::render('Profile', [
-            'user' => $user,
+            'user' => new UserResource($user),
         ]);
     }
 }

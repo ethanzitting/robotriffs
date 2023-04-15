@@ -33,7 +33,7 @@ watch(props.image.name, handleFile)
 
 <template>
     <div class="image-preview">
-        <XMark class="delete-icon" @click="$emit('clear-image')"/>
+        <XMark class="delete-icon" @click="$emit('clear-image')" color="white"/>
     </div>
 </template>
 

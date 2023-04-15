@@ -14,11 +14,28 @@ class TweetResource extends JsonResource
             'id' => $this->id,
             'content' => $this->content,
             'image' => ImageResource::make($this->whenLoaded('image')),
-            'user' => UserResource::make($this->whenLoaded('user')),
+            'user' => $this->user(),
+            'parent' => $this->parent(),
+            'likes' => LikeResource::collection($this->whenLoaded('likes')),
+            'children' => TweetResource::collection($this->whenLoaded('children')),
             'dates' => [
                 'created' => $this->created_at,
                 'updated' => $this->updated_at,
             ],
         ];
+    }
+
+    private function user(): UserResource|array
+    {
+        return $this->resource->relationLoaded('user')
+            ? UserResource::make($this->user)
+            : ['id' => $this->user_id];
+    }
+
+    private function parent(): TweetResource|array
+    {
+        return $this->resource->relationLoaded('parent')
+            ? TweetResource::make($this->parent)
+            : ['id' => $this->parent_id];
     }
 }
