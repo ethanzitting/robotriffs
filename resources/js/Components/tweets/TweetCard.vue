@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import TweetLikeButton from "./TweetLikeButton.vue";
 import TweetCommentButton from "./TweetCommentButton.vue";
+import TweetImage from "./TweetImage.vue";
 dayjs.extend(relativeTime)
 
 defineProps({
@@ -39,8 +40,8 @@ defineProps({
                     @{{ tweet.parent.user.handle}}
                 </Link>
             </p>
-
             <p>{{ tweet.content }}</p>
+            <TweetImage class="tweet-image" v-if="tweet.image" :src="tweet.image.url"/>
             <div v-if="showStats" class="stats">{{ dayjs(tweet.created_at).fromNow() }}</div>
             <div class="interaction-icons">
                 <TweetCommentButton
@@ -76,6 +77,11 @@ defineProps({
         .dot {
             align-self: center;
         }
+    }
+
+    .tweet-image {
+        margin: 12px 24px;
+        width: 80%;
     }
 
     .interaction-icons {

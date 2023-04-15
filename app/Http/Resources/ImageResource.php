@@ -14,7 +14,7 @@ class ImageResource extends JsonResource
             'id' => $this->id,
             'user' => $this->user(),
             'tweet' => $this->tweet(),
-            'url' => $this->user,
+            'url' => $this->url,
             'alt' => $this->alt_text,
             'dates' => [
                 'created' => $this->created_at,
@@ -30,7 +30,7 @@ class ImageResource extends JsonResource
             : ['id' => $this->user_id];
     }
 
-    private function tweet()
+    private function tweet(): TweetResource|array
     {
         return $this->resource->relationLoaded('tweet')
             ? TweetResource::make($this->tweet_id)

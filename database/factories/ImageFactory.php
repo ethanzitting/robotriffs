@@ -25,7 +25,7 @@ class ImageFactory extends Factory
         return [
             'user_id' => User::factory(),
             'type' => $this->faker->word(),
-            'url' => $this->faker->word(),
+            'url' => 'https://placehold.co/600x600',
             'alt_text' => $this->faker->word(),
         ];
     }
