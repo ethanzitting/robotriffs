@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 
 defineProps({
-    users: Array,
+    users: Object,
 })
 </script>
 
