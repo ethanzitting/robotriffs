@@ -18,7 +18,7 @@ class TweetResource extends JsonResource
             'dates' => [
                 'created' => $this->created_at,
                 'updated' => $this->updated_at,
-            ]
+            ],
         ];
     }
 }
