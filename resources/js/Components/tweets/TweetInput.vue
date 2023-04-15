@@ -2,6 +2,8 @@
 import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
 import TweetImageInput from "./TweetImageInput.vue";
+import TweetImagePreview from "./TweetImagePreview.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     parentTweet: Number,
@@ -15,6 +17,7 @@ const form = useForm({
 })
 
 const user = usePage().props.auth.user
+const image = ref(null)
 </script>
 
 <template>
@@ -26,10 +29,26 @@ const user = usePage().props.auth.user
             :user="user"
         />
         <form @submit.prevent="form.post('/api/tweets')">
-            <input type="text" :placeholder="placeholder" v-model="form.tweetContent">
+            <input
+                type="text"
+                :placeholder="placeholder"
+                v-model="form.tweetContent"
+            >
+            <div class="preview"></div>
+            <TweetImagePreview
+                v-if="image"
+                :image="image"
+                @clear-image="image = null"
+            />
             <div class="footer">
-                <TweetImageInput class="image-input"/>
-                <button type="submit" :disabled="form.processing">Tweet</button>
+                <TweetImageInput
+                    v-if="!image"
+                    class="image-input"
+                    @file-uploaded="(file) => (image = file)"
+                />
+                <button type="submit" :disabled="form.processing">
+                    Tweet
+                </button>
             </div>
         </form>
     </div>
@@ -66,11 +85,12 @@ const user = usePage().props.auth.user
             margin-left: 12px;
 
             .image-input {
+                height: 20px;
+                width: 20px;
                 max-width: 20px;
                 min-width: 20px;
                 max-height: 20px;
                 min-height: 20px;
-                margin-right: auto;
                 cursor: pointer;
             }
 
@@ -81,6 +101,7 @@ const user = usePage().props.auth.user
                 width: 80px;
                 border-radius: 20px;
                 background-color: lightblue;
+                margin-left: auto;
             }
         }
     }
