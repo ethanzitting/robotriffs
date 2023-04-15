@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('tweet_id')->nullable();
             $table->string('type');
             $table->string('url');
-            $table->string('alt_text');
+            $table->string('alt_text')->nullable();
             $table->timestamps();
         });
     }
