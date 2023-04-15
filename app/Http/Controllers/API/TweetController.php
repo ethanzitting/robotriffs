@@ -7,6 +7,7 @@ use App\Http\Resources\TweetResource;
 use App\Models\Image;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TweetController extends Controller
 {
@@ -26,6 +27,8 @@ class TweetController extends Controller
             $image->url = 'https://placehold.co/600x600';
             $image->type = 'tweet';
             $image->save();
+
+            Storage::put('image', $request->image);
         }
 
         return new TweetResource($tweet);

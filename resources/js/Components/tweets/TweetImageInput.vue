@@ -6,6 +6,7 @@ import ImageIcon from "../icons/ImageIcon.vue";
     <label class="tweet-image-input">
         <input
             type="file"
+            name="image"
             @change="(event) => $emit('file-uploaded', event.target.files[0])"
             accept="image/*"
         />
