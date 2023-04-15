@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ->has(Tweet::factory(30)->hasLikes(2)->hasChildren(2))
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
+            ->hasRetweets(3)
             ->hasFollowers(2)
             ->hasFollowing(3)
             ->create([

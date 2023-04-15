@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tweet extends Model
+class Retweet extends Model
 {
     use HasFactory;
 
@@ -16,23 +16,8 @@ class Tweet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function retweet(): HasMany
-    {
-        return $this->hasMany(Retweet::class);
-    }
-
-    public function likes(): HasMany
-    {
-        return $this->hasMany(Like::class);
-    }
-
-    public function parent(): BelongsTo
+    public function tweet(): BelongsTo
     {
         return $this->belongsTo(Tweet::class);
-    }
-
-    public function children(): HasMany
-    {
-        return $this->hasMany(Tweet::class, 'parent_id');
     }
 }

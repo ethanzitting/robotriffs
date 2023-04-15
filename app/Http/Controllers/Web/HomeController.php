@@ -11,8 +11,6 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        return Inertia::render('Home', [
-            'tweets' => (new TweetService())->getFeedForUser(Auth::user()),
-        ]);
+        return Inertia::render('Home',(new TweetService())->getFeedForUser(Auth::user()));
     }
 }

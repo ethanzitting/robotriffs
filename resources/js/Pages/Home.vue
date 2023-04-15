@@ -3,9 +3,15 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import TweetFeed from "@/Components/tweets/TweetFeed.vue";
 import TweetInput from "@/Components/tweets/TweetInput.vue";
 
-defineProps({
+const prop = defineProps({
     tweets: Array,
+    retweets: Array,
 })
+
+const processedRetweets = prop.retweets.map((retweet) => {
+    return {...retweet.tweet, retweet}
+})
+const allTweets = prop.tweets.concat(processedRetweets)
 
 </script>
 
@@ -19,7 +25,7 @@ defineProps({
 
         <div class="main">
             <TweetInput placeholder="What's Happening?" />
-            <TweetFeed :tweets="tweets" />
+            <TweetFeed :tweets="allTweets" />
         </div>
     </DefaultLayout>
 </template>

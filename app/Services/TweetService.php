@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Retweet;
 use App\Models\Tweet;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -16,14 +17,30 @@ class TweetService
         $followedByUser = $user->following->pluck('id')
             ->push($user->id);
 
-        return Tweet::whereIn('user_id', $followedByUser)
+       $retweets = Retweet::whereIn('user_id', $followedByUser)
+            ->with([
+                'user',
+                'tweet.user.avatars',
+                'tweet.likes',
+                'tweet.children',
+                'tweet.parent.user',
+            ])
+            ->orderByDesc('created_at')
+            ->get();
+
+        $tweets = Tweet::whereIn('user_id', $followedByUser)
             ->with([
                 'user.avatars',
                 'likes',
                 'children',
                 'parent.user',
             ])
-            ->orderByDesc('created_at')
-            ->get();
+                ->orderByDesc('created_at')
+                ->get();
+
+        return [
+            'retweets' => $retweets,
+            'tweets' => $tweets,
+        ];
     }
 }
