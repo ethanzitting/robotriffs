@@ -1,7 +1,7 @@
 <script setup>
 import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
-import ImageIcon from '@/Components/icons/ImageIcon.vue';
+import TweetImageInput from "./TweetImageInput.vue";
 
 const props = defineProps({
     parentTweet: Number,
@@ -28,7 +28,7 @@ const user = usePage().props.auth.user
         <form @submit.prevent="form.post('/api/tweets')">
             <input type="text" :placeholder="placeholder" v-model="form.tweetContent">
             <div class="footer">
-                <ImageIcon class="image-icon"/>
+                <TweetImageInput class="image-input"/>
                 <button type="submit" :disabled="form.processing">Tweet</button>
             </div>
         </form>
@@ -65,12 +65,13 @@ const user = usePage().props.auth.user
             align-items: center;
             margin-left: 12px;
 
-            .image-icon {
+            .image-input {
                 max-width: 20px;
                 min-width: 20px;
                 max-height: 20px;
                 min-height: 20px;
                 margin-right: auto;
+                cursor: pointer;
             }
 
 
