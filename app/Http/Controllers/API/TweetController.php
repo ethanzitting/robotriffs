@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
 use App\Models\Image;
 use App\Models\Tweet;
-use App\Services\TweetService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class TweetController extends Controller
 {
@@ -30,5 +27,7 @@ class TweetController extends Controller
             $image->type = 'tweet';
             $image->save();
         }
+
+        return new TweetResource($tweet);
     }
 }

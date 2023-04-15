@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')
     });
 
 Route::resources([
-    'follows' => \App\Http\Controllers\API\FollowController::class,
     'users' => \App\Http\Controllers\API\UserController::class,
+    'user-follows' => \App\Http\Controllers\API\UserFollowController::class,
     'likes' => \App\Http\Controllers\API\LikeController::class,
     'tweets' => \App\Http\Controllers\API\TweetController::class,
 ]);

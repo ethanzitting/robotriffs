@@ -6,30 +6,35 @@ defineProps({ user: Object })
 
 const { auth, user } = usePage().props;
 
-const doesUserFollowUser = async (follower, followed) => await axios.get(
-    `/api/follows/${follower}?` +
-    qs.stringify({follower, followed})
-);
+const doesUserFollowUser = async (follower, followed) => {
+    return await axios.get(`/api/user-follows?` + qs.stringify({
+        followed,
+        follower
+    }));
+};
 
 let following = false;
 
 const fetchFollowing = async () => {
-    following = (await doesUserFollowUser(auth.user.id, user.id)).data.follows
+    const res = await doesUserFollowUser(auth.user.id, user.id)
+    following = res.data.data.length > 0
 }
 
 await fetchFollowing()
 
-const followUser = () => axios.post('/api/follows', {
-    action: 'follow',
-    follower: auth.user.id,
-    followed: user.id
-})
+const followUser = () => {
+    return axios.post(`/api/user-follows`, {
+        followed: user.id,
+        follower: auth.user.id,
+    });
+}
 
-const unfollowUser = () => axios.post('/api/follows', {
-    action: 'unfollow',
-    follower: auth.user.id,
-    followed: user.id
-})
+const unfollowUser = () => {
+    return axios.delete(`/api/user-follows/1?` + qs.stringify({
+        followed: user.id,
+        follower: auth.user.id
+    }));
+}
 
 
 const toggleFollow = () => {

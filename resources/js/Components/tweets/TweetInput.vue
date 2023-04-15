@@ -17,6 +17,24 @@ const form = useForm({
     parentTweet: props.parentTweet,
     image: null,
 })
+
+const saveTweet = async () => {
+    try {
+        await axios.post(
+            '/api/tweets',
+            {
+                userId: form.userId,
+                tweetContent: form.tweetContent,
+                parentTweet: form.parentTweet,
+                image: form.image,
+            }
+        )
+        form.reset()
+    } catch (e) {
+        console.log('Failed saving tweet')
+        console.error(e)
+    }
+}
 </script>
 
 <template>
@@ -28,7 +46,7 @@ const form = useForm({
             :user="user"
         />
 
-        <form enctype="multipart/form-data" @submit.prevent="form.post('/api/tweets')">
+        <form enctype="multipart/form-data" @submit.prevent="saveTweet">
             <input
                 type="text"
                 :placeholder="placeholder"
