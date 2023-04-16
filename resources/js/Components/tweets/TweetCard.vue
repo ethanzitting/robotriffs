@@ -15,7 +15,6 @@ const props = defineProps({
         showStats: Boolean
     })
 const isRetweet = Boolean( props.tweet.retweet )
-console.log(props.tweet)
 </script>
 
 <template>

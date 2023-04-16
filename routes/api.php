@@ -26,3 +26,5 @@ Route::resources([
     'tweets' => \App\Http\Controllers\API\TweetController::class,
     'retweets' => \App\Http\Controllers\API\RetweetController::class,
 ]);
+
+Route::delete('retweets/${retweet}');

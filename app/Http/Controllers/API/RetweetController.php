@@ -18,7 +18,7 @@ class RetweetController
         return $retweet;
     }
 
-    public function destroy(Request $request, Retweet $retweet)
+    public function destroy(Request $request)
     {
 
         $retweet->delete();
