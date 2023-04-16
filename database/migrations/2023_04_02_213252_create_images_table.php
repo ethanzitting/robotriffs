@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable();
             $table->foreignId('tweet_id')->nullable();
             $table->string('type');
-            $table->string('url');
+            $table->string('file_name')->nullable();
             $table->string('alt_text')->nullable();
             $table->timestamps();
         });

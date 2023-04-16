@@ -19,7 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->foreignId('parent_id')->nullable();
-            $table->tinyText('content')->nullable(false);
+            $table->tinyText('content')->nullable();
         });
     }
 

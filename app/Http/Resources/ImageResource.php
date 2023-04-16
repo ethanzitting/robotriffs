@@ -14,7 +14,9 @@ class ImageResource extends JsonResource
             'id' => $this->id,
             'user' => $this->user(),
             'tweet' => $this->tweet(),
-            'url' => $this->url,
+            'url' => $this->file_name
+                ? 'http://localhost:80/storage/tweets/'.$this->file_name
+                : 'https://placehold.co/600x600',
             'alt' => $this->alt_text,
             'dates' => [
                 'created' => $this->created_at,
