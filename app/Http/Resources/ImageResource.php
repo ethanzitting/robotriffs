@@ -15,7 +15,7 @@ class ImageResource extends JsonResource
             'user' => $this->user(),
             'tweet' => $this->tweet(),
             'url' => $this->file_name
-                ? 'http://localhost:80/storage/tweets/'.$this->file_name
+                ? env('APP_URL').'/storage/tweets/'.$this->file_name
                 : 'https://placehold.co/600x600',
             'alt' => $this->alt_text,
             'dates' => [
