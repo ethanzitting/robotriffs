@@ -4,7 +4,8 @@ namespace Tests\Endpoint\Users;
 
 use Tests\TestCase;
 
-class GetUserTests extends TestCase {
+class GetUserTests extends TestCase
+{
     public function testReturnsResources()
     {
         $this->fail();

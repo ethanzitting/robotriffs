@@ -4,7 +4,8 @@ namespace Tests\Endpoint\UserFollows;
 
 use Tests\TestCase;
 
-class IndexUserFollowsTest extends TestCase {
+class IndexUserFollowsTest extends TestCase
+{
     public function testReturnsResources()
     {
         $this->fail();

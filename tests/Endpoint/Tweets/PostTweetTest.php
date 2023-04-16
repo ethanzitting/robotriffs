@@ -4,7 +4,8 @@ namespace Tests\Endpoint\Tweets;
 
 use Tests\TestCase;
 
-class PostTweetTest extends TestCase {
+class PostTweetTest extends TestCase
+{
     public function testReturnsResources()
     {
         $this->fail();

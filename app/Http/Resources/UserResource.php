@@ -29,7 +29,7 @@ class UserResource extends JsonResource
             'dates' => [
                 'created' => $this->created_at,
                 'deleted' => $this->deleted_at,
-            ]
+            ],
         ];
     }
 }
