@@ -13,7 +13,7 @@ class UserFollowController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
-        $followed = User::findOrFail($request->followed);
+        $followed = User::find($request->followed);
 
         return UserResource::collection($followed->followers);
     }
