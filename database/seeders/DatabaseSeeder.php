@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
             ->hasFollowers(2)
             ->hasFollowing(3)
             ->create([
-                'email' => 'dev@robotriffs.com',
-                'name' => 'Ethan Zitting',
-                'handle' => 'ethanzitting',
-                'password' => Hash::make('admin'),
+                'email' => env('ADMIN_USER_EMAIL'),
+                'name' => 'Mr Robot',
+                'handle' => 'mrrobot',
+                'password' => Hash::make(env('ADMIN_USER_PASSWORD')),
             ]);
 
         User::factory(10)
