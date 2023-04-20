@@ -51,10 +51,7 @@ $extras-width: 370px;
     }
 
     .fixed-elements {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 20;
+        pointer-events: initial;
     }
 
     .navbar {
