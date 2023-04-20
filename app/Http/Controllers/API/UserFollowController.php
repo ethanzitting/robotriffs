@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class UserFollowController extends Controller
 {
@@ -24,7 +25,7 @@ class UserFollowController extends Controller
 
         $followed
             ->followers()
-            ->attach($request->follower);
+            ->attach(Auth::user()->id);
 
         return new UserResource($followed);
     }
@@ -35,7 +36,7 @@ class UserFollowController extends Controller
 
         $followed
             ->followers()
-            ->detach($request->follower);
+            ->detach(Auth::user()->id);
 
         return response()->json([], 204);
     }

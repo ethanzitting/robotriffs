@@ -19,9 +19,12 @@ Route::middleware('auth:sanctum')
         return $request->user();
     });
 
-Route::resources([
-    'users' => \App\Http\Controllers\API\UserController::class,
-    'user-follows' => \App\Http\Controllers\API\UserFollowController::class,
-    'likes' => \App\Http\Controllers\API\LikeController::class,
-    'tweets' => \App\Http\Controllers\API\TweetController::class,
-]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResources([
+        'users' => \App\Http\Controllers\API\UserController::class,
+        'user-follows' => \App\Http\Controllers\API\UserFollowController::class,
+        'likes' => \App\Http\Controllers\API\LikeController::class,
+        'tweets' => \App\Http\Controllers\API\TweetController::class,
+    ]);
+});
+

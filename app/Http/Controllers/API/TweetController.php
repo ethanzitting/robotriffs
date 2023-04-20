@@ -7,13 +7,14 @@ use App\Http\Resources\TweetResource;
 use App\Models\Image;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
     public function store(Request $request): TweetResource
     {
         $tweet = Tweet::make();
-        $tweet->user_id = $request->userId;
+        $tweet->user_id = Auth::user()->id;
         $tweet->content = $request->tweetContent;
         $tweet->parent_id = $request->parentTweet;
         $tweet->save();
