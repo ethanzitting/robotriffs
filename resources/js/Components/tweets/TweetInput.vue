@@ -72,11 +72,19 @@ const form = useForm({
         width: 520px;
         gap: 8px;
 
+        @media screen and (max-width: 800px) {
+            width: initial;
+        }
+
         input {
             width: 400px;
             height: 50px;
             font-size: 20px;
             border: none;
+
+            @media screen and (max-width: 800px) {
+                width: initial;
+            }
         }
 
         .footer {

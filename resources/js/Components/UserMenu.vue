@@ -17,7 +17,6 @@ let togglePopup = () => {
     popupClass.value = 'hiding'
     setTimeout(() => popupClass.value = 'hidden', 150)
 }
-
 </script>
 
 <template>
@@ -30,12 +29,12 @@ let togglePopup = () => {
             <Triangle class="triangle" :size="16" color="white"/>
         </button>
         <button class="open-menu" @click="togglePopup">
-            <UserAvater />
+            <UserAvater class="avatar"/>
             <div class="text-content">
                 <p class="name">{{ $page.props.auth.user.name }}</p>
                 <p class="handle">@{{ $page.props.auth.user.handle }}</p>
             </div>
-            <ThreeDotsHorizontal />
+            <ThreeDotsHorizontal class="dots"/>
         </button>
     </div>
 </template>
@@ -101,6 +100,14 @@ let togglePopup = () => {
 
         &>*:last-child {
             margin-left: auto;
+        }
+
+        @media (max-width: 1250px) {
+            flex-direction: column;
+
+            .name, .handle, .dots {
+                display: none;
+            }
         }
     }
 }

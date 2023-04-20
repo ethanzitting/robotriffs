@@ -3,6 +3,10 @@ import {Link} from '@inertiajs/vue3';
 import NavLink from "@/Components/NavLink.vue";
 import UserMenu from "./UserMenu.vue";
 import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
+import IconHome from "./icons/IconHome.vue";
+import IconPerson from "./icons/IconPerson.vue";
+import IconHashtag from "./icons/IconHashtag.vue";
+import IconGear from "./icons/IconGear.vue";
 </script>
 
 <template>
@@ -11,16 +15,20 @@ import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
             <RobotRiffsLogo size="48px" />
         </Link>
         <NavLink :href="route('home')" :active="route().current('home')">
-            Home
+            <IconHome class="icon home"/>
+            <p class="title">Home</p>
         </NavLink>
         <NavLink :href="`/${$page.props.auth.user.handle}`" :active="route().current('user.profile')">
-            Profile
+            <IconPerson class="icon profile"/>
+            <p class="title">Profile</p>
         </NavLink>
         <NavLink :href="`/directory`" :active="route().current('directory')">
-            Directory
+            <IconHashtag class="icon hashtag"/>
+            <p class="title">Directory</p>
         </NavLink>
         <NavLink :href="route('user.settings')" :active="route().current('user.settings')">
-            Settings
+            <IconGear class="icon gear" />
+            <p class="title">Settings</p>
         </NavLink>
         <UserMenu />
     </header>
@@ -42,6 +50,7 @@ import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
         width: min-content;
         border-radius: 60px;
         display: flex;
+        gap: 20px;
         justify-content: center;
         align-items: center;
         padding: 0 30px;
@@ -52,6 +61,22 @@ import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
 
         &:last-child {
             margin-top: auto;
+        }
+    }
+
+    .icon {
+        height: 27px;
+        width: 27px;
+    }
+
+    @media (max-width: 1250px) {
+        &>* {
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .title {
+            display: none;
         }
     }
 }

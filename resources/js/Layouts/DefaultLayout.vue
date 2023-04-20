@@ -6,7 +6,6 @@ import Extras from "@/Components/Extras.vue";
 const props = defineProps({
     title: String,
 })
-
 </script>
 
 <template>
@@ -26,77 +25,103 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
+$main-width: 620px;
+$navbar-width-desktop: 260px;
+$navbar-width-tablet: 80px;
+$header-height: 55px;
+$padding-left: calc(50vw - calc(#{$main-width} / 2));
+$padding-right: calc(50vw - calc(#{$main-width} / 2));
+$extras-width: 370px;
+
 .default-layout-container {
     position: relative;
     min-height: 100vh;
-    margin: 0 auto;
-    width: 1250px;
-    max-width: 1250px;
+    min-width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+
+    padding: 0 $padding-right 260px $padding-left;
     font-family: 'Roboto', sans-serif;
-    padding: 55px 370px 100px 260px;
-    z-index: 5;
+    z-index: 0;
     pointer-events: none;
 
+    @media screen and (max-width: 800px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .fixed-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 20;
+    }
+
+    .navbar {
         position: fixed;
         top: 0;
-        left: calc(50vw - 625px);
-        right: calc(50vw - 625px);
-        min-height: 100vh;
-        max-height: 100vh;
-        margin: 0 auto;
-        z-index: 20;
-
-        &>* {
-            pointer-events: initial;
-        }
+        left: calc(#{$padding-left} - #{$navbar-width-desktop});
+        width: $navbar-width-desktop;
 
         @media screen and (max-width: 1250px) {
+            left: calc(#{$padding-left} - #{$navbar-width-tablet});
+            width: $navbar-width-tablet;
+        }
+
+        @media screen and (max-width: 800px) {
             left: 0;
-        }
-
-        .navbar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 260px;
-            border-right: 1px solid #EEEEEE;
-        }
-
-        .header {
-            position: absolute;
-            top: 0;
-            left: 260px;
-            right: 500px;
-            height: 55px;
-            padding: 0 16px;
-            display: flex;
-            flex-direction: row;
-            font-size: 20px;
-            font-weight: 700;
-            align-items: center;
-            width: 620px;
-            z-index: 20;
-            background-color: #FFFFFFee;
-        }
-
-        .extras {
-            position: absolute;
-            padding-left: 20px;
-            width: 370px;
-            top: 0;
-            right: 0;
-            border-left: 1px solid #EEEEEE;
         }
     }
 
+    .header {
+        position: fixed;
+        top: 0;
+        left: calc(#{$padding-left} + 1px);
+        height: $header-height;
+        padding: 0 16px;
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        font-weight: 700;
+        align-items: center;
+        width: $main-width - 2px;
+        z-index: 20;
+        background-color: #FFFFFFee;
+
+        @media screen and (max-width: 800px) {
+            left: calc(#{$navbar-width-tablet} + 1px)
+        }
+    }
+
+    .extras {
+        position: fixed;
+        padding-left: 20px;
+        width: $extras-width;
+        top: 0;
+        right: calc(#{$padding-right} - #{$extras-width});
+
+        @media screen and (max-width: 1400px) {
+            display: none;
+        }
+    }
 
     .main {
         z-index: 10;
         position: relative;
-        max-width: 620px;
-        min-width: 620px;
+        max-width: $main-width;
+        min-width: $main-width;
         pointer-events: initial;
+        padding-top: $header-height;
+        margin: 0;
+
+        border-right: 1px solid #EEEEEE;
+        border-left: 1px solid #EEEEEE;
+
+        @media screen and (max-width: 800px) {
+            margin-left: $navbar-width-tablet;
+            max-width: calc(100vw - #{$navbar-width-tablet});
+            min-width: calc(100vw - #{$navbar-width-tablet});
+        }
     }
 }
 </style>
