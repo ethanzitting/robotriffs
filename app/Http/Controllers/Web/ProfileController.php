@@ -23,6 +23,7 @@ class ProfileController extends Controller
                 'following',
                 'followers',
                 'tweets.children',
+                'tweets.image',
                 'tweets.parent.user',
             ])
             ->first();
