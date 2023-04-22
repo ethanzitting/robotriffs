@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 const userLikes = props.tweet.likes
-    .some(like => String(like.user_id) === String(usePage().props.auth.user.id))
+    .some(({user}) => String(user.id) === String(usePage().props.auth.user.id))
 
 let localCount = ref(props.count ?? 0)
 let localLikes = ref(userLikes)
@@ -17,13 +17,13 @@ let localLikes = ref(userLikes)
 const unlikeTweet = async () => {
     localCount.value--;
     localLikes.value = false;
-    await axios.delete(`/api/likes/1/?user=${usePage().props.auth.user.id}&tweet=${props.tweet.id}`);
+    await axios.delete(`/api/likes/1/?tweet=${props.tweet.id}`);
 }
 
 const likeTweet = async () => {
     localCount.value++;
     localLikes.value = true;
-    await axios.post(`/api/likes?user=${usePage().props.auth.user.id}&tweet=${props.tweet.id}`)
+    await axios.post(`/api/likes?tweet=${props.tweet.id}`)
 }
 
 const handleToggle = async () => {
