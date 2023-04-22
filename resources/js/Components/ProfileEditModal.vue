@@ -2,10 +2,11 @@
 import Modal from './Modal.vue';
 import XMark from "./icons/XMark.vue";
 import UserAvater from "./UserAvater.vue";
+import {useForm} from "@inertiajs/vue3";
 
 const emit = defineEmits(['close']);
 
-defineProps({
+const props = defineProps({
     show: {
         type: Boolean,
         default: false,
@@ -18,11 +19,27 @@ defineProps({
         type: Boolean,
         default: true,
     },
+    user: {
+        type: Object,
+        required: true,
+    }
 });
 
+const form = useForm({
+    name: props.user.name,
+    bio: props.user.profile.bio
+})
+
 const close = () => {
+    form.reset();
     emit('close');
 };
+
+const submit = () => {
+    form.patch(`/profiles/${props.user.profile.id}`)
+    form.reset()
+    emit('close')
+}
 </script>
 
 <template>
@@ -36,14 +53,29 @@ const close = () => {
             <div class="header">
                 <XMark class="close" @click="close"/>
                 Edit Profile
+                <button class="save" @click="submit">
+                    Save
+                </button>
             </div>
             <div class="jumbotron">
                 <div class="banner"/>
                 <UserAvater class="avatar" size="133px"/>
             </div>
             <div class="inputs">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Bio">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    name="name"
+                    v-model="form.name"
+                >
+                <label for="bio">Bio</label>
+                <input
+                    type="text"
+                    name="bio"
+                    placeholder="Bio"
+                    v-model="form.bio"
+                >
             </div>
         </div>
     </Modal>
@@ -67,6 +99,16 @@ const close = () => {
             max-height: 20px;
             min-width: 20px;
             max-width: 20px;
+        }
+
+        .save {
+            margin-left: auto;
+            background-color: #0c1014;
+            padding: 4px 12px;
+            height: 32px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 700;
         }
     }
 
@@ -97,8 +139,11 @@ const close = () => {
     .inputs {
         display: flex;
         flex-direction: column;
-        gap: 12px;
         margin: 0 16px 16px 16px;
+
+        label {
+            margin-top: 16px;
+        }
     }
 }
 </style>

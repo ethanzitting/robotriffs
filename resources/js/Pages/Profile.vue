@@ -74,7 +74,11 @@ const showEditModal = ref(false)
         </div>
         <TweetFeed :tweets="tweets" />
     </DefaultLayout>
-    <ProfileEditModal :show="showEditModal" @close="showEditModal = false"/>
+    <ProfileEditModal
+        :show="showEditModal"
+        @close="showEditModal = false"
+        :user="user.data"
+    />
 </template>
 
 <style lang="scss" scoped>

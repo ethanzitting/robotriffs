@@ -38,6 +38,7 @@ Route::middleware([
     Route::get('settings', SettingsController::class)->name('user.settings');
     Route::get('directory', DirectoryController::class)->name('directory');
     Route::post('tweets', [TweetController::class, 'store']);
-    Route::get('{slug}', ProfileController::class)->name('user.profile');
+    Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');
     Route::get('/{slug}/tweet/{tweet}', [TweetController::class, 'show'])->name('user.tweet');
+    Route::patch('/profiles/{profile}', [ProfileController::class, 'update']);
 });
