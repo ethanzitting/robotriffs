@@ -40,5 +40,5 @@ Route::middleware([
     Route::post('tweets', [TweetController::class, 'store']);
     Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');
     Route::get('/{slug}/tweet/{tweet}', [TweetController::class, 'show'])->name('user.tweet');
-    Route::post('/profiles/{profile}', [ProfileController::class, 'update']);
+    Route::put('/profiles/{profile}', [ProfileController::class, 'update']);
 });

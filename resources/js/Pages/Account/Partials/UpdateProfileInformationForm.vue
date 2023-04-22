@@ -8,7 +8,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import CurrentProfilePhoto from "@/Components/UserAvater.vue";
+import CurrentProfilePhoto from "@/Components/UserAvatar.vue";
 
 const props = defineProps({
     user: Object,
