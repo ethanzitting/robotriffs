@@ -3,7 +3,6 @@ import {useForm, usePage} from "@inertiajs/vue3";
 import CurrentProfilePhoto from "../UserAvater.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import TweetImagePreview from "./TweetImagePreview.vue";
-import {ref} from "vue";
 
 const props = defineProps({
     parentTweet: Number,
@@ -12,31 +11,20 @@ const props = defineProps({
 
 const user = usePage().props.auth.user
 
-const form = ref({
-    userId: user.id,
-    tweetContent: null,
-    parentTweet: props.parentTweet,
-    image: null,
-})
-
-const formForSubmission = ref(new FormData)
-
 const appendImage = (image) => {
-    formForSubmission.value.append('image', image)
+    form.image = image
 }
 
-const submit = async () => {
-    formForSubmission.value.append('userId', form.value.userId)
-    if (form.value.tweetContent) {
-        formForSubmission.value.append('tweetContent', form.value.tweetContent)
-    }
-    if (form.value.parentTweet) {
-        formForSubmission.value.append('parentTweet', form.value.parentTweet)
-    }
-    await axios.post('/api/tweets', formForSubmission.value)
+const form = useForm({
+    tweetContent: '',
+    user: user,
+    image: null,
+    parentTweet: props.parentTweet,
+})
 
-    form.tweetContent = null
-    form.image = null
+const submit = async () => {
+    await form.post('/tweets')
+    form.reset()
 }
 </script>
 
