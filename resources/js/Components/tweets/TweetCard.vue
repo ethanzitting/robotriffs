@@ -10,10 +10,12 @@ import TweetCommentButton from "./TweetCommentButton.vue";
 import RetweetButton from "./RetweetButton.vue";
 import RetweetIcon from "../icons/RetweetIcon.vue";
 dayjs.extend(relativeTime)
+
 const props = defineProps({
         tweet: Object,
         showStats: Boolean
     })
+
 const isRetweet = Boolean( props.tweet.retweet )
 </script>
 

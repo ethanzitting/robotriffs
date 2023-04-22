@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Retweet;
-use App\Models\Tweet;
 use Illuminate\Http\Request;
 
 class RetweetController
