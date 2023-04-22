@@ -1,6 +1,6 @@
 <script setup>
 import {useForm, usePage} from "@inertiajs/vue3";
-import CurrentProfilePhoto from "../UserAvater.vue";
+import CurrentProfilePhoto from "../UserAvatar.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import TweetImagePreview from "./TweetImagePreview.vue";
 

@@ -3,7 +3,7 @@ import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import TweetFeed from "@/Components/tweets/TweetFeed.vue";
 import FollowButton from "@/Components/FollowButton.vue";
-import UserAvater from "../Components/UserAvater.vue";
+import UserAvater from "../Components/UserAvatar.vue";
 import dayjs from "dayjs";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
 import ProfileEditModal from "../Components/ProfileEditModal.vue";

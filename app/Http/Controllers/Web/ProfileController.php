@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,11 +42,28 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $user->name = $request->name;
-        $user->save();
+        if ($request->name) {
+            $user->name = $request->name;
+            $user->save();
+        }
 
-        $user->profile->bio = $request->bio;
-        $user->profile->save();
+        if ($request->bio) {
+            $user->profile->bio = $request->bio;
+            $user->profile->save();
+        }
+
+        if (isset($request->avatar)) {
+            $image = Image::make();
+            $image->user_id = Auth::user()->id;
+            $image->type = 'avatar';
+            $image->save();
+            $image->fresh();
+            $image->file_name = $image->id.'.'.$request->avatar->extension();
+            $image->save();
+
+            $request->file('avatar')
+                ->storeAs('public/tweets', $image->file_name);
+        }
 
         return redirect()->to(route('user.profile', ['slug' => $user->handle]));
     }

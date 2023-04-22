@@ -1,8 +1,8 @@
 <script setup>
 import Modal from './Modal.vue';
 import XMark from "./icons/XMark.vue";
-import UserAvater from "./UserAvater.vue";
 import {useForm} from "@inertiajs/vue3";
+import UserAvatarEditable from "./tweets/UserAvatarEditable.vue";
 
 const emit = defineEmits(['close']);
 
@@ -27,7 +27,8 @@ const props = defineProps({
 
 const form = useForm({
     name: props.user.name,
-    bio: props.user.profile.bio
+    bio: props.user.profile.bio,
+    avatar: null,
 })
 
 const close = () => {
@@ -35,11 +36,16 @@ const close = () => {
     emit('close');
 };
 
-const submit = () => {
-    form.patch(`/profiles/${props.user.profile.id}`)
+const submit = async () => {
+    await form.post(`/profiles/${props.user.profile.id}`)
     form.reset()
     emit('close')
 }
+
+const appendAvatar = (image) => {
+    form.avatar = image
+}
+
 </script>
 
 <template>
@@ -50,33 +56,35 @@ const submit = () => {
         @close="close"
     >
         <div v-show="show" class="profile-edit-modal mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:mx-auto">
-            <div class="header">
-                <XMark class="close" @click="close"/>
-                Edit Profile
-                <button class="save" @click="submit">
-                    Save
-                </button>
-            </div>
-            <div class="jumbotron">
-                <div class="banner"/>
-                <UserAvater class="avatar" size="133px"/>
-            </div>
-            <div class="inputs">
-                <label for="name">Name</label>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    v-model="form.name"
-                >
-                <label for="bio">Bio</label>
-                <input
-                    type="text"
-                    name="bio"
-                    placeholder="Bio"
-                    v-model="form.bio"
-                >
-            </div>
+            <form enctype="multipart/form-data" @submit.prevent="submit">
+                <div class="header">
+                    <XMark class="close" @click="close"/>
+                    Edit Profile
+                    <button class="save" type="submit" :disabled="form.processing">
+                        Save
+                    </button>
+                </div>
+                <div class="jumbotron">
+                    <div class="banner"/>
+                    <UserAvatarEditable class="avatar" @file-uploaded="appendAvatar"/>
+                </div>
+                <div class="inputs">
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        v-model="form.name"
+                    >
+                    <label for="bio">Bio</label>
+                    <input
+                        type="text"
+                        name="bio"
+                        placeholder="Bio"
+                        v-model="form.bio"
+                    >
+                </div>
+            </form>
         </div>
     </Modal>
 </template>
@@ -109,6 +117,7 @@ const submit = () => {
             border-radius: 16px;
             font-size: 14px;
             font-weight: 700;
+            color: white;
         }
     }
 

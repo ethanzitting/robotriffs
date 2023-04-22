@@ -10,7 +10,9 @@ import ImageIcon from "../icons/ImageIcon.vue";
             @change="(event) => $emit('file-uploaded', event.target.files[0])"
             accept="image/*"
         />
-        <ImageIcon class="image-icon"/>
+        <slot>
+            <ImageIcon class="image-icon"/>
+        </slot>
     </label>
 </template>
 

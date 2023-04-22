@@ -1,5 +1,5 @@
 <script setup>
-import UserAvater from "../UserAvater.vue";
+import UserAvatar from "../UserAvatar.vue";
 import {Link} from '@inertiajs/vue3';
 import SingleDot from "../icons/SingleDot.vue";
 import dayjs from "dayjs";
@@ -18,7 +18,7 @@ defineProps({
 
 <template>
     <Link :href="`/${tweet.user.handle}/tweet/${tweet.id}`" class="container">
-        <UserAvater
+        <UserAvatar
             :to="'/' + tweet.user.handle"
             :user="tweet.user"
             :size="'48px'"

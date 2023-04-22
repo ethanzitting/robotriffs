@@ -1,5 +1,5 @@
 <script setup>
-import UserAvater from "./UserAvater.vue";
+import UserAvatar from "./UserAvatar.vue";
 import ThreeDotsHorizontal from "./icons/ThreeDotsHorizontal.vue";
 import {router, usePage} from "@inertiajs/vue3";
 import {ref} from "vue";
@@ -29,7 +29,7 @@ let togglePopup = () => {
             <Triangle class="triangle" :size="16" color="white"/>
         </button>
         <button class="open-menu" @click="togglePopup">
-            <UserAvater class="avatar"/>
+            <UserAvatar class="avatar"/>
             <div class="text-content">
                 <p class="name">{{ $page.props.auth.user.name }}</p>
                 <p class="handle">@{{ $page.props.auth.user.handle }}</p>
