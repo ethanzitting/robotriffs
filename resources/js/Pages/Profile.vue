@@ -6,6 +6,8 @@ import FollowButton from "@/Components/FollowButton.vue";
 import UserAvater from "../Components/UserAvater.vue";
 import dayjs from "dayjs";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
+import ProfileEditModal from "../Components/ProfileEditModal.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     user: Object,
@@ -17,6 +19,8 @@ const tweets = props.user.data.tweets.map(tweet => {
         user: props.user.data,
     }
 })
+
+const showEditModal = ref(false)
 </script>
 
 <template>
@@ -37,7 +41,11 @@ const tweets = props.user.data.tweets.map(tweet => {
             <div class="banner"/>
             <UserAvater class="avatar" size="133px"/>
             <div class="profile-options">
-                <button class="edit" v-if="user.data.id === $page.props.auth.user.id">
+                <button
+                    class="edit"
+                    v-if="user.data.id === $page.props.auth.user.id"
+                    @click="showEditModal = true"
+                >
                     Edit Profile
                 </button>
                 <Suspense v-else>
@@ -66,6 +74,7 @@ const tweets = props.user.data.tweets.map(tweet => {
         </div>
         <TweetFeed :tweets="tweets" />
     </DefaultLayout>
+    <ProfileEditModal :show="showEditModal" @close="showEditModal = false"/>
 </template>
 
 <style lang="scss" scoped>
