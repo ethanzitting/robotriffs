@@ -6,6 +6,8 @@ import SectionBorder from '@/Components/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Account/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Account/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Account/Partials/UpdateProfileInformationForm.vue';
+import {Link} from "@inertiajs/vue3";
+import ArrowLeft from "../../Components/icons/ArrowLeft.vue";
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -16,8 +18,11 @@ defineProps({
 <template>
     <DefaultLayout title="Profile">
         <template #header>
+            <Link href="/home" class="back-arrow">
+                <ArrowLeft size="20px" />
+            </Link>
             <h1>
-                Profile
+                Settings
             </h1>
         </template>
 
@@ -55,3 +60,15 @@ defineProps({
         </div>
     </DefaultLayout>
 </template>
+
+<style lang="scss" scoped>
+.back-arrow {
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 30px;
+
+    &:hover {
+        background-color: #eee;
+    }
+}
+</style>
