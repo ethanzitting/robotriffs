@@ -39,7 +39,7 @@ const showEditModal = ref(false)
         </template>
         <div class="jumbotron">
             <div class="banner"/>
-            <UserAvater class="avatar" size="133px"/>
+            <UserAvater class="avatar" size="133px" :specified-user="user.data"/>
             <div class="profile-options">
                 <button
                     class="edit"

@@ -4,6 +4,7 @@ import TweetFeed from "@/Components/tweets/TweetFeed.vue";
 import TweetInput from "@/Components/tweets/TweetInput.vue";
 
 defineProps({
+    user: Object,
     tweets: Object,
 })
 </script>
@@ -17,7 +18,7 @@ defineProps({
         </template>
 
         <div class="main">
-            <TweetInput placeholder="What's Happening?" />
+            <TweetInput placeholder="What's Happening?" :user="user.data"/>
             <TweetFeed :tweets="tweets.data" />
         </div>
     </DefaultLayout>

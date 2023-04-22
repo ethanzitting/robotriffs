@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             'following' => UserResource::collection(
                 $this->whenLoaded('following')
             ),
+            'avatars' => ImageResource::collection($this->whenLoaded('avatars')),
             'dates' => [
                 'created' => $this->created_at,
                 'deleted' => $this->deleted_at,

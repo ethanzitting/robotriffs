@@ -20,7 +20,7 @@ defineProps({
     <Link :href="`/${tweet.user.handle}/tweet/${tweet.id}`" class="container">
         <UserAvatar
             :to="'/' + tweet.user.handle"
-            :user="tweet.user"
+            :specified-user="tweet.user"
             :size="'48px'"
         />
         <div class="content-wrapper">

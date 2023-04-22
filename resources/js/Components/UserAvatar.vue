@@ -8,6 +8,11 @@ const props = defineProps({
     size: String
 })
 const user = props.specifiedUser ?? usePage().props.auth.user;
+
+const imgSrc = user.avatars
+    ? user.avatars[user.avatars.length - 1].url
+    : 'https://placehold.co/600x600'
+
 </script>
 
 <template>
@@ -23,7 +28,7 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
     >
         <img
             class="avatar"
-            :src="'https://placehold.co/600x600'"
+            :src="imgSrc"
             :alt="user.name"
         >
     </Link>
@@ -37,7 +42,7 @@ const user = props.specifiedUser ?? usePage().props.auth.user;
             max-width: ${size ?? '40px'};
         `"
 
-        :src="'https://placehold.co/600x600'"
+        :src="imgSrc"
         :alt="user.name"
     >
 </template>

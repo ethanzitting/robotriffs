@@ -5,11 +5,12 @@ import TweetImageInput from "./TweetImageInput.vue";
 import TweetImagePreview from "./TweetImagePreview.vue";
 
 const props = defineProps({
+    user: Object,
     parentTweet: Number,
     placeholder: String,
 })
 
-const user = usePage().props.auth.user
+const user = props.user ?? usePage().props.auth.user
 
 const appendImage = (image) => {
     form.image = image
@@ -34,7 +35,7 @@ const submit = async () => {
             :to="'/' + user.handle"
             size="48px"
             class="icon"
-            :user="user"
+            :specified-user="user"
         />
 
         <form enctype="multipart/form-data" @submit.prevent="submit">
