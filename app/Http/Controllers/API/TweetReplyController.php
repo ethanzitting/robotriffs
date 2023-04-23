@@ -22,6 +22,7 @@ class TweetReplyController extends Controller
                 'likes',
                 'image',
             ])
+            ->orderByDesc('created_at')
             ->get();
 
         return TweetResource::collection($replies);

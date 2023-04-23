@@ -17,7 +17,14 @@ class TweetController extends Controller
         $tweets = Tweet::query()
             ->where('user_id', $request->user)
             ->withCount(['children', 'likes'])
-            ->with(['user', 'parent.user', 'children', 'likes'])
+            ->with([
+                'user',
+                'parent.user',
+                'children',
+                'image',
+                'likes'
+            ])
+            ->orderByDesc('created_at')
             ->get();
 
         return TweetResource::collection($tweets);
