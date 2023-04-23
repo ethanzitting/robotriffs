@@ -45,11 +45,11 @@ defineProps({
             <div v-if="showStats" class="stats">{{ dayjs(tweet.dates.created).fromNow() }}</div>
             <div class="interaction-icons">
                 <TweetCommentButton
-                    :count="tweet.children?.length"
+                    :count="tweet.replyCount"
                 />
                 <TweetLikeButton
                     :tweet="tweet"
-                    :count="tweet.likes.length"
+                    :count="tweet.likeCount"
                 />
             </div>
         </div>

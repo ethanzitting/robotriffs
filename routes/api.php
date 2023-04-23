@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
         'user-follows' => \App\Http\Controllers\API\UserFollowController::class,
         'likes' => \App\Http\Controllers\API\LikeController::class,
         'tweets' => \App\Http\Controllers\API\TweetController::class,
+        'feeds' => \App\Http\Controllers\API\FeedController::class,
     ]);
 });
 

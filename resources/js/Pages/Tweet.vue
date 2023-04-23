@@ -2,9 +2,9 @@
 import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import TweetCard from "../Components/tweets/TweetCard.vue";
 import TweetInput from "../Components/tweets/TweetInput.vue";
-import TweetFeed from "../Components/tweets/TweetFeed.vue";
 import {Link} from "@inertiajs/vue3";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
+import TweetReplies from "../Components/tweets/TweetReplies.vue";
 
 defineProps({tweet: Object})
 </script>
@@ -26,7 +26,7 @@ defineProps({tweet: Object})
             :parent-tweet="tweet.data.id"
             placeholder="Tweet your reply"
         />
-        <TweetFeed :tweets="tweet.data.children"/>
+        <TweetReplies :tweet="tweet"/>
     </DefaultLayout>
 </template>
 

@@ -17,6 +17,7 @@ class UserResource extends JsonResource
             'tweets' => TweetResource::collection(
                 $this->whenLoaded('tweets')
             ),
+            'tweetCount' => $this->tweets_count,
             'profile' => ProfileResource::make(
                 $this->whenLoaded('profile')
             ),

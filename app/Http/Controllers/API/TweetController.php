@@ -7,10 +7,22 @@ use App\Http\Resources\TweetResource;
 use App\Models\Image;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
+    public function index(Request $request): AnonymousResourceCollection
+    {
+        $tweets = Tweet::query()
+            ->where('user_id', $request->user)
+            ->withCount(['children', 'likes'])
+            ->with(['user', 'parent.user', 'children', 'likes'])
+            ->get();
+
+        return TweetResource::collection($tweets);
+    }
+
     public function store(Request $request): TweetResource
     {
         $tweet = Tweet::make();

@@ -28,8 +28,8 @@ const likeTweet = async () => {
 
 const handleToggle = async () => {
     localLikes.value
-        ? unlikeTweet()
-        : likeTweet();
+        ? await unlikeTweet()
+        : await likeTweet();
 }
 </script>
 

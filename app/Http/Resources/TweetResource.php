@@ -16,8 +16,10 @@ class TweetResource extends JsonResource
             'image' => ImageResource::make($this->whenLoaded('image')),
             'user' => $this->user(),
             'parent' => $this->parent(),
+            'likeCount' => $this->likes_count,
             'likes' => LikeResource::collection($this->whenLoaded('likes')),
-            'children' => TweetResource::collection($this->whenLoaded('children')),
+            'replyCount' => $this->children_count,
+            'replies' => TweetResource::collection($this->whenLoaded('children')),
             'dates' => [
                 'created' => $this->created_at,
                 'updated' => $this->updated_at,

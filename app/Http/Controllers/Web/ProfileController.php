@@ -17,14 +17,13 @@ class ProfileController extends Controller
         $user = User::where('handle', $slug)
             ->with([
                 'profile',
-                'tweets.likes',
                 'avatars',
                 'banners',
+            ])
+            ->withCount([
+                'tweets',
                 'following',
                 'followers',
-                'tweets.children',
-                'tweets.image',
-                'tweets.parent.user',
             ])
             ->first();
 

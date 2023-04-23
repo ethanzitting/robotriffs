@@ -1,23 +1,16 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import TweetFeed from "@/Components/tweets/TweetFeed.vue";
 import FollowButton from "@/Components/FollowButton.vue";
 import UserAvater from "../Components/UserAvatar.vue";
 import dayjs from "dayjs";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
 import ProfileEditModal from "../Components/ProfileEditModal.vue";
 import {ref} from "vue";
+import UserTweets from "@/Components/tweets/UserTweets.vue";
 
 const props = defineProps({
     user: Object,
-})
-
-const tweets = props.user.data.tweets.map(tweet => {
-    return {
-        ...tweet,
-        user: props.user.data,
-    }
 })
 
 const showEditModal = ref(false)
@@ -34,7 +27,7 @@ const showEditModal = ref(false)
             </Link>
             <div class="header-text">
                 <h1>{{ user.data.name }}</h1>
-                <p>{{ user.data.tweets.length }} Tweet</p>
+                <p>{{ user.data.tweetCount }} Tweet</p>
             </div>
         </template>
         <div class="jumbotron">
@@ -60,11 +53,11 @@ const showEditModal = ref(false)
             <p class="joined">Joined {{ dayjs(user.data.dates.created).format('MMMM YYYY') }}</p>
             <div class="connections">
                 <p>
-                    <span class="number">{{ user.data.following.length }} </span>
+                    <span class="number">{{ user.data.followingCount }} </span>
                     Following
                 </p>
                 <p>
-                    <span class="number">{{ user.data.followers.length }} </span>
+                    <span class="number">{{ user.data.followerCount }} </span>
                     Followers
                 </p>
             </div>
@@ -72,7 +65,7 @@ const showEditModal = ref(false)
         <div class="tweet-title">
             Tweets
         </div>
-        <TweetFeed :tweets="tweets" />
+        <UserTweets :user="user.data" />
     </DefaultLayout>
     <ProfileEditModal
         :show="showEditModal"

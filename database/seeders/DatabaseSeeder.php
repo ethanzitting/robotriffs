@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()
             ->has(
-                Tweet::factory(30)
+                Tweet::factory(3)
                     ->hasLikes(2)
                     ->hasChildren(2)
                     ->hasImage()
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make(env('ADMIN_USER_PASSWORD')),
             ]);
 
-        User::factory(10)
+        User::factory(2)
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
             ->hasTweets(3)

@@ -3,20 +3,22 @@
 namespace App\Services;
 
 use App\Models\Tweet;
-use Illuminate\Contracts\Auth\Authenticatable;
+use App\Models\User;
+use Illuminate\Support\Collection;
 
 class TweetService
 {
-    public function getFeedForUser(?Authenticatable $user)
+    public function getFeedForUser(?User $user): Collection
     {
         if (! $user) {
-            return [];
+            return collect();
         }
 
         $followedByUser = $user->following->pluck('id')
             ->push($user->id);
 
         return Tweet::whereIn('user_id', $followedByUser)
+            ->withCount(['children', 'likes'])
             ->with([
                 'user.avatars',
                 'likes',

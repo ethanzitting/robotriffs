@@ -1,17 +1,15 @@
 <script setup>
 import TweetCard from "./TweetCard.vue";
 
-const props = defineProps({ tweets: Array })
-
-const sortedTweets = props.tweets.sort((a, b) => {
-    return b.dates.created.localeCompare(a.dates.created);
+const props = defineProps({
+    tweets: Array,
 })
 </script>
 
 <template>
     <TweetCard
         class="tweet-card"
-        v-for="tweet in sortedTweets"
+        v-for="tweet in tweets"
         :tweet="tweet" :key="
         tweet.id"
     />
