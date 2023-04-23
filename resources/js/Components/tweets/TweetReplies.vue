@@ -9,7 +9,7 @@ const props = defineProps({
 const tweets = ref([]);
 
 onMounted(async () => {
-    const response = await axios.get(`/api/tweets?`);
+    const response = await axios.get(`/api/tweets/${props.tweet.id}/replies?`);
 
     tweets.value = response.data.data
 });

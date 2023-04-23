@@ -2,7 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import FollowButton from "@/Components/FollowButton.vue";
-import UserAvater from "../Components/UserAvatar.vue";
+import UserAvatar from "../Components/UserAvatar.vue";
 import dayjs from "dayjs";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
 import ProfileEditModal from "../Components/ProfileEditModal.vue";
@@ -32,7 +32,7 @@ const showEditModal = ref(false)
         </template>
         <div class="jumbotron">
             <div class="banner"/>
-            <UserAvater class="avatar" size="133px" :specified-user="user.data"/>
+            <UserAvatar class="avatar" size="133px" :specified-user="user.data"/>
             <div class="profile-options">
                 <button
                     class="edit"

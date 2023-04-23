@@ -26,7 +26,7 @@ defineProps({tweet: Object})
             :parent-tweet="tweet.data.id"
             placeholder="Tweet your reply"
         />
-        <TweetReplies :tweet="tweet"/>
+        <TweetReplies :tweet="tweet.data"/>
     </DefaultLayout>
 </template>
 

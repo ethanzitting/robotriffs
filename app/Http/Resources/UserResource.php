@@ -24,9 +24,11 @@ class UserResource extends JsonResource
             'followers' => UserResource::collection(
                 $this->whenLoaded('followers')
             ),
+            'followerCount' => $this->followers_count,
             'following' => UserResource::collection(
                 $this->whenLoaded('following')
             ),
+            'followingCount' => $this->following_count,
             'avatars' => ImageResource::collection($this->whenLoaded('avatars')),
             'dates' => [
                 'created' => $this->created_at,
