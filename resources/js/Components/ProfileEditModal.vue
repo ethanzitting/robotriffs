@@ -3,6 +3,7 @@ import Modal from './Modal.vue';
 import XMark from "./icons/XMark.vue";
 import {useForm} from "@inertiajs/vue3";
 import UserAvatarEditable from "./tweets/UserAvatarEditable.vue";
+import UserBannerEditable from "./tweets/UserBannerEditable.vue";
 
 const emit = defineEmits(['close']);
 
@@ -30,6 +31,7 @@ const form = useForm({
     name: props.user.name,
     bio: props.user.profile.bio,
     avatar: null,
+    banner: null
 })
 
 const close = () => {
@@ -45,6 +47,10 @@ const submit = async () => {
 
 const appendAvatar = (image) => {
     form.avatar = image
+}
+
+const appendBanner = (image) => {
+    form.banner = image
 }
 
 </script>
@@ -66,7 +72,7 @@ const appendAvatar = (image) => {
                     </button>
                 </div>
                 <div class="jumbotron">
-                    <div class="banner"/>
+                    <UserBannerEditable class="banner" @file-uploaded="appendBanner"/>
                     <UserAvatarEditable class="avatar" @file-uploaded="appendAvatar"/>
                 </div>
                 <div class="inputs">
@@ -133,9 +139,6 @@ const appendAvatar = (image) => {
             right: 0;
             top: 0;
             bottom: 70px;
-            background-image: url("https://placehold.co/600x400");
-            background-size: cover;
-            overflow: hidden;
         }
 
         .avatar {

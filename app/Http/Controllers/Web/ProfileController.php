@@ -65,6 +65,19 @@ class ProfileController extends Controller
                 ->storeAs('public/tweets', $image->file_name);
         }
 
+        if (isset($request->banner)) {
+            $image = Image::make();
+            $image->user_id = Auth::user()->id;
+            $image->type = 'banner';
+            $image->save();
+            $image->fresh();
+            $image->file_name = $image->id.'.'.$request->banner->extension();
+            $image->save();
+
+            $request->file('banner')
+                ->storeAs('public/tweets', $image->file_name);
+        }
+
         return redirect()->to(route('user.profile', ['slug' => $user->handle]));
     }
 }

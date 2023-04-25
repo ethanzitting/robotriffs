@@ -14,6 +14,11 @@ const props = defineProps({
 })
 
 const showEditModal = ref(false)
+
+const bannerUrl = props.user.data.banners?.length
+    ? props.user.data.banners[props.user.data.banners.length - 1].url
+    : 'https://placehold.co/600x400'
+
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const showEditModal = ref(false)
             </div>
         </template>
         <div class="jumbotron">
-            <div class="banner"/>
+            <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
             <UserAvatar class="avatar" size="133px" :specified-user="user.data"/>
             <div class="profile-options">
                 <button
@@ -103,7 +108,6 @@ const showEditModal = ref(false)
         right: 0;
         top: 0;
         bottom: 70px;
-        background-image: url("https://placehold.co/600x400");
         background-size: cover;
         overflow: hidden;
     }

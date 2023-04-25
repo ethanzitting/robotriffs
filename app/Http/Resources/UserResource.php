@@ -30,6 +30,7 @@ class UserResource extends JsonResource
             ),
             'followingCount' => $this->following_count,
             'avatars' => ImageResource::collection($this->whenLoaded('avatars')),
+            'banners' => ImageResource::collection($this->whenLoaded('banners')),
             'dates' => [
                 'created' => $this->created_at,
                 'deleted' => $this->deleted_at,
