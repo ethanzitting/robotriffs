@@ -9,8 +9,8 @@ const props = defineProps({
 })
 const user = props.specifiedUser ?? usePage().props.auth.user;
 
-const imgSrc = user.avatars
-    ? user.avatars[user.avatars.length - 1]?.url
+const imgSrc = user.avatar
+    ? user.avatar.url
     : 'https://placehold.co/600x600'
 
 </script>

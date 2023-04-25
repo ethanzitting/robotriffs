@@ -20,7 +20,7 @@ class TweetService
         return Tweet::whereIn('user_id', $followedByUser)
             ->withCount(['children', 'likes'])
             ->with([
-                'user.avatars',
+                'user.avatar',
                 'likes',
                 'image',
                 'children',

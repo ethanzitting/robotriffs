@@ -16,7 +16,7 @@ class TweetReplyController extends Controller
             ->where('parent_id', $tweet->id)
             ->withCount(['children', 'likes'])
             ->with([
-                'user.avatars',
+                'user.avatar',
                 'parent.user',
                 'children',
                 'likes',

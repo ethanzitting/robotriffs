@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
+use App\Http\Resources\UserResource;
 use App\Models\Image;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
@@ -19,9 +20,9 @@ class TweetController extends Controller
         string $tweet
     ): Response {
         $tweet = Tweet::findOrFail($tweet)->load([
-            'user',
             'likes',
             'image',
+            'user.avatar',
             'parent.user',
             'children.user',
             'children.likes',
@@ -31,6 +32,7 @@ class TweetController extends Controller
 
         return Inertia::render('Tweet', [
             'tweet' => new TweetResource($tweet),
+            'user' =>  UserResource::make(Auth::user()->load(['avatar']))
         ]);
     }
 

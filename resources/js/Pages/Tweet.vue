@@ -6,7 +6,10 @@ import {Link} from "@inertiajs/vue3";
 import ArrowLeft from "../Components/icons/ArrowLeft.vue";
 import TweetReplies from "../Components/tweets/TweetReplies.vue";
 
-defineProps({tweet: Object})
+defineProps({
+    tweet: Object,
+    user: Object
+})
 </script>
 <template>
     <DefaultLayout>
@@ -25,8 +28,9 @@ defineProps({tweet: Object})
         <TweetInput
             :parent-tweet="tweet.data.id"
             placeholder="Tweet your reply"
+            :user="user.data"
         />
-        <TweetReplies :tweet="tweet.data"/>
+        <TweetReplies :tweet="tweet.data" :user="user.data"/>
     </DefaultLayout>
 </template>
 

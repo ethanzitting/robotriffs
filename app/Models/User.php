@@ -88,15 +88,23 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
-    public function avatars(): HasMany
+    public function avatar(): HasOne
     {
         return $this->images()
-            ->where('type', 'avatar');
+            ->one()
+            ->ofMany(
+                ['created_at' => 'max'],
+                fn ($query) => $query->where('type', 'avatar')
+            );
     }
 
-    public function banners(): HasMany
+    public function banner(): HasOne
     {
         return $this->images()
-            ->where('type', 'banner');
+            ->one()
+            ->ofMany(
+                ['created_at' => 'max'],
+                fn ($query) => $query->where('type', 'banner')
+            );
     }
 }

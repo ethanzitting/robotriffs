@@ -1,6 +1,6 @@
 <script setup>
 import {useForm, usePage} from "@inertiajs/vue3";
-import CurrentProfilePhoto from "../UserAvatar.vue";
+import UserAvatar from "../UserAvatar.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import TweetImagePreview from "./TweetImagePreview.vue";
 
@@ -31,7 +31,7 @@ const submit = async () => {
 
 <template>
     <div class="tweet-input-container">
-        <CurrentProfilePhoto
+        <UserAvatar
             :to="'/' + user.handle"
             size="48px"
             class="icon"

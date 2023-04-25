@@ -18,7 +18,7 @@ class TweetController extends Controller
             ->where('user_id', $request->user)
             ->withCount(['children', 'likes'])
             ->with([
-                'user',
+                'user.avatar',
                 'parent.user',
                 'children',
                 'image',

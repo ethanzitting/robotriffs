@@ -15,8 +15,8 @@ const props = defineProps({
 
 const showEditModal = ref(false)
 
-const bannerUrl = props.user.data.banners?.length
-    ? props.user.data.banners[props.user.data.banners.length - 1].url
+const bannerUrl = props.user.data.banner
+    ? props.user.data.banner.url
     : 'https://placehold.co/600x400'
 
 </script>
