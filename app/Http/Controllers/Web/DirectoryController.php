@@ -12,7 +12,7 @@ class DirectoryController extends Controller
     public function __invoke()
     {
         return Inertia::render('Directory', [
-            'users' => UserResource::collection(User::all()),
+            'users' => UserResource::collection(User::all()->load(['profile', 'avatar', 'followers'])),
         ]);
     }
 }

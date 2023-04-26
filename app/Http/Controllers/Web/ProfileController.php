@@ -19,6 +19,7 @@ class ProfileController extends Controller
                 'profile',
                 'avatar',
                 'banner',
+                'followers',
             ])
             ->withCount([
                 'tweets',

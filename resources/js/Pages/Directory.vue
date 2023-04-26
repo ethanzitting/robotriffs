@@ -2,6 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import ArrowLeft from "@/Components/icons/ArrowLeft.vue";
+import UserCard from "../Components/UserCard.vue";
 
 defineProps({
     users: Object,
@@ -20,7 +21,7 @@ defineProps({
         </template>
         <div>
             <div v-for="user in users.data" :key="user.id">
-                <Link :href="'/' + user.handle">{{ user.name}}</Link>
+                <UserCard :user="user" class="user-card"/>
             </div>
         </div>
     </DefaultLayout>
@@ -34,6 +35,12 @@ defineProps({
 
     &:hover {
         background-color: #eee;
+    }
+}
+
+.user-card {
+    &:hover {
+        background-color: #EEE;
     }
 }
 </style>
