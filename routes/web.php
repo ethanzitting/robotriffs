@@ -5,6 +5,8 @@ use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\SettingsController;
 use App\Http\Controllers\Web\TweetController;
+use App\Http\Controllers\Web\UserFollowerController;
+use App\Http\Controllers\Web\UserFollowingController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,6 +41,8 @@ Route::middleware([
     Route::get('directory', DirectoryController::class)->name('directory');
     Route::post('tweets', [TweetController::class, 'store']);
     Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');
+    Route::get('{slug}/followers', [UserFollowerController::class, 'show'])->name('user.followers');
+    Route::get('{slug}/following', [UserFollowingController::class, 'show'])->name('user.following');
     Route::get('/{slug}/tweet/{tweet}', [TweetController::class, 'show'])->name('user.tweet');
     Route::put('/profiles/{profile}', [ProfileController::class, 'update']);
 });

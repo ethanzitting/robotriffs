@@ -34,7 +34,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Inertia::render('Profile', [
+        return Inertia::render('Profile/Profile', [
             'user' => new UserResource($user),
         ]);
     }

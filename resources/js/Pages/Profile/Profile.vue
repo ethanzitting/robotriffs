@@ -2,16 +2,18 @@
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import FollowButton from "@/Components/FollowButton.vue";
-import UserAvatar from "../Components/UserAvatar.vue";
+import UserAvatar from "../../Components/UserAvatar.vue";
 import dayjs from "dayjs";
-import ArrowLeft from "../Components/icons/ArrowLeft.vue";
-import ProfileEditModal from "../Components/ProfileEditModal.vue";
+import ArrowLeft from "../../Components/icons/ArrowLeft.vue";
+import ProfileEditModal from "../../Components/ProfileEditModal.vue";
 import {ref} from "vue";
 import UserTweets from "@/Components/tweets/UserTweets.vue";
 
 const props = defineProps({
     user: Object,
 })
+
+const user = props.user.data;
 
 const showEditModal = ref(false)
 
@@ -31,51 +33,51 @@ const bannerUrl = props.user.data.banner
                 <ArrowLeft size="20px" />
             </Link>
             <div class="header-text">
-                <h1>{{ user.data.name }}</h1>
-                <p>{{ user.data.tweetCount }} Tweet</p>
+                <h1>{{ user.name }}</h1>
+                <p>{{ user.tweetCount }} Tweet</p>
             </div>
         </template>
         <div class="jumbotron">
             <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
-            <UserAvatar class="avatar" size="133px" :specified-user="user.data"/>
+            <UserAvatar class="avatar" size="133px" :specified-user="user"/>
             <div class="profile-options">
                 <button
                     class="edit"
-                    v-if="user.data.id === $page.props.auth.user.id"
+                    v-if="user.id === $page.props.auth.user.id"
                     @click="showEditModal = true"
                 >
                     Edit Profile
                 </button>
                 <Suspense v-else>
-                    <FollowButton :user="user.data"/>
+                    <FollowButton :user="user"/>
                 </Suspense>
             </div>
         </div>
         <div class="main-text">
-            <p class="name">{{ user.data.name }}</p>
-            <p class="handle">@{{ user.data.handle }}</p>
-            <p>{{ user.data.profile.bio }}</p>
-            <p class="joined">Joined {{ dayjs(user.data.dates.created).format('MMMM YYYY') }}</p>
+            <p class="name">{{ user.name }}</p>
+            <p class="handle">@{{ user.handle }}</p>
+            <p>{{ user.profile.bio }}</p>
+            <p class="joined">Joined {{ dayjs(user.dates.created).format('MMMM YYYY') }}</p>
             <div class="connections">
-                <p>
-                    <span class="number">{{ user.data.followingCount }} </span>
+                <Link :href="`/${user.handle}/following`">
+                    <span class="number">{{ user.followingCount }} </span>
                     Following
-                </p>
-                <p>
-                    <span class="number">{{ user.data.followerCount }} </span>
+                </Link>
+                <Link :href="`/${user.handle}/followers`">
+                    <span class="number">{{ user.followerCount }} </span>
                     Followers
-                </p>
+                </Link>
             </div>
         </div>
         <div class="tweet-title">
             Tweets
         </div>
-        <UserTweets :user="user.data" />
+        <UserTweets :user="user" />
     </DefaultLayout>
     <ProfileEditModal
         :show="showEditModal"
         @close="showEditModal = false"
-        :user="user.data"
+        :user="user"
     />
 </template>
 
