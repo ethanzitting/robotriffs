@@ -12,6 +12,10 @@ const props = defineProps({
 
 const user = props.user ?? usePage().props.auth.user
 
+const emit = defineEmits([
+    'submitted'
+])
+
 const appendImage = (image) => {
     form.image = image
 }
@@ -26,6 +30,7 @@ const form = useForm({
 const submit = async () => {
     await form.post('/tweets')
     form.reset()
+    emit('submitted')
 }
 </script>
 

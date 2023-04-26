@@ -1,6 +1,6 @@
 <script setup>
 import UserAvatar from "../UserAvatar.vue";
-import {Link} from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
 import SingleDot from "../icons/SingleDot.vue";
 import dayjs from "dayjs";
 
@@ -11,14 +11,26 @@ import TweetImage from "./TweetImage.vue";
 import TweetOptionsButton from "./TweetOptionsButton.vue";
 import {ref} from "vue";
 import TweetOptionsModal from "./TweetOptionsModal.vue";
+import TweetInputModal from "./TweetInputModal.vue";
 dayjs.extend(relativeTime)
 
 const props = defineProps({
-    tweet: Object,
-    showStats: Boolean,
+    tweet: {
+        type: Object,
+        required: true,
+    },
+    showStats: {
+        type: Boolean,
+        default: false,
+    },
+    showInteractionIcons: {
+        type: Boolean,
+        default: true
+    }
 })
 
 const showOptionsModal = ref(false);
+const showReplyModal = ref(false);
 
 const deleteTweet = async () => {
     await axios.delete('/api/tweets/' + props.tweet.id)
@@ -63,13 +75,22 @@ const deleteTweet = async () => {
                 {{ dayjs(tweet.dates.created).fromNow() }}
             </div>
             <div class="interaction-icons">
-                <TweetCommentButton
-                    :count="tweet.replyCount"
-                />
-                <TweetLikeButton
-                    :tweet="tweet"
-                    :count="tweet.likeCount"
-                />
+                <template v-if="showInteractionIcons">
+                    <TweetCommentButton
+                        :count="tweet.replyCount"
+                        @click.prevent="showReplyModal = !showReplyModal"
+                    />
+                    <TweetInputModal
+                        :show="showReplyModal"
+                        @close="showReplyModal = false"
+                        :user="usePage().props.auth.user"
+                        :tweet="tweet"
+                    />
+                    <TweetLikeButton
+                        :tweet="tweet"
+                        :count="tweet.likeCount"
+                    />
+                </template>
             </div>
         </div>
     </Link>

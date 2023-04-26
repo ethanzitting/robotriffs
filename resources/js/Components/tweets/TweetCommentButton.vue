@@ -5,16 +5,11 @@ defineProps({
     tweet: Object,
     count: Number,
 })
-
-const handleClick = async () => {
-    console.log('what')
-}
 </script>
 
 <template>
     <button
         class="tweet-like-container"
-        @click.prevent="handleClick"
     >
         <ChatBubble size="18px" />
         {{ count > 0 ? count : '' }}
