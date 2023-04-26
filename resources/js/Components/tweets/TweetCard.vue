@@ -61,7 +61,11 @@ const deleteTweet = async () => {
                     @close="showOptionsModal = false"
                     @delete-tweet="deleteTweet"
                 />
-                <TweetOptionsButton class="options-button" v-model="showOptionsModal"/>
+                <TweetOptionsButton
+                    v-if="tweet.user.id == usePage().props.auth.user.id"
+                    class="options-button"
+                    v-model="showOptionsModal"
+                />
             </div>
             <p v-if="tweet.parent?.user">
                 Replying to
