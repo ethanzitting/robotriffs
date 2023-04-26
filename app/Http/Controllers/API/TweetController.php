@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
 use App\Models\Image;
 use App\Models\Tweet;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,15 @@ class TweetController extends Controller
         }
 
         return new TweetResource($tweet);
+    }
+
+    public function destroy(Request $request, Tweet $tweet): JsonResponse
+    {
+        $this->authorize('delete', $tweet);
+
+        $tweet->delete();
+
+        return response()
+            ->json([], 204);
     }
 }

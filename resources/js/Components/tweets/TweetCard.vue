@@ -8,12 +8,22 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import TweetLikeButton from "./TweetLikeButton.vue";
 import TweetCommentButton from "./TweetCommentButton.vue";
 import TweetImage from "./TweetImage.vue";
+import TweetOptionsButton from "./TweetOptionsButton.vue";
+import {ref} from "vue";
+import TweetOptionsModal from "./TweetOptionsModal.vue";
 dayjs.extend(relativeTime)
 
-defineProps({
+const props = defineProps({
     tweet: Object,
-    showStats: Boolean
+    showStats: Boolean,
 })
+
+const showOptionsModal = ref(false);
+
+const deleteTweet = async () => {
+    await axios.delete('/api/tweets/' + props.tweet.id)
+    showOptionsModal.value = false
+}
 </script>
 
 <template>
@@ -33,6 +43,13 @@ defineProps({
                 </Link>
                 <SingleDot class="dot"/>
                 <span>{{ dayjs(tweet.dates.created).fromNow() }}</span>
+                <TweetOptionsModal
+                    class-from-parent="options-modal"
+                    v-if="showOptionsModal"
+                    @close="showOptionsModal = false"
+                    @delete-tweet="deleteTweet"
+                />
+                <TweetOptionsButton class="options-button" v-model="showOptionsModal"/>
             </div>
             <p v-if="tweet.parent?.user">
                 Replying to
@@ -42,7 +59,9 @@ defineProps({
             </p>
             <p>{{ tweet.content }}</p>
             <TweetImage class="tweet-image" v-if="tweet.image" :src="tweet.image.url"/>
-            <div v-if="showStats" class="stats">{{ dayjs(tweet.dates.created).fromNow() }}</div>
+            <div v-if="showStats" class="stats">
+                {{ dayjs(tweet.dates.created).fromNow() }}
+            </div>
             <div class="interaction-icons">
                 <TweetCommentButton
                     :count="tweet.replyCount"
@@ -58,12 +77,19 @@ defineProps({
 
 <style lang="scss" scoped>
 .container {
+    position: relative;
     padding: 12px;
     display: flex;
     flex-direction: row;
     gap: 12px;
 
+    .content-wrapper {
+        width: 100%
+    }
+
     .tweet-header {
+        position: relative;
+        width: auto;
         display: flex;
         flex-direction: row;
         gap: 4px;
@@ -77,7 +103,26 @@ defineProps({
         .dot {
             align-self: center;
         }
+
+        .options-modal {
+            position: absolute;
+            top: 0;
+            right: 40px;
+            width: min-content;
+            height: min-content;
+        }
+
+        .options-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-height: 35px;
+            max-height: 35px;
+            min-width: 35px;
+            max-width: 35px;
+        }
     }
+
 
     .tweet-image {
         margin: 12px 24px;

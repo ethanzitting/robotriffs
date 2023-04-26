@@ -2,7 +2,9 @@
 
 namespace App\Policies;
 
+use App\Models\Tweet;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TweetPolicy
 {
@@ -34,9 +36,9 @@ class TweetPolicy
         return false;
     }
 
-    public function delete(): bool
+    public function delete(User $user, Tweet $tweet): bool
     {
-        return false;
+        return $tweet->user_id === $user->id;
     }
 
 }
