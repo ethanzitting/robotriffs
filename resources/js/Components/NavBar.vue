@@ -1,5 +1,5 @@
 <script setup>
-import {Link} from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
 import NavLink from "@/Components/NavLink.vue";
 import UserMenu from "./UserMenu.vue";
 import RobotRiffsLogo from "./icons/RobotRiffsLogo.vue";
@@ -7,6 +7,12 @@ import IconHome from "./icons/IconHome.vue";
 import IconPerson from "./icons/IconPerson.vue";
 import IconHashtag from "./icons/IconHashtag.vue";
 import IconGear from "./icons/IconGear.vue";
+import TweetButton from "./tweets/TweetButton.vue";
+import TweetInputModal from "./tweets/TweetInputModal.vue";
+import {ref} from "vue";
+import IconFeatherPlus from "./icons/IconFeatherPlus.vue";
+
+const showInputModal = ref(false);
 </script>
 
 <template>
@@ -30,6 +36,21 @@ import IconGear from "./icons/IconGear.vue";
             <IconGear class="icon gear" />
             <p class="title">Settings</p>
         </NavLink>
+        <TweetButton
+            class="tweet-button-full"
+            @click="showInputModal = !showInputModal"
+        />
+        <div
+            class="tweet-button-small"
+            @click="showInputModal = !showInputModal"
+        >
+            <IconFeatherPlus class="icon"/>
+        </div>
+        <TweetInputModal
+            v-if="showInputModal"
+            :user="usePage().props.auth.user"
+            @close="showInputModal = false"
+        />
         <UserMenu />
     </header>
 </template>
@@ -42,7 +63,7 @@ import IconGear from "./icons/IconGear.vue";
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 40px 0;
+    padding: 40px 10px 0 10px;
     color: #222222;
 
     &>* {
@@ -67,6 +88,30 @@ import IconGear from "./icons/IconGear.vue";
     .icon {
         height: 27px;
         width: 27px;
+    }
+
+    .tweet-button {
+        width: 100%;
+
+        @media (max-width: 1250px) {
+            display: none;
+        }
+
+        &-small {
+            background-color: #1d9BF0;
+            padding: 0;
+            width: 60px;
+            color: white;
+            cursor: pointer;
+
+            @media (min-width: 1250px) {
+                display: none;
+            }
+        }
+
+        &:hover {
+            background-color: #1d9BF0;
+        }
     }
 
     @media (max-width: 1250px) {
