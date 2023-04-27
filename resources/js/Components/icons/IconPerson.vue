@@ -1,11 +1,8 @@
-<script setup>
-defineProps({color: String})
-</script>
-
 <template>
     <svg
         viewBox="0 0 24 24"
         aria-hidden="true"
+        fill="currentColor"
     >
         <g>
             <path

@@ -2,14 +2,14 @@
 import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
-    href: String,
+    linkTo: String,
     active: Boolean
 });
 
 </script>
 
 <template>
-    <Link :href="href" :class="active ? ' active' : ''">
+    <Link :href="linkTo" :class="active ? ' active' : ''">
         <slot />
     </Link>
 </template>

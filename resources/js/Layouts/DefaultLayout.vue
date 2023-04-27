@@ -1,7 +1,9 @@
 <script setup>
 import {Head} from '@inertiajs/vue3';
-import NavBar from "@/Components/NavBar.vue";
-import Extras from "@/Components/Extras.vue";
+import NavBar from "@/Components/layout-blocks/NavBar.vue";
+import Extras from "@/Components/layout-blocks/Extras.vue";
+import MobileFooter from "@/Components/layout-blocks/MobileFooter.vue";
+import UserAvatar from "../Components/UserAvatar.vue";
 
 const props = defineProps({
     title: String,
@@ -14,9 +16,12 @@ const props = defineProps({
         <div class="fixed-elements">
             <NavBar class="navbar"/>
             <div class="header">
+                <UserAvatar size="32px" class="mobile-navbar-trigger"/>
                 <slot name="header" />
             </div>
             <Extras class="extras"/>
+            <MobileFooter class="mobile-footer"/>
+            <div class="footer"></div>
         </div>
         <main class="main">
             <slot />
@@ -50,8 +55,14 @@ $extras-width: 370px;
         padding-right: 0;
     }
 
+    @media screen and (max-width: 500px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .fixed-elements {
         pointer-events: initial;
+        position: relative;
     }
 
     .navbar {
@@ -59,6 +70,7 @@ $extras-width: 370px;
         top: 0;
         left: calc(#{$padding-left} - #{$navbar-width-desktop});
         width: $navbar-width-desktop;
+        z-index: 20;
 
         @media screen and (max-width: 1250px) {
             left: calc(#{$padding-left} - #{$navbar-width-tablet});
@@ -67,6 +79,10 @@ $extras-width: 370px;
 
         @media screen and (max-width: 800px) {
             left: 0;
+        }
+
+        @media (max-width: 500px) {
+            display: none;
         }
     }
 
@@ -87,6 +103,36 @@ $extras-width: 370px;
 
         @media screen and (max-width: 800px) {
             left: calc(#{$navbar-width-tablet} + 1px)
+        }
+
+        .mobile-navbar-trigger {
+            display: none;
+        }
+
+        @media screen and (max-width: 500px) {
+            left: 0;
+
+            .mobile-navbar-trigger {
+                display: block;
+                margin-right: 16px;
+            }
+        }
+    }
+
+    .mobile-footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 52px;
+        background-color: white;
+        border-top: 1px solid #EEE;
+        z-index: 20;
+
+        display: none;
+
+        @media (max-width: 500px) {
+            display: initial;
         }
     }
 
@@ -118,6 +164,12 @@ $extras-width: 370px;
             margin-left: $navbar-width-tablet;
             max-width: calc(100vw - #{$navbar-width-tablet});
             min-width: calc(100vw - #{$navbar-width-tablet});
+        }
+
+        @media screen and (max-width: 500px) {
+            margin-left: 0;
+            max-width: 100vw;
+            min-width: 100vw;
         }
     }
 }

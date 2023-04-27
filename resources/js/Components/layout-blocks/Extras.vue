@@ -1,8 +1,8 @@
 <script setup>
-import SearchBar from "./SearchBar.vue";
-import SuggestedUsers from "./SuggestedUsers.vue";
-import TrendingTopics from "./TrendingTopics.vue";
-import PageCrumbs from "./PageCrumbs.vue";
+import SearchBar from "../SearchBar.vue";
+import SuggestedUsers from "../SuggestedUsers.vue";
+import TrendingTopics from "../TrendingTopics.vue";
+import PageCrumbs from "../PageCrumbs.vue";
 </script>
 
 <template>
