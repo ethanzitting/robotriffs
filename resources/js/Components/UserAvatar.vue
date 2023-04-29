@@ -5,7 +5,6 @@ import {Link} from '@inertiajs/vue3';
 const props = defineProps({
     to: String,
     specifiedUser: Object,
-    size: String
 })
 const user = props.specifiedUser ?? usePage().props.auth.user;
 
@@ -19,13 +18,6 @@ const imgSrc = user.avatar
     <Link
         v-if="to"
         :href="to"
-        :style="`
-            min-height: ${size ?? '40px'};
-            max-height: ${size ?? '40px'};
-            min-width: ${size ?? '40px'};
-            max-width: ${size ?? '40px'};
-            display: block;
-        `"
     >
         <img
             class="avatar"
@@ -33,20 +25,14 @@ const imgSrc = user.avatar
             :alt="user.name"
         >
     </Link>
-    <img
-        v-else
-        class="avatar"
-        :style="`
-            min-height: ${size ?? '40px'};
-            max-height: ${size ?? '40px'};
-            min-width: ${size ?? '40px'};
-            max-width: ${size ?? '40px'};
-            display: block;
-        `"
-
-        :src="imgSrc"
-        :alt="user.name"
-    >
+    <div>
+        <img
+            v-else
+            class="avatar"
+            :src="imgSrc"
+            :alt="user.name"
+        >
+    </div>
 </template>
 
 <style lang="scss" scoped>

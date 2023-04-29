@@ -1,18 +1,12 @@
-<script setup>
-defineProps({
-    color: String
-})
-</script>
-
 <template>
     <svg
         xmlns="http://www.w3.org/2000/svg"
         class="icon icon-tabler icon-tabler-photo"
-        :width="44"
-        :height="44"
+        width="44"
+        height="44"
         viewBox="0 0 24 24"
         stroke-width="1.5"
-        :stroke="color ?? 'currentColor'"
+        stroke="currentColor"
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"

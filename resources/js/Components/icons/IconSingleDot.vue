@@ -1,17 +1,10 @@
-<script setup>
-defineProps({
-    size: String,
-    color: String,
-})
-</script>
-
 <template>
     <div
         class="dot"
         :style="`
-            height: ${size ?? '2px'};
-            width: ${size ?? '2px'};
-            background-color: ${color ?? 'black'}
+            height: 2px;
+            width: 2px;
+            background-color: black;
         `"
     ></div>
 </template>

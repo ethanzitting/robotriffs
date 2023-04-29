@@ -1,16 +1,10 @@
-<script setup>
-defineProps({
-    height: String,
-    width: String,
-})
-</script>
-
 <template>
     <svg
         viewBox="0 0 24 24"
         aria-hidden="true"
-        :width="width ?? '50px'"
-        :height="height ?? '50px'"
+        width="50px"
+        height="50px"
+        fill="currentColor"
     >
         <g>
             <path
