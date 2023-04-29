@@ -25,9 +25,8 @@ const imgSrc = user.avatar
             :alt="user.name"
         >
     </Link>
-    <div>
+    <div v-else>
         <img
-            v-else
             class="avatar"
             :src="imgSrc"
             :alt="user.name"
