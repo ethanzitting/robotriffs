@@ -6,7 +6,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import RobotRiffsLogo from "../../Components/icons/RobotRiffsLogo.vue";
+import IconRobotRiffsLogo from "@/Components/icons/IconIconRobotRiffsLogo.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -35,7 +35,7 @@ const submit = () => {
     <AuthenticationCard>
         <template #logo>
             <Link href="/">
-                <RobotRiffsLogo size="48px" />
+                <IconRobotRiffsLogo size="48px" />
             </Link>
         </template>
 

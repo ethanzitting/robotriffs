@@ -1,6 +1,6 @@
 <script setup>
 import Modal from './Modal.vue';
-import XMark from "./icons/XMark.vue";
+import IconXMark from "./icons/IconXMark.vue";
 import {useForm} from "@inertiajs/vue3";
 import UserAvatarEditable from "./tweets/UserAvatarEditable.vue";
 import UserBannerEditable from "./tweets/UserBannerEditable.vue";
@@ -65,7 +65,7 @@ const appendBanner = (image) => {
         <div v-show="show" class="profile-edit-modal mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:mx-auto">
             <form enctype="multipart/form-data" @submit.prevent="submit">
                 <div class="header">
-                    <XMark class="close" @click="close"/>
+                    <IconXMark class="close" @click="close"/>
                     Edit Profile
                     <button class="save" type="submit" :disabled="form.processing">
                         Save

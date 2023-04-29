@@ -1,6 +1,6 @@
 <script setup>
-import {onMounted, watch, watchEffect} from "vue";
-import XMark from "../icons/XMark.vue";
+import {onMounted} from "vue";
+import IconXMark from "../icons/IconXMark.vue";
 
 const props = defineProps({
     image: File
@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
     <div class="image-preview">
-        <XMark class="delete-icon" @click="$emit('clear-image')" color="white"/>
+        <IconXMark class="delete-icon" @click="$emit('clear-image')" color="white"/>
     </div>
 </template>
 

@@ -24,6 +24,7 @@ const imgSrc = user.avatar
             max-height: ${size ?? '40px'};
             min-width: ${size ?? '40px'};
             max-width: ${size ?? '40px'};
+            display: block;
         `"
     >
         <img
@@ -40,6 +41,7 @@ const imgSrc = user.avatar
             max-height: ${size ?? '40px'};
             min-width: ${size ?? '40px'};
             max-width: ${size ?? '40px'};
+            display: block;
         `"
 
         :src="imgSrc"

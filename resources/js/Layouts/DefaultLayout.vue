@@ -4,10 +4,15 @@ import NavBar from "@/Components/layout-blocks/NavBar.vue";
 import Extras from "@/Components/layout-blocks/Extras.vue";
 import MobileFooter from "@/Components/layout-blocks/MobileFooter.vue";
 import UserAvatar from "../Components/UserAvatar.vue";
+import {ref} from "vue";
+import MobileNavbarModal
+    from "../Components/layout-blocks/MobileNavbarModal.vue";
 
 const props = defineProps({
     title: String,
 })
+
+const showMobileNavbar = ref(false)
 </script>
 
 <template>
@@ -15,8 +20,16 @@ const props = defineProps({
     <div class="default-layout-container">
         <div class="fixed-elements">
             <NavBar class="navbar"/>
+            <MobileNavbarModal
+                v-if="showMobileNavbar"
+                @close="showMobileNavbar = false"
+            />
             <div class="header">
-                <UserAvatar size="32px" class="mobile-navbar-trigger"/>
+                <UserAvatar
+                    size="32px"
+                    class="mobile-navbar-trigger"
+                    @click="showMobileNavbar = !showMobileNavbar"
+                />
                 <slot name="header" />
             </div>
             <Extras class="extras"/>

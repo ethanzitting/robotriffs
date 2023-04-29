@@ -13,10 +13,10 @@ import TweetButtonMini from "../tweets/TweetButtonMini.vue";
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .mobile-footer {
     position: relative;
-    display: flex;
+    display: flex !important;
     align-items: center;
     padding: 0 50px;
 
