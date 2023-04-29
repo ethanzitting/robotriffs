@@ -18,16 +18,19 @@ const imgSrc = user.avatar
     <Link
         v-if="to"
         :href="to"
+        class="avatar"
     >
+        <div class="image" />
         <img
-            class="avatar"
             :src="imgSrc"
             :alt="user.name"
         >
     </Link>
-    <div v-else>
+    <div
+        v-else
+        class="avatar"
+    >
         <img
-            class="avatar"
             :src="imgSrc"
             :alt="user.name"
         >
@@ -37,5 +40,12 @@ const imgSrc = user.avatar
 <style lang="scss" scoped>
 .avatar {
     border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 </style>

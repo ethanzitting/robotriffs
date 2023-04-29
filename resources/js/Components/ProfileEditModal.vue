@@ -146,6 +146,10 @@ const appendBanner = (image) => {
             bottom: 16px;
             left: 16px;
             border: 4px solid white;
+            height: 133px;
+            min-height: 133px;
+            width: 133px;
+            min-width: 133px;
         }
     }
 

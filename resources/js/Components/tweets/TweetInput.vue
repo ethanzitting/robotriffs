@@ -38,7 +38,6 @@ const submit = async () => {
     <div class="tweet-input-container">
         <UserAvatar
             :to="'/' + user.handle"
-            size="48px"
             class="icon"
             :specified-user="user"
         />
