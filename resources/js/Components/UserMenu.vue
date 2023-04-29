@@ -1,9 +1,9 @@
 <script setup>
 import UserAvatar from "./UserAvatar.vue";
-import ThreeDotsHorizontal from "./icons/ThreeDotsHorizontal.vue";
+import IconThreeDotsHorizontal from "./icons/IconThreeDotsHorizontal.vue";
 import {router, usePage} from "@inertiajs/vue3";
 import {ref} from "vue";
-import Triangle from "./icons/Triangle.vue";
+import IconTriangle from "./icons/IconTriangle.vue";
 
 let popupClass = ref('hidden');
 
@@ -26,7 +26,7 @@ let togglePopup = () => {
             @click="router.post(route('logout'))"
         >
             Log out @{{ usePage().props.auth.user.handle }}
-            <Triangle class="triangle" :size="16" color="white"/>
+            <IconTriangle class="triangle" :size="16" color="white"/>
         </button>
         <button class="open-menu" @click="togglePopup">
             <UserAvatar class="avatar"/>
@@ -34,7 +34,7 @@ let togglePopup = () => {
                 <p class="name">{{ $page.props.auth.user.name }}</p>
                 <p class="handle">@{{ $page.props.auth.user.handle }}</p>
             </div>
-            <ThreeDotsHorizontal class="dots"/>
+            <IconThreeDotsHorizontal class="dots"/>
         </button>
     </div>
 </template>

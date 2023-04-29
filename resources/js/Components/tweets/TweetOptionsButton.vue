@@ -1,5 +1,5 @@
 <script setup>
-import ThreeDotsHorizontal from "../icons/ThreeDotsHorizontal.vue";
+import IconThreeDotsHorizontal from "../icons/IconThreeDotsHorizontal.vue";
 
 defineProps({
     modelValue: Boolean
@@ -11,7 +11,7 @@ defineProps({
         class="tweet-edit-button"
         @click.prevent="() => $emit('update:modelValue', !modelValue)"
     >
-        <ThreeDotsHorizontal />
+        <IconThreeDotsHorizontal />
     </button>
 </template>
 

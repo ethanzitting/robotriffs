@@ -1,7 +1,7 @@
 <script setup>
 import UserAvatar from "../UserAvatar.vue";
 import {Link, usePage} from '@inertiajs/vue3';
-import SingleDot from "../icons/SingleDot.vue";
+import IconSingleDot from "../icons/IconSingleDot.vue";
 import dayjs from "dayjs";
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -53,7 +53,7 @@ const deleteTweet = async () => {
                 <Link :href="'/' + tweet.user.handle" class="handle">
                     @{{ tweet.user.handle }}
                 </Link>
-                <SingleDot class="dot"/>
+                <IconSingleDot class="dot"/>
                 <span>{{ dayjs(tweet.dates.created).fromNow() }}</span>
                 <TweetOptionsModal
                     class-from-parent="options-modal"

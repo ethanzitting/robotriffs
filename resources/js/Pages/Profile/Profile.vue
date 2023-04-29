@@ -4,7 +4,7 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import FollowButton from "@/Components/FollowButton.vue";
 import UserAvatar from "../../Components/UserAvatar.vue";
 import dayjs from "dayjs";
-import ArrowLeft from "../../Components/icons/ArrowLeft.vue";
+import IconArrowLeft from "../../Components/icons/IconArrowLeft.vue";
 import ProfileEditModal from "../../Components/ProfileEditModal.vue";
 import {ref} from "vue";
 import UserTweets from "@/Components/tweets/UserTweets.vue";
@@ -30,7 +30,7 @@ const bannerUrl = props.user.data.banner
         </Head>
         <template #header>
             <Link href="/home" class="back-arrow">
-                <ArrowLeft size="20px" />
+                <IconArrowLeft size="20px" />
             </Link>
             <div class="header-text">
                 <h1>{{ user.name }}</h1>

@@ -1,5 +1,5 @@
 <script setup>
-import ImageIcon from "../icons/ImageIcon.vue";
+import IconImage from "../icons/IconImage.vue";
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import ImageIcon from "../icons/ImageIcon.vue";
             accept="image/*"
         />
         <slot>
-            <ImageIcon class="image-icon"/>
+            <IconImage class="image-icon"/>
         </slot>
     </label>
 </template>

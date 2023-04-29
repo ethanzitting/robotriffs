@@ -1,5 +1,5 @@
 <script setup>
-import Heart from "../icons/Heart.vue";
+import IconHeart from "../icons/IconHeart.vue";
 import {ref} from "vue";
 import {usePage} from "@inertiajs/vue3";
 
@@ -38,7 +38,7 @@ const handleToggle = async () => {
         :class="`tweet-like-container ${localLikes ? 'liked' : ''}`"
         @click.prevent="handleToggle"
     >
-        <Heart size="18px" />
+        <IconHeart size="18px" />
         {{ localCount > 0 ? localCount : '' }}
     </button>
 </template>

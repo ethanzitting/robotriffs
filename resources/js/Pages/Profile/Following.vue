@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import ArrowLeft from "../../Components/icons/ArrowLeft.vue";
+import IconArrowLeft from "../../Components/icons/IconArrowLeft.vue";
 import UserCard from "../../Components/UserCard.vue";
 
 const props = defineProps({
@@ -18,7 +18,7 @@ const user = props.user.data
         </Head>
         <template #header>
             <Link href="/home" class="back-arrow">
-                <ArrowLeft size="20px" />
+                <IconArrowLeft size="20px" />
             </Link>
             <div class="header-text">
                 <h1>{{ user.name }}</h1>

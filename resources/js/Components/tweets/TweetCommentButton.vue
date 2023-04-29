@@ -1,5 +1,5 @@
 <script setup>
-import ChatBubble from "../icons/ChatBubble.vue";
+import IconChatBubble from "../icons/IconChatBubble.vue";
 
 defineProps({
     tweet: Object,
@@ -11,7 +11,7 @@ defineProps({
     <button
         class="tweet-like-container"
     >
-        <ChatBubble size="18px" />
+        <IconChatBubble size="18px" />
         {{ count > 0 ? count : '' }}
     </button>
 </template>

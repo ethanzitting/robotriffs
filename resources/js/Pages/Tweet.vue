@@ -3,7 +3,7 @@ import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import TweetCard from "../Components/tweets/TweetCard.vue";
 import TweetInput from "../Components/tweets/TweetInput.vue";
 import {Link} from "@inertiajs/vue3";
-import ArrowLeft from "../Components/icons/ArrowLeft.vue";
+import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
 import TweetReplies from "../Components/tweets/TweetReplies.vue";
 
 defineProps({
@@ -15,7 +15,7 @@ defineProps({
     <DefaultLayout>
         <template #header>
             <Link href="/home" class="back-arrow">
-                <ArrowLeft size="20px" />
+                <IconArrowLeft size="20px" />
             </Link>
             <h1>
                 Tweet

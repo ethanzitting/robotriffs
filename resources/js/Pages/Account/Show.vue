@@ -7,7 +7,7 @@ import TwoFactorAuthenticationForm from '@/Pages/Account/Partials/TwoFactorAuthe
 import UpdatePasswordForm from '@/Pages/Account/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Account/Partials/UpdateProfileInformationForm.vue';
 import {Link} from "@inertiajs/vue3";
-import ArrowLeft from "../../Components/icons/ArrowLeft.vue";
+import IconArrowLeft from "../../Components/icons/IconArrowLeft.vue";
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -19,7 +19,7 @@ defineProps({
     <DefaultLayout title="Profile">
         <template #header>
             <Link href="/home" class="back-arrow">
-                <ArrowLeft size="20px" />
+                <IconArrowLeft size="20px" />
             </Link>
             <h1>
                 Settings
