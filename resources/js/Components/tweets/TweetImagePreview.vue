@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
     <div class="image-preview">
-        <IconXMark class="delete-icon" @click="$emit('clear-image')" />
+        <IconXMark class="delete-icon" @click="$emit('clear-image')" color="white"/>
     </div>
 </template>
 

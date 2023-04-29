@@ -19,7 +19,7 @@ defineProps({
     <DefaultLayout title="Profile">
         <template #header>
             <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
+                <IconArrowLeft size="20px" />
             </Link>
             <h1>
                 Settings

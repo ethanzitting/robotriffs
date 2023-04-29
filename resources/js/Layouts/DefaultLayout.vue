@@ -26,6 +26,7 @@ const showMobileNavbar = ref(false)
             />
             <div class="header">
                 <UserAvatar
+                    size="32px"
                     class="mobile-navbar-trigger"
                     @click="showMobileNavbar = !showMobileNavbar"
                 />

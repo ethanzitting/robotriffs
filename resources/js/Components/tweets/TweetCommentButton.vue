@@ -9,15 +9,15 @@ defineProps({
 
 <template>
     <button
-        class="tweet-comment-button"
+        class="tweet-like-container"
     >
-        <IconChatBubble class="icon" />
+        <IconChatBubble size="18px" />
         {{ count > 0 ? count : '' }}
     </button>
 </template>
 
 <style lang="scss" scoped>
-.tweet-comment-button {
+.tweet-like-container {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -27,10 +27,9 @@ defineProps({
     &:hover {
         color: green;
     }
+}
 
-    .icon {
-        height: 18px;
-        width: 18px;
-    }
+.liked {
+    color: red;
 }
 </style>

@@ -35,7 +35,7 @@ const submit = () => {
     <AuthenticationCard>
         <template #logo>
             <Link href="/">
-                <IconRobotRiffsLogo />
+                <IconRobotRiffsLogo size="48px" />
             </Link>
         </template>
 

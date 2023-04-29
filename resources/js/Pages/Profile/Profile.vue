@@ -30,7 +30,7 @@ const bannerUrl = props.user.data.banner
         </Head>
         <template #header>
             <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
+                <IconArrowLeft size="20px" />
             </Link>
             <div class="header-text">
                 <h1>{{ user.name }}</h1>
@@ -39,7 +39,7 @@ const bannerUrl = props.user.data.banner
         </template>
         <div class="jumbotron">
             <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
-            <UserAvatar class="avatar" :specified-user="user"/>
+            <UserAvatar class="avatar" size="133px" :specified-user="user"/>
             <div class="profile-options">
                 <button
                     class="edit"
@@ -119,8 +119,6 @@ const bannerUrl = props.user.data.banner
         bottom: 16px;
         left: 16px;
         border: 4px solid white;
-        height: 133px;
-        width: 133px;
     }
 
     .profile-options {

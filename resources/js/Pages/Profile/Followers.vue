@@ -18,7 +18,7 @@ const user = props.user.data
         </Head>
         <template #header>
             <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
+                <IconArrowLeft size="20px" />
             </Link>
             <div class="header-text">
                 <h1>{{ user.name }}</h1>

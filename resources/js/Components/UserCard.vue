@@ -12,7 +12,7 @@ const props = defineProps({
     <Link :href="`/${user.handle}`" class="container">
         <UserAvatar
             :specified-user="user"
-            class="avatar"
+            :size="'48px'"
         />
         <div class="content-wrapper">
             <div class="header">
@@ -36,13 +36,6 @@ const props = defineProps({
     display: flex;
     flex-direction: row;
     gap: 12px;
-
-    .avatar {
-        height: 48px;
-        min-height: 48px;
-        width: 48px;
-        min-width: 48px;
-    }
 
     .content-wrapper {
         width: 100%

@@ -43,7 +43,7 @@ const deleteTweet = async () => {
         <UserAvatar
             :to="'/' + tweet.user.handle"
             :specified-user="tweet.user"
-            class="avatar"
+            :size="'48px'"
         />
         <div class="content-wrapper">
             <div class="tweet-header">
@@ -107,11 +107,6 @@ const deleteTweet = async () => {
     display: flex;
     flex-direction: row;
     gap: 12px;
-
-    .avatar {
-        height: 44px;
-        width: 44px;
-    }
 
     .content-wrapper {
         width: 100%

@@ -13,7 +13,7 @@ defineProps({
     <DefaultLayout title="Dashboard">
         <template #header>
             <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
+                <IconArrowLeft size="20px" />
             </Link>
             <h1>
                 Directory

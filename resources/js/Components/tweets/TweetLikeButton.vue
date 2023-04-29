@@ -38,7 +38,7 @@ const handleToggle = async () => {
         :class="`tweet-like-container ${localLikes ? 'liked' : ''}`"
         @click.prevent="handleToggle"
     >
-        <IconHeart class="icon" />
+        <IconHeart size="18px" />
         {{ localCount > 0 ? localCount : '' }}
     </button>
 </template>
@@ -54,14 +54,9 @@ const handleToggle = async () => {
     &:hover {
         color: red;
     }
+}
 
-    .icon {
-        height: 20px;
-        width: 20px;
-    }
-
-    &.liked {
-        color: red;
-    }
+.liked {
+    color: red;
 }
 </style>
