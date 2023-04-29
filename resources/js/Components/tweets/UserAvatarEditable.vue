@@ -6,7 +6,7 @@ import IconCamera from "../icons/IconCamera.vue";
 
 <template>
     <div class="avatar-editable">
-        <UserAvatar class="avatar" size="133px"/>
+        <UserAvatar class="avatar" />
         <TweetImageInput
             @file-uploaded="(event) => $emit('file-uploaded', event)"
             class="image-input"

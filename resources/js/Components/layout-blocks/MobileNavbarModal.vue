@@ -21,7 +21,7 @@ const user = usePage().props.auth.user;
                 <IconXMark class="icon" @click.prevent="$emit('close')"/>
             </div>
             <div class="user-stats">
-                <UserAvatar :to="`/${user.handle}`" size="40px"/>
+                <UserAvatar :to="`/${user.handle}`" />
                 <Link :href="`/${user.handle}`">
                     <p class="name">{{ user.name}}</p>
                 </Link>
