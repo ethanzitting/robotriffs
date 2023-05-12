@@ -10,8 +10,6 @@ const props = defineProps({
     placeholder: String,
 })
 
-const user = props.user ?? usePage().props.auth.user
-
 const emit = defineEmits([
     'submitted'
 ])
@@ -22,7 +20,7 @@ const appendImage = (image) => {
 
 const form = useForm({
     tweetContent: '',
-    user: user,
+    user: props.user,
     image: null,
     parentTweet: props.parentTweet,
 })
@@ -39,7 +37,6 @@ const submit = async () => {
         <UserAvatar
             :to="'/' + user.handle"
             class="icon"
-            :specified-user="user"
         />
 
         <form enctype="multipart/form-data" @submit.prevent="submit">

@@ -62,7 +62,9 @@ import TweetButtonMini from "@/Components/tweets/TweetButtonMini.vue";
     }
 
     .tweet-button {
-        width: 100%;
+        width: 90%;
+        height: 50px;
+        cursor: pointer;
 
         @media (max-width: 1250px) {
             display: none;
