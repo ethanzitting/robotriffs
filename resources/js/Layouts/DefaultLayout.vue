@@ -4,15 +4,22 @@ import NavBar from "@/Components/layout-blocks/NavBar.vue";
 import Extras from "@/Components/layout-blocks/Extras.vue";
 import MobileFooter from "@/Components/layout-blocks/MobileFooter.vue";
 import UserAvatar from "../Components/UserAvatar.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import MobileNavbarModal
     from "../Components/layout-blocks/MobileNavbarModal.vue";
+import {authStore} from "../stores/auth";
 
 const props = defineProps({
     title: String,
 })
 
 const showMobileNavbar = ref(false)
+
+const auth = authStore();
+
+onMounted(async () => {
+    await auth.getUser();
+})
 </script>
 
 <template>
@@ -119,6 +126,8 @@ $extras-width: 370px;
 
         .mobile-navbar-trigger {
             display: none;
+            height: 32px;
+            width: 32px;
         }
 
         @media screen and (max-width: 500px) {

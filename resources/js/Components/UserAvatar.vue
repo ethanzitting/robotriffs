@@ -1,14 +1,16 @@
 <script setup>
-import {usePage} from "@inertiajs/vue3";
-import {Link} from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
+import { authStore } from '@/stores/auth'
 
 const props = defineProps({
     to: String,
     specifiedUser: Object,
 })
-const user = props.specifiedUser ?? usePage().props.auth.user;
+const auth = authStore()
 
-const imgSrc = user.avatar
+const user = props.specifiedUser ?? auth.user ?? usePage().props.auth.user
+
+const imgSrc = user?.avatar
     ? user.avatar.url
     : 'https://placehold.co/600x600'
 

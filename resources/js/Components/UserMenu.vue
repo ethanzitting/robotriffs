@@ -90,6 +90,11 @@ let togglePopup = () => {
         align-items: center;
         gap: 12px;
 
+        .avatar {
+            height: 40px;
+            width: 40px;
+        }
+
         .name {
             font-weight: 700;
         }
