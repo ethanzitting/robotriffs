@@ -64,7 +64,7 @@ $extras-width: 370px;
     max-width: 100vw;
     overflow: hidden;
 
-    padding: 0 $padding-right 260px $padding-left;
+    padding: 0 $padding-right 0 $padding-left;
     font-family: 'Roboto', sans-serif;
     z-index: 0;
     pointer-events: none;
@@ -174,8 +174,10 @@ $extras-width: 370px;
         position: relative;
         max-width: $main-width;
         min-width: $main-width;
+        min-height: 100vh;
         pointer-events: initial;
         padding-top: $header-height;
+        padding-bottom: 200px;
         margin: 0;
 
         border-right: 1px solid #EEEEEE;
