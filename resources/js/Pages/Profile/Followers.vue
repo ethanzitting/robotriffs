@@ -36,6 +36,8 @@ const user = props.user.data
     padding: 5px;
     border-radius: 50%;
     margin-right: 30px;
+    height: 30px;
+    width: 30px;
 
     &:hover {
         background-color: #eee;
