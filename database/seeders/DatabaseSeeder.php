@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             )
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
-            ->hasFollowers(2)
+            ->hasFollowers(5)
             ->hasFollowing(3)
             ->create([
                 'email' => env('ADMIN_USER_EMAIL'),
@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             ->has(Image::factory()->avatar())
             ->has(Image::factory()->banner())
             ->hasTweets(3)
+            ->hasFollowers(4)
             ->create();
     }
 }

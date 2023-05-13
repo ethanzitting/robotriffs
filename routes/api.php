@@ -29,4 +29,3 @@ Route::middleware('auth:sanctum')->group(function () {
         'feeds' => \App\Http\Controllers\API\FeedController::class,
     ]);
 });
-

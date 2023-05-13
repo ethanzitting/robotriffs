@@ -32,7 +32,7 @@ class UserController extends Controller
     public function show(User $user): UserResource
     {
         return new UserResource($user->load([
-            'avatar'
+            'avatar',
         ]));
     }
 }

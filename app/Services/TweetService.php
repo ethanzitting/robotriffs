@@ -8,6 +8,26 @@ use Illuminate\Support\Collection;
 
 class TweetService
 {
+    public static function getGuestFeed()
+    {
+        $topUsers = User::query()
+            ->withCount(['followers'])
+            ->get()
+            ->where('followers_count', '>=', 3);
+
+        return Tweet::withCount(['children', 'likes'])
+            ->with([
+                'user.avatar',
+                'likes',
+                'image',
+                'children',
+                'parent.user',
+            ])
+            ->whereIn('user_id', $topUsers->pluck('id'))
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
     public function getFeedForUser(?User $user): Collection
     {
         if (! $user) {

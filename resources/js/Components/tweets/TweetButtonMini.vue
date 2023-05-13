@@ -11,7 +11,7 @@ const showInputModal = ref(false)
     <div class="tweet-button-mini" @click="showInputModal = !showInputModal">
         <IconFeatherPlus class="icon"/>
         <TweetInputModal
-            v-if="showInputModal"
+            v-if="showInputModal && usePage().props.auth.user"
             :user="usePage().props.auth.user"
             @close="showInputModal = false"
         />

@@ -23,7 +23,7 @@ class TweetController extends Controller
                 'parent.user',
                 'children',
                 'image',
-                'likes'
+                'likes',
             ])
             ->orderByDesc('created_at')
             ->get();

@@ -32,7 +32,7 @@ class TweetController extends Controller
 
         return Inertia::render('Tweet', [
             'tweet' => new TweetResource($tweet),
-            'user' =>  UserResource::make(Auth::user()->load(['avatar']))
+            'user' => UserResource::make(Auth::user()->load(['avatar'])),
         ]);
     }
 

@@ -4,13 +4,21 @@ import TweetCards from "./TweetCards.vue";
 
 const props = defineProps({
     user: Object,
+    isGuest: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const tweets = ref([]);
 
 onMounted(async () => {
-    const response = await axios.get(`/api/feeds?user=${props.user.id}`);
-
+    let response
+    if (props.isGuest) {
+        response  = await axios.get(`/api/guest-feed`)
+    } else {
+        response = await axios.get(`/api/feeds?user=${props.user.id}`);
+    }
     tweets.value = response.data.data
 });
 

@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Tweet;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class TweetPolicy
 {
@@ -40,5 +39,4 @@ class TweetPolicy
     {
         return $tweet->user_id === $user->id;
     }
-
 }
