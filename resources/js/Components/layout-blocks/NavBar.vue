@@ -7,12 +7,14 @@ import NavLinkProfile from "@/Components/layout-blocks/nav-links/NavLinkProfile.
 import NavLinkDirectory from "@/Components/layout-blocks/nav-links/NavLinkDirectory.vue";
 import NavLinkSettings from "@/Components/layout-blocks/nav-links/NavLinkSettings.vue";
 import TweetButtonMini from "@/Components/tweets/TweetButtonMini.vue";
+import NavLinkNotifications from "./nav-links/NavLinkNotifications.vue";
 </script>
 
 <template>
     <header class="navbar">
         <IconRobotRiffsLogo class="logo" />
         <NavLinkHome />
+        <NavLinkNotifications />
         <NavLinkProfile />
         <NavLinkDirectory />
         <NavLinkSettings />

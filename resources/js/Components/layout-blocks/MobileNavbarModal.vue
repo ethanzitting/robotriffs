@@ -6,6 +6,7 @@ import NavLinkProfile from "./nav-links/NavLinkProfile.vue";
 import NavLinkSettings from "./nav-links/NavLinkSettings.vue";
 import IconXMark from "../icons/IconXMark.vue";
 import NavLinkDirectory from "./nav-links/NavLinkDirectory.vue";
+import NavLinkNotifications from "./nav-links/NavLinkNotifications.vue";
 
 const user = usePage().props.auth.user;
 </script>
@@ -39,6 +40,7 @@ const user = usePage().props.auth.user;
                     </Link>
                 </div>
             </div>
+            <NavLinkNotifications class="nav-link"/>
             <NavLinkProfile class="nav-link"/>
             <NavLinkDirectory class="nav-link"/>
             <NavLinkSettings class="nav-link"/>
