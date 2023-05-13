@@ -7,7 +7,7 @@ use App\Http\Controllers\Web\SettingsController;
 use App\Http\Controllers\Web\TweetController;
 use App\Http\Controllers\Web\UserFollowerController;
 use App\Http\Controllers\Web\UserFollowingController;
-use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,7 +23,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('GuestFeed');
+    if (!Auth::user()) {
+        return Inertia::render('GuestFeed');
+    }
+    return (new HomeController())->index();
 });
 
 Route::middleware([
@@ -31,7 +34,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('home', HomeController::class)->name('home');
+    Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('settings', SettingsController::class)->name('user.settings');
     Route::get('directory', DirectoryController::class)->name('directory');
     Route::post('tweets', [TweetController::class, 'store']);

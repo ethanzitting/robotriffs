@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    public function __invoke()
+    public function index()
     {
         return Inertia::render('Home', [
             'user' => UserResource::make(Auth::user()->load(['avatar'])),
