@@ -1,11 +1,21 @@
 <script setup>
 import IconRobotRiffsLogo from "@/Components/icons/IconRobotRiffsLogo.vue";
 import NavLinkHome from "@/Components/layout-blocks/nav-links/NavLinkHome.vue";
+import NavLink
+    from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Components/NavLink.vue";
 </script>
 
 <template>
     <header class="navbar">
         <IconRobotRiffsLogo class="logo" />
+        <NavLink
+            href="/login"
+            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+        >Log in</NavLink>
+        <NavLink
+            href="/register"
+            class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+        >Register</NavLink>
         <NavLinkHome />
     </header>
 </template>
