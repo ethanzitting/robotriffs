@@ -25,7 +25,7 @@ class SendTweetLikedNotification
         (new NotificationService())
             ->createTweetLikedNotification(
                 $tweet->user_id,
-                $event->user_id,
+                $event->user,
                 $tweet->id,
             );
     }
