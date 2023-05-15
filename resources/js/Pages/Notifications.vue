@@ -25,6 +25,7 @@ const props = defineProps({
                 <p>Who done it: {{ notification.causedBy.name}}</p>
                 <UserAvatar :specified-user="notification.causedBy" class="avatar"/>
                 <p>What did they do: {{ notification.type }}</p>
+                <p>When did they do it: {{ notification.dates.created }}</p>
                 <p>Relevant tweet content?: {{ notification.tweet?.content }}</p>
                 <hr>
             </div>

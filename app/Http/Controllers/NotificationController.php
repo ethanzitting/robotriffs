@@ -17,6 +17,7 @@ class NotificationController extends Controller
                 'tweet'
             ])
             ->where('user_id', Auth::user()->id)
+            ->orderByDesc('created_at')
             ->get();
 
         return Inertia::render('Notifications', [
