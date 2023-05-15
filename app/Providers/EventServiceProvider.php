@@ -2,10 +2,17 @@
 
 namespace App\Providers;
 
+use App\Events\ReplyPosted;
+use App\Events\TweetLiked;
+use App\Events\TweetPosted;
+use App\Events\UserFollowed;
+use App\Listeners\SendFollowNotification;
+use App\Listeners\SendReplyPostedNotification;
+use App\Listeners\SendTweetLikedNotification;
+use App\Listeners\SendTweetPostedNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +24,18 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        TweetLiked::class => [
+            SendTweetLikedNotification::class,
+        ],
+        UserFollowed::class => [
+            SendFollowNotification::class,
+        ],
+        ReplyPosted::class => [
+            SendReplyPostedNotification::class,
+        ],
+        TweetPosted::class => [
+            SendTweetPostedNotification::class,
         ],
     ];
 

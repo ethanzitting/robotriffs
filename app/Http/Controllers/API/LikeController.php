@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\TweetLiked;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
 use App\Models\Like;
@@ -18,6 +19,8 @@ class LikeController extends Controller
         $like->user_id = Auth::user()->id;
         $like->tweet_id = $request->tweet;
         $like->save();
+
+        event(new TweetLiked($like->user_id, $like->tweet_id));
 
         return new LikeResource($like);
     }

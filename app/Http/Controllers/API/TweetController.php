@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\ReplyPosted;
+use App\Events\TweetPosted;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
 use App\Models\Image;
@@ -52,6 +54,12 @@ class TweetController extends Controller
             $request->file('image')
                 ->storeAs('public/tweets', $image->file_name);
         }
+
+        if ($tweet->parent_id) {
+            event (new ReplyPosted($tweet->user_id, $tweet->id));
+        }
+
+        event(new TweetPosted($tweet->user_id, $tweet->id));
 
         return new TweetResource($tweet);
     }

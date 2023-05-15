@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\UserFollowed;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -26,6 +27,8 @@ class UserFollowController extends Controller
         $followed
             ->followers()
             ->attach(Auth::user()->id);
+
+        event (new UserFollowed($followed->id, Auth::user()->id));
 
         return new UserResource($followed);
     }

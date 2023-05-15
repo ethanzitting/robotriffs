@@ -3,6 +3,10 @@
 import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
 import {Link} from "@inertiajs/vue3";
+
+const props = defineProps({
+    notifications: Array
+})
 </script>
 
 <template>
@@ -16,7 +20,9 @@ import {Link} from "@inertiajs/vue3";
             </div>
         </template>
         <div class="here">
-            Notifications coming soon!
+            <p v-for="notification in notifications.data">
+                {{ notification.type }}
+            </p>
         </div>
     </DefaultLayout>
 </template>
