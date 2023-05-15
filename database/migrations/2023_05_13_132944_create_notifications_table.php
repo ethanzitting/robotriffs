@@ -20,28 +20,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-//        Schema::create('notifications', function (Blueprint $table) {
-//            $table->id();
-//            $table->unsignedSmallInteger('type');
-//            $table->foreignId('user_id')
-//                ->constrained()
-//                ->cascadeOnDelete();
-//            $table->foreignId('caused_by')
-//                ->nullable()
-//                ->references('id')
-//                ->on('users')
-//                ->cascadeOnDelete();
-//            $table->foreignId('follow_id')
-//                ->nullable()
-//                ->constrained()
-//                ->cascadeOnDelete();
-//            $table->foreignId('tweet_id')
-//                ->nullable()
-//                ->constrained()
-//                ->cascadeOnDelete();
-//            $table->boolean('viewed')->default(false);
-//            $table->timestamps();
-//        });
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedSmallInteger('type');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('caused_by')
+                ->nullable()
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
+            $table->foreignId('follow_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('tweet_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->boolean('viewed')->default(false);
+            $table->timestamps();
+        });
 
         $this->populateTableForExistingEvents();
     }
