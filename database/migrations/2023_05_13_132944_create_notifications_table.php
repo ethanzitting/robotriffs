@@ -61,6 +61,9 @@ return new class extends Migration
             ->with(['tweet'])
             ->get()
             ->each(function ($like) {
+                if (!$like->tweet) {
+                    return;
+                }
                 $this->notificationService
                     ->createTweetLikedNotification(
                         $like->tweet->user_id,
