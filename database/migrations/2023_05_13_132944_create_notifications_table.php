@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
 
-    public function __construct(private NotificationService $notificationService)
+    public function __construct()
     {
+        $this->notificationService = new NotificationService();
     }
 
     /**
