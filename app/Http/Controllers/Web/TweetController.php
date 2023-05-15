@@ -64,8 +64,6 @@ class TweetController extends Controller
             event (new ReplyPosted($tweet->user_id, $tweet->id));
         }
 
-        event(new TweetPosted($tweet->user_id, $tweet->id));
-
         return redirect()->back()->with('success', 'some message');
     }
 }

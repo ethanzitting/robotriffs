@@ -7,7 +7,7 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class NotificationsController extends Controller
+class NotificationController extends Controller
 {
     public function __invoke()
     {

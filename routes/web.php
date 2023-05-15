@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Web\DirectoryController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProfileController;
@@ -37,7 +37,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('settings', SettingsController::class)->name('user.settings');
-    Route::get('notifications', NotificationsController::class)->name('user.notifications');
+    Route::get('notifications', NotificationController::class)->name('user.notifications');
     Route::get('directory', DirectoryController::class)->name('directory');
     Route::post('tweets', [TweetController::class, 'store']);
     Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');

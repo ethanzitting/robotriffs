@@ -3,6 +3,7 @@
 import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
 import {Link} from "@inertiajs/vue3";
+import UserAvatar from "../Components/UserAvatar.vue";
 
 const props = defineProps({
     notifications: Array
@@ -20,9 +21,13 @@ const props = defineProps({
             </div>
         </template>
         <div class="here">
-            <p v-for="notification in notifications.data">
-                {{ notification.type }}
-            </p>
+            <div v-for="notification in notifications.data">
+                <p>Who done it: {{ notification.causedBy.name}}</p>
+                <UserAvatar :specified-user="notification.causedBy" class="avatar"/>
+                <p>What did they do: {{ notification.type }}</p>
+                <p>Relevant tweet content?: {{ notification.tweet?.content }}</p>
+                <hr>
+            </div>
         </div>
     </DefaultLayout>
 </template>
@@ -46,6 +51,13 @@ const props = defineProps({
         font-weight: 300;
         color: #536471;
     }
+}
+
+.avatar {
+    height: 45px;
+    min-height: 45px;
+    width: 45px;
+    min-width: 45px;
 }
 
 </style>
