@@ -56,23 +56,6 @@ class NotificationService
         );
     }
 
-    public function createTweetPostedNotification(
-        int $userFor,
-        int $causedBy,
-        int $tweetId,
-        string $createdAt = null,
-        string $updatedAt = null,
-    ): void {
-        $this->createNotification(
-            'tweetPosted',
-            $userFor,
-            $causedBy,
-            tweetId: $tweetId,
-            createdAt: $createdAt,
-            updatedAt: $updatedAt,
-        );
-    }
-
     public function createNotification(
         string $type,
         int $userFor,

@@ -34,9 +34,6 @@ class EventServiceProvider extends ServiceProvider
         ReplyPosted::class => [
             SendReplyPostedNotification::class,
         ],
-        TweetPosted::class => [
-            SendTweetPostedNotification::class,
-        ],
     ];
 
     /**
