@@ -110,7 +110,9 @@ const deleteTweet = async () => {
 
     .avatar {
         height: 44px;
+        min-height: 44px;
         width: 44px;
+        min-width: 44px;
     }
 
     .content-wrapper {
