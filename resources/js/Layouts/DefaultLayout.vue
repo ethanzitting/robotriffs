@@ -25,26 +25,28 @@ onMounted(async () => {
 <template>
     <Head :title="title" />
     <div class="default-layout-container">
-        <div class="fixed-elements">
-            <NavBar class="navbar"/>
-            <MobileNavbarModal
-                v-if="showMobileNavbar"
-                @close="showMobileNavbar = false"
-            />
-            <div class="header">
-                <UserAvatar
-                    class="mobile-navbar-trigger"
-                    @click="showMobileNavbar = !showMobileNavbar"
+        <template v-if="auth.user">
+            <div class="fixed-elements" v-if="auth.user">
+                <NavBar class="navbar"/>
+                <MobileNavbarModal
+                    v-if="showMobileNavbar"
+                    @close="showMobileNavbar = false"
                 />
-                <slot name="header" />
+                <div class="header">
+                    <UserAvatar
+                        class="mobile-navbar-trigger"
+                        @click="showMobileNavbar = !showMobileNavbar"
+                    />
+                    <slot name="header" />
+                </div>
+                <Extras class="extras"/>
+                <MobileFooter class="mobile-footer"/>
+                <div class="footer"></div>
             </div>
-            <Extras class="extras"/>
-            <MobileFooter class="mobile-footer"/>
-            <div class="footer"></div>
-        </div>
-        <main class="main">
-            <slot />
-        </main>
+            <main class="main">
+                <slot />
+            </main>
+        </template>
     </div>
 </template>
 

@@ -10,7 +10,7 @@ const auth = authStore()
 
 const user = props.specifiedUser ?? auth.user ?? usePage().props.auth.user
 
-const imgSrc = user?.avatar
+const imgSrc = user?.avatar?.url
     ? user.avatar.url
     : 'https://placehold.co/600x600'
 
