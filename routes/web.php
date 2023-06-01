@@ -30,12 +30,18 @@ Route::get('/', function () {
     return (new HomeController())->index();
 });
 
+Route::get('home', function () {
+    if (!Auth::user()) {
+        return Inertia::render('GuestFeed');
+    }
+    return (new HomeController())->index();
+})->name('home');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('settings', SettingsController::class)->name('user.settings');
     Route::get('notifications', NotificationController::class)->name('user.notifications');
     Route::get('directory', DirectoryController::class)->name('directory');

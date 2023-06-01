@@ -10,12 +10,16 @@ import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
         </NavLink>
         <NavLink
             :href="route('login')"
-            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-        >Log in</NavLink>
+            class=""
+        >
+            Log in
+        </NavLink>
         <NavLink
             :href="route('register')"
-            class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-        >Register</NavLink>
+            class=""
+        >
+            Register
+        </NavLink>
     </div>
 </template>
 
@@ -24,6 +28,10 @@ import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
     position: relative;
     align-items: center;
     padding: 0 50px;
+    display: flex;
+    gap: 18px;
+    justify-content: space-around;
+    font-weight: 700;
 
     @media (max-width: 500px) {
         display: flex !important;
