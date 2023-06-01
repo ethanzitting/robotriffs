@@ -8,8 +8,10 @@ const props = defineProps({
     count: Number,
 })
 
+const user = usePage().props.auth?.user
+
 const userLikes = props.tweet.likes
-    .some(({user}) => String(user.id) === String(usePage().props.auth?.user?.id))
+    .some(({user}) => String(user.id) === String(user?.id))
 
 let localCount = ref(props.count ?? 0)
 let localLikes = ref(userLikes)
@@ -27,6 +29,9 @@ const likeTweet = async () => {
 }
 
 const handleToggle = async () => {
+    if (!user) {
+        return
+    }
     localLikes.value
         ? await unlikeTweet()
         : await likeTweet();
