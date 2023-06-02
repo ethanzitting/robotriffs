@@ -14,7 +14,15 @@ class NotificationController extends Controller
         $notifications = Notification::query()
             ->with([
                 'causedBy.avatar',
-                'tweet'
+                'tweet',
+                'tweet.likes',
+                'tweet.image',
+                'tweet.user.avatar',
+                'tweet.parent.user',
+                'tweet.children.user',
+                'tweet.children.likes',
+                'tweet.children.image',
+                'tweet.children.children',
             ])
             ->where('user_id', Auth::user()->id)
             ->orderByDesc('created_at')

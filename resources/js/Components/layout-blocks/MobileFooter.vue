@@ -2,12 +2,16 @@
 import IconHome from "../icons/IconHome.vue";
 import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
 import TweetButtonMini from "../tweets/TweetButtonMini.vue";
+import IconBell from "../icons/IconBell.vue";
 </script>
 
 <template>
     <div class="mobile-footer">
         <NavLink class="home" :link-to="route('home')" :active="route().current('home')">
             <IconHome class="icon"/>
+        </NavLink>
+        <NavLink class="notifications" :link-to="route('user.notifications')" :active="route().current('user.notifications')">
+            <IconBell class="icon"/>
         </NavLink>
         <TweetButtonMini class="tweet-button-small"/>
     </div>
@@ -17,14 +21,15 @@ import TweetButtonMini from "../tweets/TweetButtonMini.vue";
 .mobile-footer {
     position: relative;
     align-items: center;
-    padding: 0 50px;
+    padding: 0 30px;
 
     @media (max-width: 500px) {
         display: flex !important;
     }
 
-    .home {
+    .home, .notifications {
         height: min-content;
+        width: 25%;
 
         .icon {
             height: 26px;
