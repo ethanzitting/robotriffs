@@ -24,22 +24,37 @@ const props = defineProps({
             </div>
         </template>
         <div class="notifications">
-            <div v-for="notification in notifications.data" class="notification">
-                <template v-if="notification.type === 'tweetLiked'">
+            <template v-for="notification in notifications.data" >
+                <Link
+                    v-if="notification.type === 'tweetLiked'"
+                    :href="`/${notification.causedBy.handle}/tweet/${notification.tweet.id}`"
+                    class="notification"
+                >
                     <IconHeart class="icon"/>
                     <div class="content">
                         <UserAvatar
+                            :to="'/'+ notification.causedBy.handle"
                             :specified-user="notification.causedBy"
                             class="avatar"
                         />
-                        <p><strong>{{ notification.causedBy.name}}</strong> liked your reply</p>
+                        <p>
+                            <Link :href="`${notification.causedBy.handle}`" class="handle">
+                                <strong>{{ notification.causedBy.name}}</strong>
+                            </Link> liked your reply
+                        </p>
                         <p class="subtle">{{ notification.tweet?.content }}</p>
                     </div>
-                </template>
-                <template v-else-if="notification.type === 'replyCreated'">
-                    <TweetCard :tweet="notification.tweet"/>
-                </template>
-                <template v-else-if="notification.type === 'userFollowed'">
+                </Link>
+                <TweetCard
+                    class="tweet-card"
+                    v-else-if="notification.type === 'replyCreated'"
+                    :tweet="notification.tweet"
+                />
+                <Link
+                    v-else-if="notification.type === 'userFollowed'"
+                    class="notification"
+                    :to="`/${notification.causedBy.handle}`"
+                >
                     <IconPerson class="icon"/>
                     <div class="content">
                         <UserAvatar
@@ -48,8 +63,8 @@ const props = defineProps({
                         />
                         <p><strong>{{ notification.causedBy.name}}</strong> followed you</p>
                     </div>
-                </template>
-            </div>
+                </Link>
+            </template>
         </div>
     </DefaultLayout>
 </template>
@@ -87,13 +102,14 @@ const props = defineProps({
         padding: 12px 16px;
         display: flex;
         gap: 12px;
-        border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid #EEE;
 
         .icon {
             height: 30px;
             min-height: 30px;
-            width: 30px;
-            min-width: 30px;
+            width: 40px;
+            min-width: 40px;
+            padding-right: 10px;
         }
 
         .content {
@@ -104,7 +120,24 @@ const props = defineProps({
             .subtle {
                 color: grey;
             }
+
+            .avatar {
+                height: 32px;
+                min-height: 32px;
+                width: 32px;
+                min-width: 32px;
+            }
+
+            .handle {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
+    }
+
+    .tweet-card {
+        border-bottom: 1px solid #EEE;
     }
 }
 
