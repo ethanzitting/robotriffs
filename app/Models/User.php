@@ -107,4 +107,9 @@ class User extends Authenticatable
                 fn ($query) => $query->where('type', 'banner')
             );
     }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

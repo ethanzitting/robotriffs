@@ -27,5 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
         'tweets' => \App\Http\Controllers\API\TweetController::class,
         'tweets.replies' => \App\Http\Controllers\API\TweetReplyController::class,
         'feeds' => \App\Http\Controllers\API\FeedController::class,
+        'notifications' => \App\Http\Controllers\API\NotificationController::class,
     ]);
 });

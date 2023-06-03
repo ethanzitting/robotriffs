@@ -7,9 +7,20 @@ import UserAvatar from "../Components/UserAvatar.vue";
 import IconHeart from "../Components/icons/IconHeart.vue";
 import IconPerson from "../Components/icons/IconPerson.vue";
 import TweetCard from "../Components/tweets/TweetCard.vue";
+import {onMounted} from "vue";
 
 const props = defineProps({
     notifications: Array
+})
+
+onMounted(() => {
+    setTimeout(() => {
+        props.notifications.data.forEach(notification => {
+            axios.patch('/api/notifications/' + notification.id, {
+                viewed: true,
+            })
+        })
+    }, 500)
 })
 </script>
 
@@ -29,6 +40,8 @@ const props = defineProps({
                     v-if="notification.type === 'tweetLiked'"
                     :href="`/${notification.causedBy.handle}/tweet/${notification.tweet.id}`"
                     class="notification"
+                    :class="{ unread: !notification.viewed }"
+                    :ref="'notification_' + notification.id"
                 >
                     <IconHeart class="icon"/>
                     <div class="content">
@@ -46,14 +59,18 @@ const props = defineProps({
                     </div>
                 </Link>
                 <TweetCard
-                    class="tweet-card"
+                    class="tweet-card notification"
+                    :class="{ unread: !notification.viewed }"
                     v-else-if="notification.type === 'replyCreated'"
                     :tweet="notification.tweet"
+                    :ref="'notification_' + notification.id"
                 />
                 <Link
                     v-else-if="notification.type === 'userFollowed'"
                     class="notification"
-                    :to="`/${notification.causedBy.handle}`"
+                    :class="{ unread: !notification.viewed }"
+                    :href="`/${notification.causedBy.handle}`"
+                    :ref="'notification_' + notification.id"
                 >
                     <IconPerson class="icon"/>
                     <div class="content">
@@ -103,6 +120,10 @@ const props = defineProps({
         display: flex;
         gap: 12px;
         border-bottom: 1px solid #EEE;
+
+        &.unread {
+            background-color: #c9e5ff;
+        }
 
         .icon {
             height: 30px;

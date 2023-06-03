@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,7 @@ use Inertia\Inertia;
 
 class NotificationController extends Controller
 {
-    public function __invoke()
+    public function index()
     {
         $notifications = Notification::query()
             ->with([

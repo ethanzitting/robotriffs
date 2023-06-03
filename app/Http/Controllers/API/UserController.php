@@ -23,7 +23,10 @@ class UserController extends Controller
                 'name',
                 'tweets.id',
             ])
-            ->allowedIncludes(['tweets'])
+            ->allowedIncludes([
+                'tweets',
+                'notifications'
+            ])
             ->get();
 
         return UserResource::collection($users);
@@ -33,6 +36,7 @@ class UserController extends Controller
     {
         return new UserResource($user->load([
             'avatar',
+            'notifications'
         ]));
     }
 }

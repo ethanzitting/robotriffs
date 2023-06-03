@@ -28,6 +28,9 @@ class UserResource extends JsonResource
             'following' => UserResource::collection(
                 $this->whenLoaded('following')
             ),
+            'notifications' => NotificationResource::collection(
+                $this->whenLoaded('notifications')
+            ),
             'followingCount' => $this->following_count,
             'avatar' => ImageResource::make($this->whenLoaded('avatar')),
             'banner' => ImageResource::make($this->whenLoaded('banner')),
