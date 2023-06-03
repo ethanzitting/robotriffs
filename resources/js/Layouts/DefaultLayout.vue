@@ -18,7 +18,7 @@ const showMobileNavbar = ref(false)
 const auth = authStore();
 
 onMounted(async () => {
-    await auth.getUser();
+    await auth.fetchUser();
 })
 </script>
 

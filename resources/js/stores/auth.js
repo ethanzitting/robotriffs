@@ -9,11 +9,7 @@ export const authStore = defineStore('auth', {
         doubleCount: (state) => state.count * 2,
     },
     actions: {
-        async getUser() {
-            if (this.user) {
-                return
-            }
-
+        async fetchUser() {
             const { data: { data: user } } = await axios.get('/api/users/'+usePage().props.auth.user.id)
 
             this.user = user

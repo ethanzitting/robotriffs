@@ -8,6 +8,7 @@ import IconHeart from "../Components/icons/IconHeart.vue";
 import IconPerson from "../Components/icons/IconPerson.vue";
 import TweetCard from "../Components/tweets/TweetCard.vue";
 import {onMounted} from "vue";
+import {authStore} from "../stores/auth";
 
 const props = defineProps({
     notifications: Array
@@ -20,6 +21,8 @@ onMounted(() => {
                 viewed: true,
             })
         })
+
+        authStore().fetchUser()
     }, 500)
 })
 </script>

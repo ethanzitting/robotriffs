@@ -2,7 +2,7 @@
 import IconHome from "../icons/IconHome.vue";
 import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
 import TweetButtonMini from "../tweets/TweetButtonMini.vue";
-import IconBell from "../icons/IconBell.vue";
+import NotificationBell from "../NotificationBell.vue";
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import IconBell from "../icons/IconBell.vue";
             <IconHome class="icon"/>
         </NavLink>
         <NavLink class="notifications" :link-to="route('user.notifications')" :active="route().current('user.notifications')">
-            <IconBell class="icon"/>
+            <NotificationBell />
         </NavLink>
         <TweetButtonMini class="tweet-button-small"/>
     </div>
