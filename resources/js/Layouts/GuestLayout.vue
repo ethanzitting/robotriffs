@@ -16,7 +16,9 @@ const showMobileNavbar = ref(false)
 </script>
 
 <template>
-    <Head :title="title" />
+    <Head :title="title">
+        <link rel="manifest" href="/manifest.json" />
+    </Head>
     <div class="default-layout-container">
         <div class="fixed-elements">
             <NavBarGuest class="navbar"/>

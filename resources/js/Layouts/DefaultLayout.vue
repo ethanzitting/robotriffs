@@ -23,7 +23,9 @@ onMounted(async () => {
 </script>
 
 <template>
-    <Head :title="title" />
+    <Head :title="title">
+        <link rel="manifest" href="/manifest.json" />
+    </Head>
     <div class="default-layout-container">
         <template v-if="auth.user">
             <div class="fixed-elements" v-if="auth.user">
