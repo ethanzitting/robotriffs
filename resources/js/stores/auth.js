@@ -14,5 +14,12 @@ export const authStore = defineStore('auth', {
 
             this.user = user
         },
+        listenForNotifications () {
+            const channel = Echo.channel("user-notifications." + this.user.id);
+
+            channel.listenToAll((event, data) => {
+                this.user.notifications.push(data)
+            });
+        }
     },
 })

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('test-channel', function (string $namespace): bool {
-    return true;
+Broadcast::channel('user-notifications.{user}', function (User $user): bool {
+    return Auth::user()->id === $user->id;
 });

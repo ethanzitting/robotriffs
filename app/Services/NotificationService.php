@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\NotificationCreated;
 use App\Models\Notification;
 use App\Types\NotificationTypes;
 
@@ -76,5 +77,7 @@ class NotificationService
             $notification->updated_at = $updatedAt;
         }
         $notification->save();
+
+        broadcast(new NotificationCreated($notification));
     }
 }

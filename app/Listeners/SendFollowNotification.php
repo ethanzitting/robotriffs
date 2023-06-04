@@ -21,8 +21,8 @@ class SendFollowNotification
     {
         (new NotificationService())
             ->createUserFollowedNotification(
-                $event->following,
                 $event->follower,
+                $event->following,
             );
     }
 }

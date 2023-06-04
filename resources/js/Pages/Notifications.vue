@@ -11,19 +11,25 @@ import {onMounted} from "vue";
 import {authStore} from "../stores/auth";
 
 const props = defineProps({
-    notifications: Array
+    notifications: Object
 })
 
-onMounted(() => {
+const markAllNotificationsViewed = () => {
     setTimeout(() => {
-        props.notifications.data.forEach(notification => {
-            axios.patch('/api/notifications/' + notification.id, {
-                viewed: true,
+        props.notifications.data
+            .filter(({ viewed }) => !viewed)
+            .forEach(notification => {
+                axios.patch('/api/notifications/' + notification.id, {
+                    viewed: true,
+                })
             })
-        })
 
         authStore().fetchUser()
     }, 500)
+}
+
+onMounted(() => {
+    markAllNotificationsViewed()
 })
 </script>
 

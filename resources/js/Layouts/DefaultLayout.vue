@@ -19,6 +19,7 @@ const auth = authStore();
 
 onMounted(async () => {
     await auth.fetchUser();
+    auth.listenForNotifications();
 })
 </script>
 
