@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\NotificationCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        broadcast(new NotificationCreated());
         return Inertia::render('Home', [
             'user' => UserResource::make(Auth::user()->load(['avatar'])),
         ]);
