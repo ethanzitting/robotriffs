@@ -2,16 +2,10 @@
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import TweetInput from "@/Components/tweets/TweetInput.vue";
 import UserFeed from "../Components/tweets/UserFeed.vue";
-import {onMounted} from "vue";
 
 defineProps({
     user: Object,
 })
-
-onMounted(() => {
-    console.log(foo)
-})
-
 </script>
 
 <template>
