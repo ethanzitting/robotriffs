@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <DefaultLayout>
+    <DefaultLayout title="Notifications">
         <template #header>
             <Link href="/home" class="back-arrow">
                 <IconArrowLeft />

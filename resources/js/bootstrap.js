@@ -40,7 +40,6 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
 
