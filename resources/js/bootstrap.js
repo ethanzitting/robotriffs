@@ -50,3 +50,5 @@ Bugsnag.start({
     appType: 'client',
     enabledReleaseStages: [ 'production', 'staging' ]
 })
+
+Bugsnag.notify(new Error('Test error'))
