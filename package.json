@@ -20,6 +20,8 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@bugsnag/js": "^7.20.2",
+        "@bugsnag/plugin-vue": "^7.19.0",
         "dayjs": "^1.11.7",
         "laravel-echo": "^1.15.1",
         "pinia": "^2.0.33",

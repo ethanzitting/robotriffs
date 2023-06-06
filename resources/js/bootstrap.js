@@ -39,3 +39,14 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
+
+
+import Bugsnag from '@bugsnag/js'
+import BugsnagPluginVue from '@bugsnag/plugin-vue'
+
+Bugsnag.start({
+    apiKey: import.meta.env.VITE_BUGSNAG_KEY,
+    plugins: [new BugsnagPluginVue()],
+    appType: 'client',
+    enabledReleaseStages: [ 'production', 'staging' ]
+})
