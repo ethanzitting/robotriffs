@@ -3,7 +3,8 @@ import {usePage} from "@inertiajs/vue3";
 
 export const authStore = defineStore('auth', {
     state: () => ({
-        user: null
+        user: null,
+        notificationCount: 0,
     }),
     getters: {
         doubleCount: (state) => state.count * 2,
@@ -13,13 +14,17 @@ export const authStore = defineStore('auth', {
             const { data: { data: user } } = await axios.get('/api/users/'+usePage().props.auth.user.id)
 
             this.user = user
+            this.setNotificationCount(user)
         },
         listenForNotifications () {
             const channel = Echo.channel("user-notifications." + this.user.id);
 
             channel.listenToAll((event, data) => {
-                this.user.notifications.push(data)
+                this.notificationCount++
             });
+        },
+        setNotificationCount (user) {
+            this.notificationCount = user.notifications.filter(({viewed}) => !viewed).length
         }
     },
 })

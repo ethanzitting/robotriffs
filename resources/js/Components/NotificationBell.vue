@@ -4,14 +4,13 @@ import {authStore} from "../stores/auth";
 
 const auth = authStore()
 
-const notificationCount = auth.user.notifications.filter(({ viewed }) => !viewed).length
 </script>
 
 <template>
     <div class="notification-bell">
         <IconBell class="icon" />
-        <div class="unread-indicator" v-if="notificationCount > 0">
-            {{ notificationCount }}
+        <div class="unread-indicator" v-if="auth.notificationCount > 0">
+            {{ auth.notificationCount }}
         </div>
     </div>
 </template>
