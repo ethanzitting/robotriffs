@@ -5,11 +5,15 @@ import TweetInput from "../Components/tweets/TweetInput.vue";
 import {Link} from "@inertiajs/vue3";
 import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
 import TweetReplies from "../Components/tweets/TweetReplies.vue";
+import {ref} from "vue";
 
 defineProps({
     tweet: Object,
     user: Object
 })
+
+let replyKey = ref('-')
+const refreshReplies = () => replyKey = replyKey.value + '-'
 </script>
 <template>
     <DefaultLayout>
@@ -29,8 +33,12 @@ defineProps({
             :parent-tweet="tweet.data.id"
             placeholder="Tweet your reply"
             :user="user.data"
+            @submitted="refreshReplies"
         />
-        <TweetReplies :tweet="tweet.data" :user="user.data"/>
+        <TweetReplies
+            :tweet="tweet.data"
+            :key="replyKey"
+        />
     </DefaultLayout>
 </template>
 
