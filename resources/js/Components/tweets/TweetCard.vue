@@ -68,9 +68,8 @@ const deleteTweet = async () => {
                 />
             </div>
             <p v-if="tweet.parent?.user">
-                Replying to
-                <Link :href="'/' + tweet.parent.user.handle">
-                    @{{ tweet.parent.user.handle}}
+                <Link :href="'/' + tweet.parent.user.handle + '/tweet/' + tweet.parent.id">
+                    Replying to @{{ tweet.parent.user.handle}}
                 </Link>
             </p>
             <p>{{ tweet.content }}</p>
