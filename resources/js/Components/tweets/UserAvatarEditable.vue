@@ -2,15 +2,32 @@
 import UserAvatar from "../UserAvatar.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import IconCamera from "../icons/IconCamera.vue";
+import {authStore} from "../../stores/auth";
 
-defineEmits(['file-uploaded'])
+const emit = defineEmits(['image-selected'])
+
+const user = authStore().user
+
+const handleFileSelected = async (event) => {
+    let data = new FormData();
+    data.append('image', event, event.name);
+
+    const { data: { data: image } } = await axios.post('/api/images', data)
+    user.avatar = image
+
+    emit('image-selected', image)
+}
 </script>
 
 <template>
     <div class="avatar-editable">
-        <UserAvatar class="avatar" />
+        <UserAvatar
+            class="avatar"
+            :specified-user="user"
+            :key="user.avatar.url"
+        />
         <TweetImageInput
-            @file-uploaded="(event) => $emit('file-uploaded', event)"
+            @file-uploaded="handleFileSelected"
             class="image-input"
         >
             <IconCamera />
@@ -23,6 +40,11 @@ defineEmits(['file-uploaded'])
     position: relative;
     height: min-content;
     border-radius: 50%;
+
+    .avatar {
+        width: 100%;
+        height: 100%;
+    }
 
     .image-input {
         position: absolute;

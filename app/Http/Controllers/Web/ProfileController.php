@@ -53,32 +53,21 @@ class ProfileController extends Controller
             $user->profile->save();
         }
 
-        if (isset($request->avatar)) {
-            $image = Image::make();
-            $image->user_id = Auth::user()->id;
+        if (isset($request->avatarId)) {
+            $image = Image::find($request->avatarId);
             $image->type = 'avatar';
+            $image->user_id = $user->id;
             $image->save();
-            $image->fresh();
-            $image->file_name = $image->id.'.'.$request->avatar->extension();
-            $image->save();
-
-            $request->file('avatar')
-                ->storeAs('public/tweets', $image->file_name);
         }
 
-        if (isset($request->banner)) {
-            $image = Image::make();
-            $image->user_id = Auth::user()->id;
+        if (isset($request->bannerId)) {
+            $image = Image::find($request->bannerId);
             $image->type = 'banner';
+            $image->user_id = $user->id;
             $image->save();
-            $image->fresh();
-            $image->file_name = $image->id.'.'.$request->banner->extension();
-            $image->save();
-
-            $request->file('banner')
-                ->storeAs('public/tweets', $image->file_name);
         }
 
-        return redirect()->to(route('user.profile', ['slug' => $user->handle]));
+        return redirect()
+            ->to(route('user.profile', ['slug' => $user->handle]));
     }
 }

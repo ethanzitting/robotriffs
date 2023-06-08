@@ -3,18 +3,31 @@ import TweetImageInput from "./TweetImageInput.vue";
 import IconCamera from "../icons/IconCamera.vue";
 import {authStore} from "../../stores/auth";
 
-defineEmits(['file-uploaded']);
+const emit = defineEmits(['image-selected']);
 
 const user = authStore().user
+const handleFileSelected = async (event) => {
+    let data = new FormData();
+    data.append('image', event, event.name);
+
+    const { data: { data: image } } = await axios.post('/api/images', data)
+    user.banner = image
+
+    emit('image-selected', image)
+}
 </script>
 
 <template>
     <div class="banner-editable">
         <div class="banner">
-            <img :src="user.banner.url" :alt="user.banner.alt">
+            <img
+                :src="user.banner.url"
+                :alt="user.banner.alt"
+                :key="user.banner.url"
+            >
         </div>
         <TweetImageInput
-            @file-uploaded="(event) => $emit('file-uploaded', event)"
+            @file-uploaded="handleFileSelected"
             class="image-input"
         >
             <IconCamera />

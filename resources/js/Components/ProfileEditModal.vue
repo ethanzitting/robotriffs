@@ -30,8 +30,8 @@ const form = useForm({
     _method: 'PUT',
     name: props.user.name,
     bio: props.user.profile.bio,
-    avatar: null,
-    banner: null
+    avatarId: null,
+    bannerId: null,
 })
 
 const close = () => {
@@ -46,11 +46,11 @@ const submit = async () => {
 }
 
 const appendAvatar = (image) => {
-    form.avatar = image
+    form.avatarId = image.id
 }
 
 const appendBanner = (image) => {
-    form.banner = image
+    form.bannerId = image.id
 }
 
 </script>
@@ -74,11 +74,11 @@ const appendBanner = (image) => {
                 <div class="jumbotron">
                     <UserBannerEditable
                         class="banner"
-                        @file-uploaded="appendBanner"
+                        @image-selected="appendBanner"
                     />
                     <UserAvatarEditable
                         class="avatar"
-                        @file-uploaded="appendAvatar"
+                        @image-selected="appendAvatar"
                     />
                 </div>
                 <div class="inputs">
