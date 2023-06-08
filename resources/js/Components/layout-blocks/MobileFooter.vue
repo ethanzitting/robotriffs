@@ -21,7 +21,7 @@ import NotificationBell from "../NotificationBell.vue";
 .mobile-footer {
     position: relative;
     align-items: center;
-    padding: 0 30px;
+    padding: 15px 30px;
 
     @media (max-width: 500px) {
         display: flex !important;
