@@ -2,6 +2,8 @@
 import UserAvatar from "../UserAvatar.vue";
 import TweetImageInput from "./TweetImageInput.vue";
 import IconCamera from "../icons/IconCamera.vue";
+
+defineEmits(['file-uploaded'])
 </script>
 
 <template>

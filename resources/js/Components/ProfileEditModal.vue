@@ -72,8 +72,14 @@ const appendBanner = (image) => {
                     </button>
                 </div>
                 <div class="jumbotron">
-                    <UserBannerEditable class="banner" @file-uploaded="appendBanner"/>
-                    <UserAvatarEditable class="avatar" @file-uploaded="appendAvatar"/>
+                    <UserBannerEditable
+                        class="banner"
+                        @file-uploaded="appendBanner"
+                    />
+                    <UserAvatarEditable
+                        class="avatar"
+                        @file-uploaded="appendAvatar"
+                    />
                 </div>
                 <div class="inputs">
                     <label for="name">Name</label>
