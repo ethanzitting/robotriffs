@@ -43,6 +43,7 @@ const imgSrc = user?.avatar?.url
 .avatar {
     border-radius: 50%;
     overflow: hidden;
+    background-color: white;
 
     img {
         width: 100%;
