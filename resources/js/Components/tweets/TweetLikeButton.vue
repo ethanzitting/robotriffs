@@ -11,7 +11,7 @@ const props = defineProps({
 const user = usePage().props.auth?.user
 
 const userLikes = props.tweet.likes
-    .some(({user}) => String(user.id) === String(user?.id))
+    .some(like => String(like.user.id) === String(user?.id))
 
 let localCount = ref(props.count ?? 0)
 let localLikes = ref(userLikes)

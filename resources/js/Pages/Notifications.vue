@@ -10,9 +10,7 @@ import TweetCard from "../Components/tweets/TweetCard.vue";
 import {onMounted} from "vue";
 import {authStore} from "../stores/auth";
 
-const props = defineProps({
-    notifications: Object
-})
+const props = defineProps({ notifications: Object })
 
 const markAllNotificationsViewed = () => {
     setTimeout(() => {
