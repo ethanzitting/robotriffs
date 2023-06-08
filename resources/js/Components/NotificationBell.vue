@@ -33,8 +33,9 @@ const auth = authStore()
         top: -3px;
         right: -3px;
         padding: 3px;
-        border: 1px solid black;
-        background-color: white;
+        border: 1px solid white;
+        color: white;
+        background-color: #0C72B7;
         font-size: 0.6rem;
         font-weight: 600;
         border-radius: 50%;
