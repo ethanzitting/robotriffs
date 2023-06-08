@@ -26,6 +26,15 @@ onMounted(async () => {
 <template>
     <Head :title="title">
         <link rel="manifest" href="/manifest.json" />
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+        <script>
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function() {
+                OneSignal.init({
+                    appId: "bfb41a5d-de68-436c-8e46-18ce8f00f44c",
+                });
+            });
+        </script>
     </Head>
     <div class="default-layout-container">
         <template v-if="auth.user">
