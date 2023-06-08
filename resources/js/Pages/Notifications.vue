@@ -2,7 +2,7 @@
 
 import DefaultLayout from "../Layouts/DefaultLayout.vue";
 import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
-import {Link} from "@inertiajs/vue3";
+import {Link, router, usePage} from "@inertiajs/vue3";
 import UserAvatar from "../Components/UserAvatar.vue";
 import IconHeart from "../Components/icons/IconHeart.vue";
 import IconPerson from "../Components/icons/IconPerson.vue";
@@ -26,8 +26,17 @@ const markAllNotificationsViewed = () => {
     }, 500)
 }
 
+const listenForNewNotifications = () => {
+    const channel = Echo.channel("user-notifications." + usePage().props.auth.user.id);
+
+    channel.listenToAll((event, data) => {
+        router.reload();
+    });
+}
+
 onMounted(() => {
     markAllNotificationsViewed()
+    listenForNewNotifications()
 })
 </script>
 
