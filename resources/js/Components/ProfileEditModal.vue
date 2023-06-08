@@ -62,7 +62,7 @@ const appendBanner = (image) => {
         :closeable="closeable"
         @close="close"
     >
-        <div v-show="show" class="profile-edit-modal mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:mx-auto">
+        <div v-show="show" class="profile-edit-modal bg-white rounded-lg overflow-hidden shadow-xl transform transition-all">
             <form enctype="multipart/form-data" @submit.prevent="submit">
                 <div class="header">
                     <IconXMark class="close" @click="close"/>
@@ -105,6 +105,7 @@ const appendBanner = (image) => {
 <style lang="scss" scoped>
 .profile-edit-modal {
     width: 600px;
+    max-width: 90vw;
     margin: 200px auto 0 auto;
 
     .header {
