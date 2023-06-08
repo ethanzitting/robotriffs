@@ -8,8 +8,9 @@ import IconXMark from "../icons/IconXMark.vue";
 import NavLinkDirectory from "./nav-links/NavLinkDirectory.vue";
 import NavLinkNotifications from "./nav-links/NavLinkNotifications.vue";
 import NavLinkLogOut from "./nav-links/NavLinkLogOut.vue";
+import {authStore} from "../../stores/auth";
 
-const user = usePage().props.auth.user;
+const user = authStore().user
 </script>
 
 <template>
@@ -32,11 +33,11 @@ const user = usePage().props.auth.user;
                 </Link>
                 <div class="network-links">
                     <Link :href="`/${user.handle}/following`">
-                        <span class="number">{{ user.followingCount }} </span>
+                        <span class="number">{{ user.followers.length }} </span>
                         Following
                     </Link>
                     <Link :href="`/${user.handle}/followers`">
-                        <span class="number">{{ user.followerCount }} </span>
+                        <span class="number">{{ user.following.length }} </span>
                         Followers
                     </Link>
                 </div>
@@ -97,6 +98,14 @@ const user = usePage().props.auth.user;
 
         .network-links {
             font-size: 14px;
+            color: grey;
+            display: flex;
+            gap: 15px;
+
+            .number {
+                color: black;
+                font-weight: bold;
+            }
         }
     }
 

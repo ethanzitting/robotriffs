@@ -34,7 +34,7 @@ const bannerUrl = props.user.data.banner
             </Link>
             <div class="header-text">
                 <h1>{{ user.name }}</h1>
-                <p>{{ user.tweetCount }} Tweet</p>
+                <p>{{ user.tweetCount }} Tweet{{ user.tweetCount > 1 ? 's' : ''}}</p>
             </div>
         </template>
         <div class="jumbotron">
@@ -65,7 +65,7 @@ const bannerUrl = props.user.data.banner
                 </Link>
                 <Link :href="`/${user.handle}/followers`">
                     <span class="number">{{ user.followerCount }} </span>
-                    Followers
+                    {{ user.followerCount === 1? 'Follower' : 'Followers' }}
                 </Link>
             </div>
         </div>

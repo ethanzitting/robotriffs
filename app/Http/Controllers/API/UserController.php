@@ -36,7 +36,9 @@ class UserController extends Controller
     {
         return new UserResource($user->load([
             'avatar',
-            'notifications'
+            'notifications',
+            'followers',
+            'following',
         ]));
     }
 }
