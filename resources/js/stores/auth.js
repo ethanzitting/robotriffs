@@ -28,7 +28,7 @@ export const authStore = defineStore('auth', {
         },
         registerUserWithOneSignal () {
             OneSignal.push(function() {
-                OneSignal.setExternalUserId(auth.user.id);
+                OneSignal.setExternalUserId(this.user.id);
             });
         }
     },
