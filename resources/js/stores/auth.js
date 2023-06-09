@@ -25,6 +25,11 @@ export const authStore = defineStore('auth', {
         },
         setNotificationCount (user) {
             this.notificationCount = user.notifications.filter(({viewed}) => !viewed).length
+        },
+        registerUserWithOneSignal () {
+            OneSignal.push(function() {
+                OneSignal.setExternalUserId(auth.user.id);
+            });
         }
     },
 })
