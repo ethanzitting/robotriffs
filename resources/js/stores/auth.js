@@ -6,9 +6,6 @@ export const authStore = defineStore('auth', {
         user: null,
         notificationCount: 0,
     }),
-    getters: {
-        doubleCount: (state) => state.count * 2,
-    },
     actions: {
         async fetchUser() {
             const { data: { data: user } } = await axios.get('/api/users/'+usePage().props.auth.user.id)
@@ -27,11 +24,9 @@ export const authStore = defineStore('auth', {
             this.notificationCount = user.notifications.filter(({viewed}) => !viewed).length
         },
         registerUserWithOneSignal () {
-            if (this.user) {
-                OneSignal.push(function() {
-                    OneSignal.setExternalUserId(this.user.id);
-                });
-            }
+            OneSignal.push(() => {
+                OneSignal.setExternalUserId(this.user.id);
+            });
         }
     },
 })
