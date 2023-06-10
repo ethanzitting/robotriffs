@@ -32,7 +32,7 @@ class NotificationCreated implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel("user-notifications." . $this->notificationResource->user_id),
+            new Channel('user-notifications.'.$this->notificationResource->user_id),
         ];
     }
 }

@@ -30,7 +30,7 @@ class NotificationController extends Controller
             ->get();
 
         return Inertia::render('Notifications', [
-            'notifications' => NotificationResource::collection($notifications)
+            'notifications' => NotificationResource::collection($notifications),
         ]);
     }
 }

@@ -16,9 +16,10 @@ class NotificationTypes
      */
     public const TWEET_POSTED = 3;
 
-
     public const TWEET_LIKED = 0;
+
     public const REPLY_CREATED = 2;
+
     public const USER_FOLLOWED = 4;
 
     private static function types(): Collection

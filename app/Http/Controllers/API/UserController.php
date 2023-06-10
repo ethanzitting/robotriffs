@@ -25,7 +25,7 @@ class UserController extends Controller
             ])
             ->allowedIncludes([
                 'tweets',
-                'notifications'
+                'notifications',
             ])
             ->get();
 

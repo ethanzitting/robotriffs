@@ -24,16 +24,18 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    if (!Auth::user()) {
+    if (! Auth::user()) {
         return Inertia::render('GuestFeed');
     }
+
     return (new HomeController())->index();
 });
 
 Route::get('home', function () {
-    if (!Auth::user()) {
+    if (! Auth::user()) {
         return Inertia::render('GuestFeed');
     }
+
     return (new HomeController())->index();
 })->name('home');
 

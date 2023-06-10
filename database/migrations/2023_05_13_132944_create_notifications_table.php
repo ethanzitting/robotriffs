@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function __construct()
     {
         $this->notificationService = new NotificationService();
@@ -61,7 +60,7 @@ return new class extends Migration
             ->with(['tweet'])
             ->get()
             ->each(function ($like) {
-                if (!$like->tweet) {
+                if (! $like->tweet) {
                     return;
                 }
                 $this->notificationService

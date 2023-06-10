@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function __construct(Private ImageService $imageService)
+    public function __construct(private ImageService $imageService)
     {
     }
 
     public function store(Request $request)
     {
-       $image = $this->imageService->saveImage(
+        $image = $this->imageService->saveImage(
             $request->file('image'),
             $request->image->extension(),
         );
