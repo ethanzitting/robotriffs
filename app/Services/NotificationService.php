@@ -6,7 +6,7 @@ use App\Events\NotificationCreated;
 use App\Models\Notification;
 use App\Types\NotificationTypes;
 
-class NotificationService
+class NotificationService extends BaseService
 {
     public function createTweetLikedNotification(
         int $userFor,

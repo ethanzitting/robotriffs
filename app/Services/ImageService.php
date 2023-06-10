@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
-class ImageService
+class ImageService extends BaseService
 {
     public function saveImage($file, string $extension): Image
     {

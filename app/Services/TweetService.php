@@ -6,7 +6,7 @@ use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class TweetService
+class TweetService extends BaseService
 {
     public static function getGuestFeed(): LengthAwarePaginator
     {
