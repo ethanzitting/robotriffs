@@ -21,7 +21,9 @@ import NotificationBell from "../NotificationBell.vue";
 .mobile-footer {
     position: relative;
     align-items: center;
-    padding: 15px 30px;
+    min-height: 70px;
+    gap: 20%;
+    padding: 0 30px 10px 30px;
 
     @media (max-width: 500px) {
         display: flex !important;
@@ -29,7 +31,6 @@ import NotificationBell from "../NotificationBell.vue";
 
     .home, .notifications {
         height: min-content;
-        width: 25%;
 
         .icon {
             height: 26px;

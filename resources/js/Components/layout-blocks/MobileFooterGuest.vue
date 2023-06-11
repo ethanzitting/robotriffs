@@ -27,7 +27,8 @@ import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
 .mobile-footer {
     position: relative;
     align-items: center;
-    padding: 0 50px;
+    min-height: 70px;
+    padding: 0 50px 10px 50px;
     display: flex;
     gap: 18px;
     justify-content: space-around;
