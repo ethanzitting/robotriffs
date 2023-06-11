@@ -1,6 +1,8 @@
 <script setup>
 import IconHome from "../icons/IconHome.vue";
 import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
+import PWAInstallButton from "../PWAInstallButton.vue";
+
 </script>
 
 <template>
@@ -20,6 +22,7 @@ import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
         >
             Register
         </NavLink>
+        <PWAInstallButton />
     </div>
 </template>
 
@@ -43,6 +46,7 @@ import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
 
         .icon {
             height: 26px;
+            width: 26px;
         }
     }
 }

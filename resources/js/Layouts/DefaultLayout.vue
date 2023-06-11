@@ -8,6 +8,7 @@ import {onMounted, ref} from "vue";
 import MobileNavbarModal
     from "../Components/layout-blocks/MobileNavbarModal.vue";
 import {authStore} from "../stores/auth";
+import {systemStore} from "../stores/system";
 
 const props = defineProps({
     title: String,
@@ -16,10 +17,12 @@ const props = defineProps({
 const showMobileNavbar = ref(false)
 
 const auth = authStore();
+const system = systemStore()
 
 onMounted(async () => {
     await auth.fetchUser();
     auth.listenForNotifications();
+    system.checkIfSiteInstallable()
     auth.registerUserWithOneSignal();
 })
 </script>

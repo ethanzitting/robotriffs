@@ -3,6 +3,7 @@ import IconHome from "../icons/IconHome.vue";
 import NavLink from "@/Components/layout-blocks/nav-links/NavLink.vue";
 import TweetButtonMini from "../tweets/TweetButtonMini.vue";
 import NotificationBell from "../NotificationBell.vue";
+import PWAInstallButton from "../PWAInstallButton.vue";
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import NotificationBell from "../NotificationBell.vue";
         <NavLink class="notifications" :link-to="route('user.notifications')" :active="route().current('user.notifications')">
             <NotificationBell />
         </NavLink>
+        <PWAInstallButton />
         <TweetButtonMini class="tweet-button-small"/>
     </div>
 </template>
