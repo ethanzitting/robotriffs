@@ -36,6 +36,24 @@ class TestResponseMacros
         };
     }
 
+
+    /**
+     * Assert that the response contains the structure of the JsonResponse.
+     */
+    public function assertResourceCollection(): \Closure
+    {
+        return function (JsonResource $resource)
+        {
+            $this->assertJson([
+                'data' => $this->jsonResourceToArray($resource),
+            ]);
+
+            return $this;
+        };
+    }
+
+
+
     /**
      * Assert that the response contains the structure of the JsonResponse
      * single response.
