@@ -1,6 +1,6 @@
 <script setup>
 import UserAvatar from "@/Components/UserAvatar.vue";
-import {Link} from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
 import FollowButton from "./FollowButton.vue";
 
 const props = defineProps({
@@ -19,7 +19,11 @@ const props = defineProps({
                 <Link :href="'/' + user.handle" class="name">
                     {{ user.name }}
                 </Link>
-                <FollowButton class="follow-button" :user="user"/>
+                <FollowButton
+                    v-if="user.id !== usePage().props.auth.user.id"
+                    class="follow-button"
+                    :user="user"
+                />
             </div>
             <Link :href="'/' + user.handle" class="handle">
                 @{{ user.handle }}
