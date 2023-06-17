@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Events\ReplyPosted;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
-use App\Models\Image;
 use App\Models\Tweet;
+use App\Services\ImageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
+    public function __construct(protected ImageService $imageService)
+    {
+    }
+
     public function index(Request $request): AnonymousResourceCollection
     {
         $tweets = Tweet::query()
@@ -42,23 +46,20 @@ class TweetController extends Controller
         $tweet->fresh();
 
         if (isset($request->image)) {
-            $image = Image::make();
-            $image->tweet_id = $tweet->id;
-            $image->type = 'tweet';
-            $image->save();
-            $image->fresh();
-            $image->file_name = $image->id.'.'.$request->image->extension();
-            $image->save();
+            $this->imageService->saveImage(
+                $request->file('image'),
+                $request->image->extension(),
+                $tweet->id,
+            );
 
-            $request->file('image')
-                ->storeAs('public/tweets', $image->file_name);
+            $tweet->load('image');
         }
 
         if ($tweet->parent_id) {
             event(new ReplyPosted($tweet->user_id, $tweet->id));
         }
 
-        return new TweetResource($tweet);
+        return new TweetResource($tweet->load('image'));
     }
 
     public function destroy(Request $request, Tweet $tweet): JsonResponse

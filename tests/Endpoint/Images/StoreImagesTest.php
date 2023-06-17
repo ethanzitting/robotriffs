@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
-use Tests\Traits\AuthenticatesUser;
 use Tests\Traits\GuestAccessForbidden;
 
 class StoreImagesTest extends TestCase
 {
-    use AuthenticatesUser;
     use GuestAccessForbidden;
 
     private array $payload;
