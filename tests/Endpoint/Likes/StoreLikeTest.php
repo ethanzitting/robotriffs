@@ -45,7 +45,7 @@ class StoreLikeTest extends TestCase
 
         $like = Like::findOrFail($res->json()['data']['id']);
 
-        $res->assertSingleJsonResource(LikeResource::make($like));
+        $res->assertJsonResource(LikeResource::make($like));
     }
 
     public function testResponseSchema()

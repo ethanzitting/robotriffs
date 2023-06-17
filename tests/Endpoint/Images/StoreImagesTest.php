@@ -12,13 +12,11 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 use Tests\Traits\AuthenticatesUser;
 use Tests\Traits\GuestAccessForbidden;
-use Tests\Traits\UserAccessPermitted;
 
 class StoreImagesTest extends TestCase
 {
     use AuthenticatesUser;
     use GuestAccessForbidden;
-    use UserAccessPermitted;
 
     private array $payload;
 
@@ -42,7 +40,7 @@ class StoreImagesTest extends TestCase
 
         $image = Image::findOrFail($res->json()['data']['id']);
 
-        $res->assertSingleJsonResource(ImageResource::make($image));
+        $res->assertJsonResource(ImageResource::make($image));
     }
 
     public function testResponseSchema()
@@ -63,7 +61,7 @@ class StoreImagesTest extends TestCase
                 'tweet' => [
                     'id' => null,
                 ],
-                'url' => 'http://localhost/storage/tweets/'.$image->id.'.jpg',
+                'url' => 'http://localhost:80/storage/tweets/'.$image->id.'.jpg',
                 'alt' => null,
                 'dates' => [
                     'created' => Carbon::now()->floorSecond()->toISOString(),

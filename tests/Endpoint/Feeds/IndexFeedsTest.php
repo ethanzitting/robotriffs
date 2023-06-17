@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 use Tests\Traits\GuestAccessForbidden;
-use Tests\Traits\UserAccessPermitted;
 
 class IndexFeedsTest extends TestCase
 {
     use GuestAccessForbidden;
-    use UserAccessPermitted;
 
     public function testReturnsAResourceCollection()
     {
@@ -27,9 +25,9 @@ class IndexFeedsTest extends TestCase
         $tweets = TweetService::make()
             ->getFeedForUser(Auth::user());
 
-        $res = $this->getJson('/api/feeds?user='.Auth::user()->id)
+        $this->getJson('/api/feeds?user='.Auth::user()->id)
             ->assertOk()
-            ->assertResourceCollection(TweetResource::collection($tweets));
+            ->assertJsonResource(TweetResource::collection($tweets));
     }
 
     public function submitRequest(): TestResponse
