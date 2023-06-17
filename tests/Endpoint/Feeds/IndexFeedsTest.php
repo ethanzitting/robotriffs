@@ -6,15 +6,15 @@ use App\Http\Resources\TweetResource;
 use App\Models\Tweet;
 use App\Services\TweetService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
+use Tests\Traits\GuestAccessForbidden;
+use Tests\Traits\UserAccessPermitted;
 
 class IndexFeedsTest extends TestCase
 {
-    public function testGuestAccessDenied()
-    {
-        $this->getJson('/api/feeds')
-            ->assertUnauthorized();
-    }
+    use GuestAccessForbidden;
+    use UserAccessPermitted;
 
     public function testReturnsAResourceCollection()
     {
@@ -30,5 +30,10 @@ class IndexFeedsTest extends TestCase
         $res = $this->getJson('/api/feeds?user='.Auth::user()->id)
             ->assertOk()
             ->assertResourceCollection(TweetResource::collection($tweets));
+    }
+
+    public function submitRequest(): TestResponse
+    {
+        return $this->getJson('/api/feeds');
     }
 }

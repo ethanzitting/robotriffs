@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Traits\Makeable;
 
-class BaseService {
+class BaseService
+{
     use Makeable;
 }

@@ -15,65 +15,10 @@ class TestResponseMacros
      */
     public function assertJsonResource(): \Closure
     {
-        return function (
-            JsonResource $resource,
-            bool $hasWrapKey = true,
-            string $wrapKey = 'data'
-        ) {
-            $payload = [
-                $this->jsonResourceToArray($resource),
-            ];
-
-            if ($hasWrapKey) {
-                $payload = [
-                    $wrapKey => $payload,
-                ];
-            }
-
-            $this->assertJson($payload);
-
-            return $this;
-        };
-    }
-
-
-    /**
-     * Assert that the response contains the structure of the JsonResponse.
-     */
-    public function assertResourceCollection(): \Closure
-    {
-        return function (JsonResource $resource)
-        {
-            $this->assertJson([
-                'data' => $this->jsonResourceToArray($resource),
-            ]);
-
-            return $this;
-        };
-    }
-
-
-
-    /**
-     * Assert that the response contains the structure of the JsonResponse
-     * single response.
-     */
-    public function assertSingleJsonResource(): \Closure
-    {
-        return function (
-            JsonResource $resource,
-            bool $hasWrapKey = true,
-            string $wrapKey = 'data'
-        ) {
+        return function (JsonResource $resource) {
             $payload = $this->jsonResourceToArray($resource);
 
-            if ($hasWrapKey) {
-                $payload = [
-                    $wrapKey => $payload,
-                ];
-            }
-
-            $this->assertJson($payload);
+            $this->assertJson(['data' => $payload]);
 
             return $this;
         };

@@ -9,14 +9,19 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
-use Tests\AuthenticatesUser;
 use Tests\TestCase;
+use Tests\Traits\AuthenticatesUser;
+use Tests\Traits\GuestAccessForbidden;
+use Tests\Traits\UserAccessPermitted;
 
 class StoreImagesTest extends TestCase
 {
     use AuthenticatesUser;
+    use GuestAccessForbidden;
+    use UserAccessPermitted;
 
     private array $payload;
+
     private UploadedFile $image;
 
     protected function setUp(): void
@@ -28,17 +33,11 @@ class StoreImagesTest extends TestCase
         $this->payload['image'] = $this->image;
     }
 
-    public function guestAccessForbidden(): void
-    {
-        $this->storeImage()
-            ->assertUnauthorized();
-    }
-
     public function testAResourceIsReturned()
     {
         $this->authenticate();
 
-        $res = $this->storeImage()
+        $res = $this->submitRequest()
             ->assertCreated();
 
         $image = Image::findOrFail($res->json()['data']['id']);
@@ -50,28 +49,28 @@ class StoreImagesTest extends TestCase
     {
         $this->authenticate();
 
-        $res = $this->storeImage()
+        $res = $this->submitRequest()
             ->assertCreated();
 
         $image = Image::findOrFail($res->json()['data']['id']);
 
         $res->assertJson([
-                'data' => [
-                    'id' => $image->id,
-                    'user' => [
-                        'id' => Auth::user()->id,
-                    ],
-                    'tweet' => [
-                        'id' => null,
-                    ],
-                    'url' => 'http://localhost/storage/tweets/'.$image->id.'.jpg',
-                    'alt' => null,
-                    'dates' => [
-                        'created' => Carbon::now()->floorSecond()->toISOString(),
-                        'updated' => Carbon::now()->floorSecond()->toISOString(),
-                    ],
+            'data' => [
+                'id' => $image->id,
+                'user' => [
+                    'id' => Auth::user()->id,
                 ],
-            ]);
+                'tweet' => [
+                    'id' => null,
+                ],
+                'url' => 'http://localhost/storage/tweets/'.$image->id.'.jpg',
+                'alt' => null,
+                'dates' => [
+                    'created' => Carbon::now()->floorSecond()->toISOString(),
+                    'updated' => Carbon::now()->floorSecond()->toISOString(),
+                ],
+            ],
+        ]);
     }
 
     public function testAnImageIsUploaded()
@@ -80,7 +79,7 @@ class StoreImagesTest extends TestCase
 
         $this->authenticate();
 
-        $response = $this->storeImage()
+        $response = $this->submitRequest()
             ->assertCreated();
 
         $image = Image::findOrFail($response->json()['data']['id']);
@@ -88,8 +87,7 @@ class StoreImagesTest extends TestCase
         Storage::assertExists(ImageResource::make($image)->url);
     }
 
-
-    public function storeImage(): TestResponse
+    public function submitRequest(): TestResponse
     {
         return $this->postJson('/api/images', $this->payload);
     }

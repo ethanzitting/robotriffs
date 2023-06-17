@@ -6,22 +6,20 @@ use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
+use Tests\Traits\GuestAccessForbidden;
 
 class DestroyLikeTest extends TestCase
 {
+    use GuestAccessForbidden;
+
     private Like $like;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->like = Like::factory()
             ->create();
-    }
-
-    public function testGuestAccessForbidden()
-    {
-        $this->destroyLike()
-            ->assertUnauthorized();
     }
 
     public function testDestroysResource()
@@ -31,7 +29,7 @@ class DestroyLikeTest extends TestCase
         $this->like->user_id = Auth::user()->id;
         $this->like->save();
 
-        $this->destroyLike()
+        $this->submitRequest()
             ->assertNoContent();
 
         $this->assertDatabaseMissing('tweet_likes', [
@@ -39,7 +37,7 @@ class DestroyLikeTest extends TestCase
         ]);
     }
 
-    public function destroyLike(): TestResponse
+    public function submitRequest(): TestResponse
     {
         return $this->deleteJson('/api/likes/1?tweet='.$this->like->tweet_id);
     }

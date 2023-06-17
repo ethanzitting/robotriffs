@@ -9,9 +9,12 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
+use Tests\Traits\GuestAccessForbidden;
 
 class StoreLikeTest extends TestCase
 {
+    use GuestAccessForbidden;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,17 +24,11 @@ class StoreLikeTest extends TestCase
         ];
     }
 
-    public function testGuestAccessForbidden()
-    {
-        $this->storeLike()
-            ->assertUnauthorized();
-    }
-
     public function testCreatesAResource()
     {
         $this->authenticate();
 
-        $this->storeLike()
+        $this->submitRequest()
             ->assertCreated();
 
         $this->assertDatabaseHas('tweet_likes', [
@@ -43,7 +40,7 @@ class StoreLikeTest extends TestCase
     {
         $this->authenticate();
 
-        $res = $this->storeLike()
+        $res = $this->submitRequest()
             ->assertCreated();
 
         $like = Like::findOrFail($res->json()['data']['id']);
@@ -55,7 +52,7 @@ class StoreLikeTest extends TestCase
     {
         $this->authenticate();
 
-        $res = $this->storeLike()
+        $res = $this->submitRequest()
             ->assertCreated();
 
         $like = Like::findOrFail($res->json()['data']['id']);
@@ -77,7 +74,7 @@ class StoreLikeTest extends TestCase
         ]);
     }
 
-    private function storeLike(): TestResponse
+    private function submitRequest(): TestResponse
     {
         return $this->postJson('/api/likes', $this->payload);
     }
