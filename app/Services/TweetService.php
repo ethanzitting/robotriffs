@@ -4,11 +4,11 @@ namespace App\Services;
 
 use App\Models\Tweet;
 use App\Models\User;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TweetService
 {
-    public static function getGuestFeed()
+    public static function getGuestFeed(): LengthAwarePaginator
     {
         $topUsers = User::query()
             ->withCount(['followers'])
@@ -25,15 +25,11 @@ class TweetService
             ])
             ->whereIn('user_id', $topUsers->pluck('id'))
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate();
     }
 
-    public function getFeedForUser(?User $user): Collection
+    public function getFeedForUser(User $user): LengthAwarePaginator
     {
-        if (! $user) {
-            return collect();
-        }
-
         $followedByUser = $user->following->pluck('id')
             ->push($user->id);
 
@@ -47,6 +43,6 @@ class TweetService
                 'parent.user',
             ])
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate();
     }
 }

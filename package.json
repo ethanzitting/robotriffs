@@ -25,6 +25,7 @@
         "@onesignal/onesignal-vue3": "^1.0.2",
         "dayjs": "^1.11.7",
         "laravel-echo": "^1.15.1",
+        "lodash-es": "^4.17.21",
         "pinia": "^2.0.33",
         "pusher-js": "^8.0.2",
         "qs": "^6.11.1"

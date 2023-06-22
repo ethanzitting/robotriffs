@@ -17,8 +17,14 @@ class FeedController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
+        $user = User::find($request->user);
+
+        if (!$user) {
+            return TweetResource::collection([]);
+        }
+
         $tweets = $this->tweetService
-            ->getFeedForUser(User::findOrFail($request->user));
+            ->getFeedForUser($user);
 
         return TweetResource::collection($tweets);
     }
