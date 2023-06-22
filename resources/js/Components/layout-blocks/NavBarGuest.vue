@@ -42,6 +42,7 @@ import NavLink
         justify-content: center;
         align-items: center;
         padding: 0 30px;
+        white-space: nowrap;
 
         @media (min-width: 1250px) {
             &:hover {
