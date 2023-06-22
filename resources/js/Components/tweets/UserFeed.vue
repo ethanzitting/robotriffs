@@ -54,7 +54,7 @@ const fetchChunkOfFeed = async () => {
     tweets.value = [...tweets.value, ...newTweets];
 }
 
-const watchScrollThrottled = _.throttle(handleScroll, 100)
+const watchScrollThrottled = _.throttle(handleScroll, 300)
 
 onMounted(async () => {
     await fetchChunkOfFeed();
