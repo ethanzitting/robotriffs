@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Mixins\TestResponseMacros;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Testing\TestResponse;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        TestResponse::mixin(new TestResponseMacros());
     }
 }

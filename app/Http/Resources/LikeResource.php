@@ -16,7 +16,7 @@ class LikeResource extends JsonResource
             'tweet' => $this->tweet(),
             'dates' => [
                 'created' => $this->created_at,
-                'deleted' => $this->deleted_at,
+                'updated' => $this->updated_at,
             ],
         ];
     }

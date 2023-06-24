@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImageRequest;
 use App\Http\Resources\ImageResource;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
@@ -13,7 +13,7 @@ class ImageController extends Controller
     {
     }
 
-    public function store(Request $request)
+    public function store(StoreImageRequest $request): ImageResource
     {
         $image = $this->imageService->saveImage(
             $request->file('image'),
