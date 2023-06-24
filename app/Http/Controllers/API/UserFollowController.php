@@ -39,7 +39,7 @@ class UserFollowController extends Controller
 
         $followed
             ->followers()
-            ->detach(Auth::user()->id);
+            ->detach(Auth::user());
 
         return response()->json([], 204);
     }
