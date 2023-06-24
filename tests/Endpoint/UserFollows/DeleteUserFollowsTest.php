@@ -30,14 +30,14 @@ class DeleteUserFollowsTest extends TestCase
     {
         $this->authenticate();
 
-        $this->submitRequest($this->follow->followed_id)
+        $this->submitRequest()
             ->assertStatus(204);
 
         $this->assertDatabaseMissing('follows', $this->follow->toArray());
     }
 
-    public function submitRequest(?int $followedId = null): TestResponse
+    public function submitRequest(): TestResponse
     {
-        return $this->deleteJson('/api/user-follows?followed='.$followedId);
+        return $this->deleteJson('/api/user-follows/'.$this->follow->followed_id);
     }
 }

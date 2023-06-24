@@ -2,6 +2,8 @@
 
 namespace Tests\Endpoint\UserFollows;
 
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 use Tests\Traits\GuestAccessForbidden;
@@ -10,18 +12,27 @@ class IndexUserFollowsTest extends TestCase
 {
     use GuestAccessForbidden;
 
-    public function testReturnsResources()
+    private User $followed;
+
+    protected function setUp(): void
     {
-        $this->fail();
+        parent::setUp();
+
+        $this->followed = User::factory()
+            ->hasFollowers(3)
+            ->create();
     }
 
-    public function testResponseSchema()
+    public function testReturnsResources()
     {
-        $this->fail();
+        $this->authenticate();
+
+        $this->submitRequest()
+            ->assertJsonResource(UserResource::collection($this->followed->followers));
     }
 
     public function submitRequest(): TestResponse
     {
-        return $this->getJson('/api/user-follows');
+        return $this->getJson('/api/user-follows?followed='.$this->followed->id);
     }
 }
