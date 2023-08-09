@@ -36,10 +36,6 @@ class TweetService extends BaseService
             return TweetService::getGuestFeedQuery();
         }
 
-        User::query()
-            ->where('handle', 'robot')
-            ->delete();
-
         return Tweet::whereIn('user_id', $followedByUser)
             ->withCount(['children', 'likes'])
             ->with([
