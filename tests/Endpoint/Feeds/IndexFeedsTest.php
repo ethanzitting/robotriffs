@@ -23,7 +23,8 @@ class IndexFeedsTest extends TestCase
             ->create();
 
         $tweets = TweetService::make()
-            ->getFeedForUser(Auth::user());
+            ->getFeedQueryForUser(Auth::user())
+            ->paginate();
 
         $this->getJson('/api/feeds?user='.Auth::user()->id)
             ->assertOk()
