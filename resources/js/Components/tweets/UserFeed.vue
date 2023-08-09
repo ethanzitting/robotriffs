@@ -19,15 +19,6 @@ const linkForNextTweets = ref(
         : `/api/feeds?user=${props.user.id}`
 );
 
-const handleScroll = () => {
-    const nearBottomOfScreen = (window.scrollY + window.innerHeight) >=
-        (document.body.scrollHeight - 500)
-
-    if (nearBottomOfScreen) {
-        fetchChunkOfFeed()
-    }
-}
-
 const endOfFeedReached = ref(false);
 
 const fetchChunkOfFeed = async () => {
@@ -52,6 +43,15 @@ const fetchChunkOfFeed = async () => {
     }
 
     tweets.value = [...tweets.value, ...newTweets];
+}
+
+const handleScroll = () => {
+    const nearBottomOfScreen = (window.scrollY + window.innerHeight) >=
+        (document.body.scrollHeight - 500)
+
+    if (nearBottomOfScreen) {
+        fetchChunkOfFeed()
+    }
 }
 
 const watchScrollThrottled = _.throttle(handleScroll, 1000)
