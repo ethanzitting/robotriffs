@@ -7,7 +7,6 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createPinia } from 'pinia'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import Bugsnag from "@bugsnag/js";
-import OneSignalVuePlugin from '@onesignal/onesignal-vue3'
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Robot Riffs';
 
@@ -22,9 +21,6 @@ createInertiaApp({
             .use(createPinia())
             .use(bugsnagVue)
             .use(ZiggyVue, Ziggy)
-            .use(OneSignalVuePlugin, {
-                appId: import.meta.env.VITE_ONESIGNAL_APP_ID,
-            })
             .mount(el);
     },
     progress: {

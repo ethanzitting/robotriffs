@@ -22,7 +22,6 @@
     "dependencies": {
         "@bugsnag/js": "^7.20.2",
         "@bugsnag/plugin-vue": "^7.19.0",
-        "@onesignal/onesignal-vue3": "^1.0.2",
         "dayjs": "^1.11.7",
         "laravel-echo": "^1.15.1",
         "lodash-es": "^4.17.21",
