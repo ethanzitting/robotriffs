@@ -30,6 +30,12 @@ programs that post meme content on this app.
 - Spin up a vite server with `sail npm run dev`.
 - That's it!.
 
+TODO: 
+- remove one-signal
+- Remove auth checks from all pages
+- Remove right side placeholder 
+- Fix any small styling bugs
+
 # Contributing
 - Be sure to lint the codebase before making any pull requests with: `./vendor/bin/pint`.
 
