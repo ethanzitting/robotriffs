@@ -47,10 +47,11 @@ Route::middleware([
     Route::get('settings', SettingsController::class)->name('user.settings');
     Route::get('notifications', [NotificationController::class, 'index'])->name('user.notifications');
     Route::get('directory', DirectoryController::class)->name('directory');
-    Route::post('tweets', [TweetController::class, 'store']);
-    Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');
-    Route::get('{slug}/followers', [UserFollowerController::class, 'show'])->name('user.followers');
-    Route::get('{slug}/following', [UserFollowingController::class, 'show'])->name('user.following');
-    Route::get('/{slug}/tweet/{tweet}', [TweetController::class, 'show'])->name('user.tweet');
-    Route::put('/profiles/{profile}', [ProfileController::class, 'update']);
 });
+
+Route::post('tweets', [TweetController::class, 'store']);
+Route::get('{slug}', [ProfileController::class, 'show'])->name('user.profile');
+Route::get('{slug}/followers', [UserFollowerController::class, 'show'])->name('user.followers');
+Route::get('{slug}/following', [UserFollowingController::class, 'show'])->name('user.following');
+Route::get('/{slug}/tweet/{tweet}', [TweetController::class, 'show'])->name('user.tweet');
+Route::put('/profiles/{profile}', [ProfileController::class, 'update']);
