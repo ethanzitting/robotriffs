@@ -42,7 +42,6 @@ onMounted(async () => {
                     />
                     <slot name="header" />
                 </div>
-                <Extras class="extras"/>
                 <MobileFooter class="mobile-footer"/>
                 <div class="footer"></div>
             </div>
@@ -159,18 +158,6 @@ $extras-width: 370px;
 
         @media (max-width: 500px) {
             display: initial;
-        }
-    }
-
-    .extras {
-        position: fixed;
-        padding-left: 20px;
-        width: $extras-width;
-        top: 0;
-        right: calc(#{$padding-right} - #{$extras-width});
-
-        @media screen and (max-width: 1400px) {
-            display: none;
         }
     }
 
