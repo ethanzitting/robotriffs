@@ -6,6 +6,7 @@ import {Link} from "@inertiajs/vue3";
 import IconArrowLeft from "../Components/icons/IconArrowLeft.vue";
 import TweetReplies from "../Components/tweets/TweetReplies.vue";
 import {ref} from "vue";
+import GuestLayout from "../Layouts/GuestLayout.vue";
 
 defineProps({
     tweet: Object,
@@ -16,30 +17,60 @@ let replyKey = ref('-')
 const refreshReplies = () => replyKey = replyKey.value + '-'
 </script>
 <template>
-    <DefaultLayout>
-        <template #header>
-            <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
-            </Link>
-            <h1>
-                Tweet
-            </h1>
-        </template>
-        <TweetCard
-            :tweet="tweet.data"
-            show-stats
-        />
-        <TweetInput
-            :parent-tweet="tweet.data.id"
-            placeholder="Tweet your reply"
-            :user="user.data"
-            @submitted="refreshReplies"
-        />
-        <TweetReplies
-            :tweet="tweet.data"
-            :key="replyKey"
-        />
-    </DefaultLayout>
+    <template v-if="user?.data">
+        <DefaultLayout>
+            <template #header>
+                <Link href="/home" class="back-arrow">
+                    <IconArrowLeft />
+                </Link>
+                <h1>
+                    Tweet
+                </h1>
+            </template>
+            <TweetCard
+                :tweet="tweet.data"
+                show-stats
+            />
+            <TweetInput
+                v-if="user?.data"
+                :parent-tweet="tweet.data.id"
+                placeholder="Tweet your reply"
+                :user="user.data"
+                @submitted="refreshReplies"
+            />
+            <TweetReplies
+                :tweet="tweet.data"
+                :key="replyKey"
+            />
+        </DefaultLayout>
+    </template>
+    <template v-else>
+        <GuestLayout title="">
+            <template #header>
+                <Link href="/home" class="back-arrow">
+                    <IconArrowLeft />
+                </Link>
+                <h1>
+                    Tweet
+                </h1>
+            </template>
+            <TweetCard
+                :tweet="tweet.data"
+                show-stats
+            />
+            <TweetInput
+                v-if="user?.data"
+                :parent-tweet="tweet.data.id"
+                placeholder="Tweet your reply"
+                :user="user.data"
+                @submitted="refreshReplies"
+            />
+            <TweetReplies
+                :tweet="tweet.data"
+                :key="replyKey"
+            />
+        </GuestLayout>
+    </template>
 </template>
 
 <style lang="scss" scoped>

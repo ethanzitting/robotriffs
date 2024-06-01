@@ -12,8 +12,7 @@ class TweetService extends BaseService
     {
         $topUsers = User::query()
             ->withCount(['followers'])
-            ->get()
-            ->where('followers_count', '>=', 3);
+            ->get();
 
         return Tweet::withCount(['children', 'likes'])
             ->with([

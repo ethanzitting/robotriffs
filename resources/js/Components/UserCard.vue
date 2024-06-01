@@ -2,10 +2,13 @@
 import UserAvatar from "@/Components/UserAvatar.vue";
 import {Link, usePage} from '@inertiajs/vue3';
 import FollowButton from "./FollowButton.vue";
+import {authStore} from "../stores/auth";
 
 const props = defineProps({
     user: Object,
 })
+
+const authUser = authStore().user;
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const props = defineProps({
                     {{ user.name }}
                 </Link>
                 <FollowButton
-                    v-if="user.id !== usePage().props.auth.user.id"
+                    v-if="authUser && user.id !== usePage().props.auth.user.id"
                     class="follow-button"
                     :user="user"
                 />

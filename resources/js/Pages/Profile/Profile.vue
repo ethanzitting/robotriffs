@@ -8,6 +8,8 @@ import IconArrowLeft from "../../Components/icons/IconArrowLeft.vue";
 import ProfileEditModal from "../../Components/ProfileEditModal.vue";
 import {ref} from "vue";
 import UserTweets from "@/Components/tweets/UserTweets.vue";
+import {authStore} from "../../stores/auth";
+import GuestLayout from "../../Layouts/GuestLayout.vue";
 
 const props = defineProps({
     user: Object,
@@ -21,64 +23,106 @@ const bannerUrl = props.user.data.banner
     ? props.user.data.banner.url
     : 'https://placehold.co/600x400'
 
+const authUser = authStore().user
 </script>
 
 <template>
-    <DefaultLayout>
-        <Head>
-            <title>{{ user.name}}</title>
-        </Head>
-        <template #header>
-            <Link href="/home" class="back-arrow">
-                <IconArrowLeft />
-            </Link>
-            <div class="header-text">
-                <h1>{{ user.name }}</h1>
-                <p>{{ user.tweetCount }} Tweet{{ user.tweetCount > 1 ? 's' : ''}}</p>
-            </div>
-        </template>
-        <div class="jumbotron">
-            <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
-            <UserAvatar class="avatar" :specified-user="user"/>
-            <div class="profile-options">
-                <button
-                    class="edit"
-                    v-if="user.id === $page.props.auth.user.id"
-                    @click="showEditModal = true"
-                >
-                    Edit Profile
-                </button>
-                <Suspense v-else>
-                    <FollowButton :user="user"/>
-                </Suspense>
-            </div>
-        </div>
-        <div class="main-text">
-            <p class="name">{{ user.name }}</p>
-            <p class="handle">@{{ user.handle }}</p>
-            <p>{{ user.profile.bio }}</p>
-            <p class="joined">Joined {{ dayjs(user.dates.created).format('MMMM YYYY') }}</p>
-            <div class="connections">
-                <Link :href="`/${user.handle}/following`">
-                    <span class="number">{{ user.followingCount }} </span>
-                    Following
+    <Head>
+        <title>{{ user.name}}</title>
+    </Head>
+    <template v-if="authUser">
+        <DefaultLayout>
+            <template #header>
+                <Link href="/home" class="back-arrow">
+                    <IconArrowLeft />
                 </Link>
-                <Link :href="`/${user.handle}/followers`">
-                    <span class="number">{{ user.followerCount }} </span>
-                    {{ user.followerCount === 1? 'Follower' : 'Followers' }}
-                </Link>
+                <div class="header-text">
+                    <h1>{{ user.name }}</h1>
+                    <p>{{ user.tweetCount }} Tweet{{ user.tweetCount > 1 ? 's' : ''}}</p>
+                </div>
+            </template>
+            <div class="jumbotron">
+                <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
+                <UserAvatar class="avatar" :specified-user="user"/>
+                <div class="profile-options">
+                    <button
+                        class="edit"
+                        v-if="user.id === $page.props.auth.user.id"
+                        @click="showEditModal = true"
+                    >
+                        Edit Profile
+                    </button>
+                    <Suspense v-else>
+                        <FollowButton :user="user"/>
+                    </Suspense>
+                </div>
             </div>
-        </div>
-        <div class="tweet-title">
-            Tweets
-        </div>
-        <UserTweets :user="user" />
-    </DefaultLayout>
-    <ProfileEditModal
-        :show="showEditModal"
-        @close="showEditModal = false"
-        :user="user"
-    />
+            <div class="main-text">
+                <p class="name">{{ user.name }}</p>
+                <p class="handle">@{{ user.handle }}</p>
+                <p>{{ user.profile.bio }}</p>
+                <p class="joined">Joined {{ dayjs(user.dates.created).format('MMMM YYYY') }}</p>
+                <div class="connections">
+                    <Link :href="`/${user.handle}/following`">
+                        <span class="number">{{ user.followingCount }} </span>
+                        Following
+                    </Link>
+                    <Link :href="`/${user.handle}/followers`">
+                        <span class="number">{{ user.followerCount }} </span>
+                        {{ user.followerCount === 1? 'Follower' : 'Followers' }}
+                    </Link>
+                </div>
+            </div>
+            <div class="tweet-title">
+                Tweets
+            </div>
+            <UserTweets :user="user" />
+        </DefaultLayout>
+        <ProfileEditModal
+            :show="showEditModal"
+            @close="showEditModal = false"
+            :user="user"
+        />
+    </template>
+    <template v-else>
+        <GuestLayout>
+            <template #header>
+                <Link href="/home" class="back-arrow">
+                    <IconArrowLeft />
+                </Link>
+                <div class="header-text">
+                    <h1>{{ user.name }}</h1>
+                    <p>{{ user.tweetCount }} Tweet{{ user.tweetCount > 1 ? 's' : ''}}</p>
+                </div>
+            </template>
+            <div class="jumbotron">
+                <div class="banner" :style="`background-image: url(${bannerUrl})`"/>
+                <UserAvatar class="avatar" :specified-user="user"/>
+                <div class="profile-options">
+                </div>
+            </div>
+            <div class="main-text">
+                <p class="name">{{ user.name }}</p>
+                <p class="handle">@{{ user.handle }}</p>
+                <p>{{ user.profile.bio }}</p>
+                <p class="joined">Joined {{ dayjs(user.dates.created).format('MMMM YYYY') }}</p>
+                <div class="connections">
+                    <Link :href="`/${user.handle}/following`">
+                        <span class="number">{{ user.followingCount }} </span>
+                        Following
+                    </Link>
+                    <Link :href="`/${user.handle}/followers`">
+                        <span class="number">{{ user.followerCount }} </span>
+                        {{ user.followerCount === 1? 'Follower' : 'Followers' }}
+                    </Link>
+                </div>
+            </div>
+            <div class="tweet-title">
+                Tweets
+            </div>
+            <UserTweets :user="user" />
+        </GuestLayout>
+    </template>
 </template>
 
 <style lang="scss" scoped>

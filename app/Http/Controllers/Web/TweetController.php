@@ -31,9 +31,11 @@ class TweetController extends Controller
             'children.children',
         ]);
 
+        $user = Auth::user()?->load(['avatar']);
+
         return Inertia::render('Tweet', [
             'tweet' => new TweetResource($tweet),
-            'user' => UserResource::make(Auth::user()->load(['avatar'])),
+            'user' => $user ? UserResource::make($user) : null,
         ]);
     }
 

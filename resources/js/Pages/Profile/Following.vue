@@ -3,16 +3,20 @@ import { Head, Link } from '@inertiajs/vue3'
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 import IconArrowLeft from "../../Components/icons/IconArrowLeft.vue";
 import UserCard from "../../Components/UserCard.vue";
+import {authStore} from "../../stores/auth";
+import GuestLayout from "../../Layouts/GuestLayout.vue";
 
 const props = defineProps({
     user: Object,
 })
 
 const user = props.user.data
+
+const authUser = authStore().user;
 </script>
 
 <template>
-    <DefaultLayout>
+    <DefaultLayout v-if="authUser">
         <Head>
             <title>{{ user.name}}</title>
         </Head>
@@ -29,6 +33,23 @@ const user = props.user.data
             <UserCard :user="user" class="user-card"/>
         </div>
     </DefaultLayout>
+    <GuestLayout v-else>
+        <Head>
+            <title>{{ user.name}}</title>
+        </Head>
+        <template #header>
+            <Link href="/home" class="back-arrow">
+                <IconArrowLeft />
+            </Link>
+            <div class="header-text">
+                <h1>{{ user.name }}</h1>
+                <p>@{{ user.handle }}</p>
+            </div>
+        </template>
+        <div v-for="user in user.following" :key="user.id">
+            <UserCard :user="user" class="user-card"/>
+        </div>
+    </GuestLayout>
 </template>
 
 <style lang="scss" scoped>
